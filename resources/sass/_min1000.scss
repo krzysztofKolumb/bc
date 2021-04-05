@@ -1,0 +1,321 @@
+@media screen and (min-width:1000px) {
+
+
+    .logo {
+        width: 250px;
+        width: 220px;
+      }
+
+    .page-navbar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .nav-contact {
+          margin-bottom: -30px;
+
+          a {
+            pointer-events: none;
+            cursor: default;
+          }
+        }
+
+        .menu-btn {
+          display: none;
+        }
+    
+        .menu-container {
+          width: 100%;
+          padding: 0;
+          margin-right: 0;
+          position: static;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          text-transform: uppercase;
+    
+            li {
+              max-width: auto;
+              padding: 0;
+              margin: 0;
+    
+              a {
+                    font-size: 16/16*1em;
+                }
+            }
+        }
+
+        a:hover {
+          color: $dark-gray;
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+    
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background: #fff;
+          width: 260px;
+          padding: 20px 10px;
+          box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.1);
+          text-align: left;
+          z-index: 1;
+    
+          li {
+            margin: 0!important;
+            padding: 0!important;
+          }
+        
+          a {
+            color: black;
+            padding: 10px 16px;
+            margin: 0;
+            text-decoration: none;
+            display: block;
+          }
+          
+          a:hover {
+            color: $dark-gray;
+          }
+    
+        }
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+    
+    }  
+
+    .home-header {
+        // position: relative;
+        // width: 60%;
+        // margin-top: -500px;
+        // margin-bottom: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        // float: left;
+        padding: 80px 0 60px 0; 
+        // background: transparent;   
+    }
+
+    .header-basic {
+      
+          .header-content {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+      
+    }
+
+    .content-tm {
+      width: 65%;
+    }
+
+    .home {
+
+        h1 {
+            font-size: 45/16*1em;
+            font-size: 40/16*1em;
+
+            span:nth-child(1) {
+                display: inline;
+            }
+
+            span:nth-child(2) {
+                display: inline;
+            }
+
+            span:nth-child(3) {
+                margin-top: 20px;
+            }
+        }
+    }
+
+
+    .home-hexgrid {
+        position: relative;
+
+        .hex h2 {
+            font-size: 18/16*1em;
+        }
+
+    }
+
+    .specialties {
+
+      .hexGrid {
+          width: 80%;
+          max-width: 1000px;
+          // padding-bottom: 5.5%; /* 4 w rzedzie */
+      }
+
+      .hex {
+          width: 25%; // 4 w rzedzie
+          width: 16.66666666%;
+      }
+
+      .hex h2{
+          font-size: 19/16*1em!important;
+      }
+
+      .hex:nth-child(7n+1){ 
+        margin-left: 0;
+    }
+  
+      .hex:nth-child(11n+1){
+          margin-left: 10%;
+        margin-left: 8.33333333%;
+      }
+  }
+
+    section.expert-profile {
+
+        article {
+          display: flex;
+          justify-content: space-between;
+      
+          .mobile-header {
+            display: none;
+          }
+      
+          .desktop-header {
+            display: block;
+          }
+
+        }
+
+        .expert-photo {
+            width: 35%;
+            margin-bottom: 50px;
+        }
+
+        .spec-desc {
+            width: 60%;
+        }
+        
+    }
+
+    .team-list {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      
+          li {
+            width: 25%;
+          }
+
+          figure {
+            height: 300px;
+          }
+    }
+
+    .home .team-list {
+
+        li:nth-child(1),
+        li:nth-child(2) {
+          margin-bottom: 0;
+        }
+    }
+
+    .news-list {
+        width: 80%;
+
+        li {
+            width: 40%;
+        }
+    }
+
+    .footer-contact {
+        padding-bottom: 100px;
+
+        ul {
+            width: 90%;
+            flex-wrap: nowrap;
+        }
+
+        li {
+            width: 25%;
+            margin-bottom: 0;
+        }
+
+        a {
+          pointer-events: none;
+          cursor: default;
+        }
+      
+      }
+
+      .footer-nav {
+         
+        ul {
+            width: 80%;
+        }
+
+    }
+
+      .lab-packages-section {
+
+        .accordion {
+            width: 80%;
+        }
+      
+    }
+
+    .price-list {
+
+      .desctop {
+        display: flex;
+        font-weight: 500;
+      }
+
+      .mobile {
+        display: none;
+      }
+    }
+
+
+    .clinical-trials-list {
+
+      article {
+        width: 70%;
+
+      }
+    
+
+    }
+
+    .download-files {
+      width: 80%;
+      margin-left: 0;
+  }
+
+  section.consultations {
+
+    article {
+      width: 80%;
+
+    }
+  }
+
+  .treatments-price-list {
+    width: 80%;
+    padding-left: 50px;
+  }
+
+  .news-section .news-list li {
+    width: 70%;
+  }
+
+  #accordionContact {
+    width: 60%;
+  }
+
+}

@@ -1,0 +1,43 @@
+@media screen and (min-width:1200px) {
+
+    .page-navbar {
+        width: 98%;
+    
+        .nav-contact {
+            margin-bottom: 20px;
+          }
+    
+    .menu-container {
+        width: 80%;
+    }
+
+    a i {
+        display: none;
+    }
+
+    .mobile-menu-item {
+        display: block;
+    }
+
+}
+
+    .team-list {
+
+        figure {
+            height: 380px;
+        }
+    }
+
+    .lab-packages-section {
+
+        .accordion {
+            width: 70%;
+        }
+      
+    }
+
+    .about-gallery ul.hexGrid {
+        width: 70%;
+        max-width: 70%;
+      }
+}

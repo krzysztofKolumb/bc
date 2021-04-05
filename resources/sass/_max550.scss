@@ -1,0 +1,40 @@
+@media screen and (max-width:549px) {
+
+    .home-hexgrid {
+
+        .hexGrid {
+            width: 90%;
+            max-width: 350px;
+            padding-bottom: 11%;
+        }
+
+        .hex {
+            width: 50%; // 2 w rzedzie
+        }
+
+        .hex:nth-child(3n+1){ /* first hexagon of even rows */
+            /* = width of .hex / 2  to indent even rows */
+            margin-left: 25%; // dla 2 w rzedzie
+        }
+
+    }
+
+    .specialties {
+
+        .hexGrid {
+            width: 80%;
+            max-width: 350px;
+            padding-bottom: 10%;
+        }
+
+        .hex {
+            width: 50%; // 2 w rzedzie
+        }
+
+        .hex:nth-child(3n+1){ /* first hexagon of even rows */
+            /* = width of .hex / 2  to indent even rows */
+            margin-left: 25%; // dla 2 w rzedzie
+        }
+    }
+
+}

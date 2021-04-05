@@ -1,0 +1,227 @@
+@media screen and (min-width:760px) {
+
+    h3.basic {
+        width: 70%;
+    }
+
+    .header-basic {
+
+        h1, h3 {
+            margin-bottom: 0;
+        }
+    }
+
+    .home-hexgrid {
+    
+        .hexGrid {
+            width: 90%;
+            max-width: 740px;
+            padding-bottom: 5.5%; /* 4 w rzedzie */
+        }
+    
+        .hex {
+            width: 25% // 4 w rzedzie
+        }
+    
+        .hex:nth-child(7n+1){ 
+            margin-left: 12.5%;
+        }
+
+    }
+
+    .specialties {
+
+        .hexGrid {
+            width: 85%;
+            max-width: 1000px;
+            padding-bottom: 5.5%; /* 4 w rzedzie */
+        }
+
+        .hex {
+            width: 25%; // 4 w rzedzie
+        }
+
+        .hex h2{
+            font-size: 15/16*1em;
+        }
+    
+        .hex:nth-child(7n+1){ 
+            margin-left: 12.5%;
+        }
+    }
+
+    .team-list {
+        display: flex;
+        flex-wrap: wrap;
+      
+        li {
+            max-width: 100%;
+            width: 50%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        figure {
+            display: flex;
+            height: 400px;
+            align-items: center;
+            justify-content: center;
+          
+            img,
+            .photo-prev {
+              width: auto;
+              height: 100%;
+              align-self: center;
+            }
+
+            .photo-prev {
+                width: 100%;
+                height: 100%;
+                background-color: $light-gray;
+              }
+        }
+
+        article {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+    }
+
+    .home .team-list {
+
+        li:nth-child(3),
+        li:nth-child(4) {
+            margin-bottom: 0;
+        } 
+    }
+
+    .news-list {
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            width: 45%;
+        }
+    }
+
+    .footer-contact {
+        padding-bottom: 50px;
+
+        ul {
+            width: 70%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        li {
+            width: 45%;
+            margin-bottom: 80px;
+        }
+      
+      }
+
+     .footer-nav {
+         
+         ul {
+             display: flex;
+             justify-content: space-between;
+         }
+
+         li {
+             width: 33%;
+             width: 200px;
+             text-align: left;
+         }
+
+         li:nth-child(1) {
+             width: 220px;
+         }
+
+         li:nth-child(2) {
+            width: 120px;
+        }
+
+        li:nth-child(3) {
+            width: 150px;
+        }
+     }
+
+    section.schedules {
+
+        article {
+            margin-bottom: 80px;
+        }
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        ul li {
+            display: flex;
+            align-content: center;
+        }
+
+        ul li:first-child {
+
+            font-weight: 500;
+            .day {
+              display: block;
+            }
+          }
+
+        .spec {
+            width: 40%;
+
+            h5 {
+                display: block;
+            }
+        }
+
+        .day {
+            width: 10%;
+            margin-bottom: 0;
+            align-self: center;
+            text-align: center;
+        
+            span {
+              display: none;
+            }
+        }
+
+        .info {
+            display: none;
+        }
+    }  
+
+    .lab-packages-section {
+
+        .accordion {
+            width: 90%;
+        }
+      
+    }
+
+    .main-contact {
+        // width: 60%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .main-contact li {
+        width: 50%;
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+      }
+      
+      .main-contact li:nth-child(2n +1){
+        justify-content: flex-end;
+      }
+
+}

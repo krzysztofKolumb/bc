@@ -1355,6 +1355,9 @@ section.consultations h2 {
   margin-bottom: 0;
 }
 
+.offer-content article {
+  padding-bottom: 0 !important;
+}
 .offer-content .aside-content {
   display: flex;
   align-items: center;
@@ -1364,6 +1367,9 @@ section.consultations h2 {
 .offer-content .aside-content a {
   padding: 40px;
   background: #fff;
+}
+.offer-content .aside-content .link-wrapper-grad {
+  margin-bottom: 80px;
 }
 
 .home-header {
@@ -1790,6 +1796,7 @@ section.consultations h2 {
 
   .offer-content article {
     display: flex;
+    margin-bottom: 80px !important;
   }
 
   .content-tm {

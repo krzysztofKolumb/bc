@@ -518,17 +518,12 @@ section.schedules {
       @include font-semi-condensed;
       color: #b4b4b4;
       text-transform: lowercase;
-      
-
     }
-
-
 
     a:hover img {
       opacity: 0.7;
     }
 }
-
 
 .news-list {
   width: 90%;
@@ -1147,6 +1142,10 @@ box-shadow: none;
 
 .offer-content {
 
+  article {
+    padding-bottom: 0!important;
+  }
+
   .aside-content {
     display: flex;
     align-items: center;
@@ -1156,6 +1155,10 @@ box-shadow: none;
     a {
       padding: 40px;
       background: #fff;
+    }
+
+    .link-wrapper-grad {
+      margin-bottom: 80px;
     }
   }
 }

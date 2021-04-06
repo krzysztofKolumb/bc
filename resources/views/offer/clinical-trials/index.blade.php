@@ -14,6 +14,7 @@
     </article>
 </section>
 
+@if(count($page->experts) > 0)
 <section class="clinical-trials-section">
 <header class="header-basic">
     <div class="header-content">
@@ -52,6 +53,7 @@
 </article>
 </section>
 <span class="line"></span>
+@endif
 <section class="clinical-trials-section ct-recrutations-section">
 <header class="header-basic">
     <div class="header-content">
@@ -92,12 +94,11 @@
 </div>
 </div>
 </section>
-<!-- <header class="header-basic">
-    <div class="header-content">
-        <h3>Zapisy online</h3>
-        <p>Badania kliniczne</p>
-    </div>
-</header> -->
-<span class="line"></span>
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zapisy online</h3>
+        </div>
+</header>
+<!-- <span class="line"></span> -->
 
 @endsection

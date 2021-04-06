@@ -63,7 +63,12 @@
     @endforeach
 </ul>
 </article>
+<span class="line"></span>
 @endif
 </section>
-
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zapisy online</h3>
+        </div>
+</header> 
 @endsection

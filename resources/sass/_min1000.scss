@@ -205,6 +205,7 @@
     }
 
     .team-list {
+      width: 90%;
         margin-bottom: 0;
         padding-bottom: 0;
       
@@ -316,6 +317,22 @@
 
   #accordionContact {
     width: 60%;
+  }
+
+  section.endoscopy-lab-menu {
+
+    ul {
+      width: 60%;
+    }
+
+  }
+
+  .about-gallery {
+  
+    ul.hexGrid {
+      width: 60%!important;
+      margin-bottom: 0;
+    }
   }
 
 }

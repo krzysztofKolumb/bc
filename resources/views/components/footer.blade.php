@@ -53,8 +53,14 @@
                 <a href="{{ url('/kontakt') }}">Kontakt</a>
             </li>
             <li>
-                <a href="{{ $footer->online_registration }}">Zapisy on-line</a>
-                <a href="{{ $footer->online_test_results }}">Wyniki on-line</a>
+                @if($footer->online_registration)
+                <a href="{{$footer->online_registration}}">Zapisy on-line</a>
+                @endif
+                
+                @if($footer->online_test_results)
+                <a href="{{$footer->online_test_results}}">Wyniki on-line</a>
+                @endif
+
                 <a href="{{ url('/strefa-pacjenta/czesto-zadawane-pytania') }}">FAQ</a>
                 <a href="{{ url('/strefa-pacjenta/polityka-prywatnosci') }}">Polityka Prywatności</a>
             </li>

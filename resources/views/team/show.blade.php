@@ -1,5 +1,13 @@
 @extends('layouts.page')
 
+@section('meta_title')
+{{ $page->meta_title}}
+@endsection
+
+@section('meta_description')
+{{ $page->meta_description }}
+@endsection
+
 @section('title')
 Zespół
 @endsection

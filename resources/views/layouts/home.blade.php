@@ -9,6 +9,7 @@
     </head>
     
     <body class="@yield('name')">
+    <div class="page-main-wrapper">
         <x-page-nav/>
 
     <header class="home-header">
@@ -35,5 +36,6 @@
             $(this).next().toggleClass('active');
         });
     </script>
+    </div>
 </body>
  </html>

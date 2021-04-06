@@ -10,6 +10,7 @@
     </head>
 
     <body class=" @yield('name') ">
+    <div class="page-main-wrapper">
 
     <x-page-nav/>
 
@@ -28,6 +29,6 @@
     <script src="{{ asset('/js/jquery-3.6.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap-5.0.0-beta3-dist.min.js') }}" ></script>
     <script src="{{ asset('/js/app.js') }}"></script>
-
+    </div>
 </body>
  </html>

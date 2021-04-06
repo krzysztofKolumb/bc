@@ -20,7 +20,8 @@ class TeamController extends Controller
 
     public function show(Expert $expert)
     {
-        return view('team.show', ['expert' => $expert]);
+        $page = $expert->page;
+        return view('team.show', compact('expert', 'page'));
     }
 
 }

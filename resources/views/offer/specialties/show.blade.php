@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta_title')
+{{ $specialty->name }} | Przychodnia BodyClinic
+@endsection
+
 @section('title')
 {{ $specialty->name }}
 @endsection
@@ -18,10 +22,12 @@ Specjaliści
     <li>
         <article>
             <a href="{{ route('expert-profile', [$expert->slug]) }}">
-                <figure>
+            <figure>
                 @if($expert->photo)
                     <img src="{{url('storage/photos/' . $expert->photo)}}" >
-                @endif    
+                @else
+                <div class="photo-prev"></div>
+                @endif  
                 </figure>
                 <h2>{{ $expert->degree->name }} {{ $expert->firstname }} {{ $expert->lastname }}</h2>
                 <h3>

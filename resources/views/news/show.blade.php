@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta_title')
+{{ $post->title }} | BodyClinic
+@endsection
+
 @section('title')
 Aktualności
 @endsection

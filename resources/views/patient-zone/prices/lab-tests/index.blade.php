@@ -61,10 +61,10 @@
         </div>
     <article>
 </section>
-<!-- <header class="header-basic">
-    <div class="header-content">
-      <h3>Zapisy online</h3>
-    </div>
-  </header> -->
-<span class="line"></span>
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zapisy online</h3>
+        </div>
+</header> 
+<!-- <span class="line"></span> -->
 @endsection

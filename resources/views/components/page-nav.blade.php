@@ -4,14 +4,14 @@
     </div>
     <div class="logo-container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img class="logo" src="{{url('storage/photos/logo-grad.png')}}" />
+            <img class="logo" src="{{url('storage/img/logo-grad.png')}}" />
         </a>
         <div class="menu-btn">Menu</div>
     </div>
     <ul class="menu-container">
         <li><a href="{{ route('about') }}">O nas</a></li>
         <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Oferta<i class="bi bi-chevron-down"></i></a>
+            <a href="javascript:void(0)" class="dropbtn">Oferta<i class="icon-down-dir-1"></i></a>
             <ol class="dropdown-content">
                 <li><a href="{{ url('/oferta/centrum-leczenia-otylosci') }}">Centrum Leczenia Otyłości</a></li>
                 <li><a href="{{ url('/oferta/poradnia-chorob-watroby') }}">Poradnia Chorób Wątroby</a></li>
@@ -26,7 +26,7 @@
         <li class="mobile-menu-item"><a href="{{ route('clinicalTrials') }}">Badania Kliniczne</a></li>
         <li><a href="{{ route('team') }}">Zespół</a></li>
         <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Strefa Pacjenta<i class="bi bi-chevron-down"></i></a>
+            <a href="javascript:void(0)" class="dropbtn">Strefa Pacjenta<i class="icon-down-dir-1"></i></a>
             <ol class="dropdown-content">
                 <li><a href="{{ url('/strefa-pacjenta/rejestracja') }}">Rejestracja</a></li>
                 <li><a href="{{ url('/strefa-pacjenta/grafik-przyjec') }}">Grafik Przyjęć</a></li>
@@ -36,7 +36,9 @@
                 <li><a href="{{ url('/strefa-pacjenta/cennik-zabiegow') }}">Cennik Zabiegów</a></li>
                 <li><a href="{{ url('/strefa-pacjenta/do-pobrania') }}">Do pobrania</a></li>
                 <li><a href="{{ url('/strefa-pacjenta/czesto-zadawane-pytania') }}">FAQ</a></li>
-                <li><a href="">Wyniki on-line</a></li>
+                @if($contact->online_test_results)
+                <li><a href="{{$contact->online_test_results}}">Wyniki on-line</a></li>
+                @endif
                 <li><a href="{{ url('/strefa-pacjenta/polityka-prywatnosci') }}">Polityka Prywatności</a></li>
             </ol>
         </li>

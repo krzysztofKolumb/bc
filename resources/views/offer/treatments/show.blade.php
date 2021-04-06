@@ -20,7 +20,7 @@
         <p>Zespół</p>
     </div>
 </header>
-<article class="team-content ">
+<article class="team-content">
 <ul class="team-list">
     @foreach($offer->page->experts as $expert)
     @if( $profession->id === $expert->profession->id )
@@ -57,7 +57,9 @@
 
 @endif
 @endforeach
-
-<x-online-registration/>
-
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zapisy online</h3>
+        </div>
+</header>
 @endsection

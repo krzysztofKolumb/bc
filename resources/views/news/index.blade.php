@@ -17,7 +17,7 @@
                 </div>
                 <a class="news-link" href="{{ route('post', [$post->slug]) }}">
                 Całość 
-                <i class="bi bi-arrow-right"></i>
+                <i class="icon-right-dir"></i>
                 </a>
             </article>
         </li>

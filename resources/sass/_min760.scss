@@ -224,4 +224,28 @@
         justify-content: flex-end;
       }
 
+      section.endoscopy-lab-menu {
+
+        article {
+          padding: 0;
+        }
+      
+        ul {
+          width: 80%;
+          display: flex;
+          justify-content: space-between;
+      
+          li {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+          }
+      
+          li:nth-last-child(1){
+            margin-bottom: 0;
+          }
+        }
+    
+      }
+
 }

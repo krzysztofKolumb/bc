@@ -166,110 +166,110 @@ $(document).ready(function(){
       selector:'#textarea-expert-education',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-expert-certificates',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-expert-awards',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-expert-help',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-expert-other',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
   tinymce.init({
       selector:'#lab-package-update-editor',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });  
 
     tinymce.init({
       selector:'#textarea-clinical-trial',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-post-update',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#textarea-post-update',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
       selector:'#editor-faq-update',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
@@ -277,11 +277,11 @@ $(document).ready(function(){
       language: 'pl',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
     tinymce.init({
@@ -289,11 +289,11 @@ $(document).ready(function(){
       language: 'pl',
       language: 'pl',
       height: '400px',
-      menubar: false,
-      plugins: 'link lists',
-      // toolbar: 'styleselect | fontsizeselect',
-      toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
-      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+      // menubar: false,
+      // plugins: 'link lists',
+      // // toolbar: 'styleselect | fontsizeselect',
+      // toolbar: 'undo redo | h2 h3 h4 h5 h6 | bold italic underline | numlist bullist | forecolor alignleft aligncenter alignright | link',
+      // fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
     });
 
   //Powiadomienia z Livewire

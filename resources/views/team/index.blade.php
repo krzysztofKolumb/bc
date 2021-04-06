@@ -13,6 +13,7 @@
 </section>
 
 @foreach($teams as $team)
+@if($team->experts->count() > 0)
 <header class="header-basic">
         <div class="header-content">
             <h3>{{ $team->team }}</h3>
@@ -49,6 +50,7 @@
 </ul>
 </article>
 <span class="line"></span>
+@endif
 @endforeach
 
 @foreach($employeeTeams as $team)
@@ -81,10 +83,12 @@
     @endforeach
 </ul>
 </article>
-@if(!$loop->last)
 <span class="line"></span>
 @endif
-@endif
 @endforeach
-
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zapisy online</h3>
+        </div>
+</header> 
 @endsection

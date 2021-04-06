@@ -35,15 +35,16 @@ section.endoscopy-lab-menu {
   }
 
   ul {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
-    padding: 30px 0;
-    display: flex;
-    justify-content: space-between;
+    padding: 50px 0;
 
     li {
-      display: flex;
-      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    li:nth-last-child(1){
+      margin-bottom: 0;
     }
   }
 
@@ -113,7 +114,7 @@ section.expert-profile {
   article {
     width: 90%;
     margin:0 auto;
-    padding: 80px 0 100px 0;
+    padding: 80px 0 40px 0;
 
     .mobile-header {
       text-align: center;
@@ -155,17 +156,22 @@ section.expert-profile {
 
       li {
         display: flex;
+        justify-content: space-between;
 
         .icon-profile {
           width: 80px;
+          min-width: 70px;
+          max-width: 80px;
+          width: 15%;
 
           img {
-            width: 50px;
+            width: 45px;
           }
         }
 
         .desc {
-          flex-grow: 1;
+          width: 90%;
+          // flex-grow: 1;
           padding-bottom: 30px;
         }
 
@@ -315,6 +321,7 @@ section.schedules {
 
       li {
         max-width: 300px;
+        margin-bottom: 10px;
       }
 
       .online-reg a {
@@ -327,13 +334,11 @@ section.schedules {
       .online-reg a:hover {
         border-color: $dark-gray;
       }
-
         
       a {  
         display: block; 
         padding: 10px;           
         @include font-condensed;
-        // font-family: 'Oswald', sans-serif;
         font-size: 17/16*1em;
         // color: #999;
         font-weight: 500;
@@ -401,13 +406,17 @@ section.schedules {
 
 .header-basic {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   padding: 50px 0;
   border-bottom: 1px solid #e5e5e5;
 
     .header-content {
       width: 90%;
       margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
   h1, h3 {
@@ -427,6 +436,11 @@ section.schedules {
   background: $bcg;
 }
 
+.header-about, .header-online {
+  margin-bottom: 0;
+  border-width: 0;
+}
+
 // .team-content {
   // border-bottom: 1px solid #e5e5e5;
 
@@ -437,7 +451,7 @@ section.schedules {
 }
 
 .team-list {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
 
     li {
@@ -456,11 +470,8 @@ section.schedules {
       max-width: 320px;
       margin: 0 auto 20px auto;
       overflow: hidden;
-      // background-color: $light-gray;
     
-      img,
-      .photo-prev {
-        // position:relative;
+      img {
         display: block;
         width: 100%;
         opacity: 1;
@@ -468,11 +479,11 @@ section.schedules {
         backface-visibility: hidden;
       }
 
-      .photo-prev {
-        min-height: 420px;
-        height: 100%;
-        background-color: $light-gray;
-      }
+      // .photo-prev {
+      //   min-height: 420px;
+      //   height: 100%;
+      //   background-color: $light-gray;
+      // }
 
 
     }
@@ -827,6 +838,11 @@ section.consultations {
 
   }
 
+  .accordion-body {
+    padding-left: 50px;
+    font-size: 17/16*1em;
+  }
+
   article {
     width: 90%;
     margin: 0 auto;
@@ -1062,10 +1078,11 @@ box-shadow: none;
 }
 
 .about-gallery {
-  padding: 100px 0 0 0;
+  padding: 100px 0 100px 0!important;
   border-top-width: 0!important;
 
   ul.hexGrid {
+    width: 80%;
     margin-bottom: 0;
   }
 }

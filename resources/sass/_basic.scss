@@ -54,6 +54,12 @@ body {
     border: 10px solid #fff;
 }
 
+.page-main-wrapper {
+   width: 100%;
+   margin: 0 auto;
+   max-width: 1400px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     @include font-condensed;
 }
@@ -88,6 +94,10 @@ span.line {
 a:hover {
    color: $dark-gray;
    color: $orange;
+}
+
+.icon-down-dir-1 {
+   color: $light-gray;
 }
 
 

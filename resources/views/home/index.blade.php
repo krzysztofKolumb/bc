@@ -112,7 +112,7 @@
     </ul>
     
     <div class="link-basic">
-        <a href="{{ route('specialties') }}">Wszystkie specjalizacje <i class="bi bi-arrow-right"></i></a>
+        <a href="{{ route('specialties') }}">Wszystkie specjalizacje <i class="icon-right-dir"></i></a>
     </div>
     
 </section> 
@@ -159,8 +159,7 @@
   </ul>
   <div class="link-wrapper-solid">
         <a href="{{ route('team') }}">
-          Cały zespół
-          <i class="bi bi-arrow-right"></i> 
+          Cały zespół <i class="icon-right-dir"></i> 
         </a>
   </div>
   </article>
@@ -175,7 +174,7 @@
    <div class="link-wrapper-grad">
         <a href="{{ route('specialties') }}">
           O nas
-          <i class="bi bi-arrow-right"></i> 
+          <i class="icon-right-dir"></i> 
         </a>
     </div>
  </section>
@@ -201,7 +200,7 @@
         </div>
         <a class="news-link" href="{{ route('post', [$post->slug]) }}">
           Całość 
-          <i class="bi bi-arrow-right"></i>
+          <i class="icon-right-dir"></i>
         </a>
       </article>
     </li>
@@ -211,7 +210,7 @@
   <div class="link-wrapper-solid">
         <a href="{{ route('news') }}">
           Wszystkie
-          <i class="bi bi-arrow-right"></i> 
+          <i class="icon-right-dir"></i> 
         </a>
   </div>
 

@@ -116,8 +116,21 @@
       
     }
 
+    .offer-content article {
+      display: flex;
+      // justify-content: space-between;
+    }
+
     .content-tm {
-      width: 65%;
+      width: 60%;
+    }
+
+    aside {
+      width: 40%;
+
+      .aside-content {
+        width: 100%;
+      }
     }
 
     .home {
@@ -332,6 +345,18 @@
     ul.hexGrid {
       width: 60%!important;
       margin-bottom: 0;
+    }
+  }
+
+  .faqs-list {
+    width: 65%;
+    padding-bottom: 0!important;
+
+    li:nth-last-child(1) article {
+      padding-bottom: 0;
+    }
+    .content-tm {
+      width: 100%;
     }
   }
 

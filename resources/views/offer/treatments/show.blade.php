@@ -51,9 +51,7 @@
     @endforeach
 </ul>
 </article>
-@if(count($grouped) > 1)
 <span class="line"></span>
-@endif
 
 @endif
 @endforeach

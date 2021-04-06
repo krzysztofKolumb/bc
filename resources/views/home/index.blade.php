@@ -115,7 +115,33 @@
         <a href="{{ route('specialties') }}">Wszystkie specjalizacje <i class="icon-right-dir"></i></a>
     </div>
     
-</section> 
+</section>
+
+<header class="header-basic home-endoscopy-header">
+        <div class="header-content">
+            <h3>Zabiegi</h3>
+            <p>Pracownia Endoskopii</p>
+        </div>
+</header>
+<section class="endoscopy-lab-menu basic-bcg home-endoscopy">
+<article>
+      <h3 class="basic">Dowiedz się więcej o zabiegach gastroskopii i kolonoskopii wykonywanych w Pracownii Endoskopii</h3>
+        <ul>
+            <li>
+                <img height="80px" src="{{url('storage/img/icon-gastroscopy.png')}}" >
+                <a href="{{ route('endoscopy-treatment', ['gastroskopia'])}}">
+                    <h3>Gastroskopia <i class="icon-right-dir"></i></h3>
+                </a>
+            </li>
+            <li>
+                <img height="80px" src="{{url('storage/img/icon-colonoscopy.png')}}" >
+                <a href="{{ route('endoscopy-treatment', ['kolonoskopia'])}}">
+                    <h3>Kolonoskopia <i class="icon-right-dir"></i></h3>
+                </a>
+            </li>
+        </ul>
+</article>
+</section>
 
 <section class="home-team">
   <header class="header-basic">

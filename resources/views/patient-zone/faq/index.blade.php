@@ -4,16 +4,21 @@
 
 @section('main')
 
-<section class="consultations">
+<section class="faq-section">
 
 <article>
     <ul class="faqs-list">
         @foreach($faqs as $faq)
         <li>
-            <h3><span class="dot">&#9679; </span> {{ $faq->question }}</h3>
-            <div class="content-tm">
-            {!! $faq->answear !!}
-            </div>
+            <article>
+                <header>
+                    <span class="dot">&#9679; </span>
+                    <h3>{{ $faq->question }}</h3>
+                </header>
+                <div class="content-tm">
+                {!! $faq->answear !!}
+                </div>
+            </article>
         </li>
         @endforeach
     </ul>

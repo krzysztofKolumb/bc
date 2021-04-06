@@ -29,13 +29,13 @@
             <li>
                 <img height="80px" src="{{url('storage/img/icon-gastroscopy.png')}}" >
                 <a href="{{ route('endoscopy-treatment', ['gastroskopia'])}}">
-                    <h3>Gastroskopia <i class="bi bi-arrow-right"></i></h3>
+                    <h3>Gastroskopia <i class="icon-right-dir"></i></h3>
                 </a>
             </li>
             <li>
                 <img height="80px" src="{{url('storage/img/icon-colonoscopy.png')}}" >
                 <a href="{{ route('endoscopy-treatment', ['kolonoskopia'])}}">
-                    <h3>Kolonoskopia <i class="bi bi-arrow-right"></i></h3>
+                    <h3>Kolonoskopia <i class="icon-right-dir"></i></h3>
                 </a>
             </li>
         </ul>
@@ -43,37 +43,31 @@
 </section>
 @endif
 
-<section class="content">
+<section class="content offer-content">
     <article>
         <div class="content-tm">
         {!! $desc->content !!}
-        <div>
-        <aside>
-        </aside>
-    </article>
-</section>
-
-@if($offer->page->id == 5)
-<section class="endoscopy-download-files-section">
-    <header class="header-basic">
-        <div class="header-content">
-            <h3>Materiały do pobrania</h3>
-            <p>Pracownia Endoskopii</p>
         </div>
-    </header>
-    <article>
-        <ul class="download-files">
-            @foreach($files as $file)
-            <li>
-                <a href="{{url('storage/files/' . $file->title . '.' . $file->name)}}" download>
-                <h4><span class="dot">&#9679; </span> {{ $file->title }}</h4>
-                <i class="icon-down-dir-1"></i></a>
-            </li>
-            @endforeach
-        </ul>
+        <aside>
+            <div class="aside-content">
+                @if($offer->page->id == 3)
+                <div class="link-wrapper-grad">
+                    <a target="_blank" title="Poradnia Chorób Wątroby Hepatolodzy" href="http//www.hepatolodzy.pl">
+                        <img src="{{url('storage/img/logo-hepatolodzy.jpg')}}" >
+                    </a>
+                </div>
+                @endif
+                @if($offer->page->id == 4)
+                <div class="link-wrapper-grad">
+                    <a target="_blank" title="Poradnia Medycyny Podróży Medellan" href="http://www.medellan.pl">
+                        <img src="{{url('storage/img/logo-medellan.jpg')}}" >
+                    </a>
+                </div>
+                @endif
+            </div>   
+        </aside>   
     </article>
 </section>
-@endif
 
 @foreach($professions as $profession)
 @if( count($offer->page->experts->where('profession_id', $profession->id)) > 0 )
@@ -115,9 +109,59 @@
 </ul>
 </article>
 <span class="line"></span>
-
 @endif
 @endforeach
+@if($offer->page->id == 5)
+<section class="endoscopy-download-files-section">
+    <header class="header-basic">
+        <div class="header-content">
+            <h3>Materiały do pobrania</h3>
+            <p>Pracownia Endoskopii</p>
+        </div>
+    </header>
+    <article>
+        <ul class="download-files">
+            @foreach($files as $file)
+            <li>
+                <a href="{{url('storage/files/' . $file->title . '.' . $file->name)}}" download>
+                    <div>
+                        <span class="dot">&#9679; </span>
+                        <h4>{{ $file->title }}</h4>
+                    </div>
+                    <i class="icon-down-dir-1"></i>
+                </a>
+            </li>
+            @endforeach
+        </ul>
+    </article>
+</section>
+@endif
+@if($offer->page->id == 5)
+<header class="header-basic header-online">
+        <div class="header-content">
+            <h3>Zabiegi</h3>
+            <p>Pracownia Endoskopii</p>
+        </div>
+</header>
+<section class="endoscopy-lab-menu basic-bcg">
+<article>
+        <ul>
+            <li>
+                <img height="80px" src="{{url('storage/img/icon-gastroscopy.png')}}" >
+                <a href="{{ route('endoscopy-treatment', ['gastroskopia'])}}">
+                    <h3>Gastroskopia <i class="icon-right-dir"></i></h3>
+                </a>
+            </li>
+            <li>
+                <img height="80px" src="{{url('storage/img/icon-colonoscopy.png')}}" >
+                <a href="{{ route('endoscopy-treatment', ['kolonoskopia'])}}">
+                    <h3>Kolonoskopia <i class="icon-right-dir"></i></h3>
+                </a>
+            </li>
+        </ul>
+</article>
+</section>
+@endif
 <header class="header-basic header-online">
         <div class="header-content">
             <h3>Zapisy online</h3>

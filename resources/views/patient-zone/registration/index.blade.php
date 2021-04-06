@@ -24,8 +24,12 @@
             @foreach($files as $file)
             <li>
                 <a href="{{url('storage/files/' . $file->title . '.' . $file->name)}}" download>
-                <h4><span class="dot">&#9679; </span> {{ $file->title }}</h4>
-                <i class="bi bi-download"></i></a>
+                    <div>
+                        <span class="dot">&#9679; </span>
+                        <h4>{{ $file->title }}</h4>
+                    </div>
+                    <i class="icon-down-dir-1"></i>
+                </a>
             </li>
             @endforeach
         </ul>

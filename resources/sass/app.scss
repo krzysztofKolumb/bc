@@ -539,9 +539,17 @@ section.schedules {
     flex-direction: column;
     margin-bottom: 80px;
   }
+
+  header {
+    width: 100%;
+    display: flex;
+    // align-items: center;
+  }
+
   .news-title {
     font-size: 25/16*1em;
     margin-bottom: 20px;
+    border-bottom-width: 0!important;
   }
 
   .news-date {
@@ -560,6 +568,28 @@ section.schedules {
     width: 120px;
     display: block;
     font-weight: 500;
+  }
+}
+
+.news-page {
+
+  header {
+    // border-bottom: 1px solid #e5e5e5;
+  }
+  .news-date, .news-desc {
+    padding-left: 35px;
+  }
+
+  .news-title {
+    margin-bottom: 5px;
+  }
+
+  .content-tm {
+    padding-left: 35px;
+  }
+
+  .news-link {
+    margin-left: 35px;
   }
 }
 

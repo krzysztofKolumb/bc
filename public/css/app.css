@@ -861,9 +861,14 @@ section.schedules .day {
   flex-direction: column;
   margin-bottom: 80px;
 }
+.news-list header {
+  width: 100%;
+  display: flex;
+}
 .news-list .news-title {
   font-size: 1.5625em;
   margin-bottom: 20px;
+  border-bottom-width: 0 !important;
 }
 .news-list .news-date {
   order: -1;
@@ -878,6 +883,19 @@ section.schedules .day {
   width: 120px;
   display: block;
   font-weight: 500;
+}
+
+.news-page .news-date, .news-page .news-desc {
+  padding-left: 35px;
+}
+.news-page .news-title {
+  margin-bottom: 5px;
+}
+.news-page .content-tm {
+  padding-left: 35px;
+}
+.news-page .news-link {
+  margin-left: 35px;
 }
 
 footer .copyright {

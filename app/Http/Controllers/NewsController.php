@@ -13,8 +13,7 @@ class NewsController extends Controller
     public function index()
     {
         $page = Page::find(12);
-        $posts = Post::latest()->paginate(2);
-        // $posts->withPath('/aktualnosci/');
+        $posts = Post::latest()->paginate(10);
 
         return view('news.index', compact('page', 'posts')); 
     }

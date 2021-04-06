@@ -9,12 +9,17 @@ Aktualności
 @endsection
 
 @section('main')
-<section class="news-section">
+<section class="news-section news-page">
     <article>
         <ul class="news-list">
         <li>
             <article>
-                <h4 class="news-title"><span class="dot">&#9679; </span> {{ $post->title }} </h4>
+                <header>
+                    <span class="dot">&#9679; </span>
+                    <a href="{{ route('post', [$post->slug]) }}">
+                        <h4 class="news-title"> {{ $post->title }} </h4>
+                    </a>
+                </header>
                 <p class="news-date">{{ $post->created_at->format('d.m.Y') }} </p>
                 <div class="content-tm">
                 {!! $post->content !!}

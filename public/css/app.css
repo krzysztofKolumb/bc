@@ -1365,7 +1365,7 @@ section.consultations h2 {
   padding: 50px 0 0 0;
 }
 .offer-content .aside-content a {
-  padding: 40px;
+  padding: 30px;
   background: #fff;
 }
 .offer-content .aside-content .link-wrapper-grad {
@@ -1792,11 +1792,6 @@ section.consultations h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .offer-content article {
-    display: flex;
-    margin-bottom: 80px !important;
   }
 
   .content-tm {

@@ -16,7 +16,7 @@ Aktualności
             <article>
                 <header>
                     <span class="dot">&#9679; </span>
-                    <a href="{{ route('post', [$post->slug]) }}">
+                    <a>
                         <h4 class="news-title"> {{ $post->title }} </h4>
                     </a>
                 </header>

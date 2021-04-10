@@ -125,7 +125,7 @@
 </header>
 <section class="endoscopy-lab-menu basic-bcg home-endoscopy">
 <article>
-      <h3 class="basic">Dowiedz się więcej o zabiegach gastroskopii i kolonoskopii wykonywanych w Pracownii Endoskopii</h3>
+      <h3 class="basic">Dowiedz się więcej o zabiegach gastroskopii i kolonoskopii wykonywanych w Pracowni Endoskopii</h3>
         <ul>
             <li>
                 <img height="80px" src="{{url('storage/img/icon-gastroscopy.png')}}" >
@@ -198,7 +198,7 @@
     </div>
    </article>
    <div class="link-wrapper-grad">
-        <a href="{{ route('specialties') }}">
+        <a href="{{ route('about') }}">
           O nas
           <i class="icon-right-dir"></i> 
         </a>
@@ -219,10 +219,13 @@
     @foreach($posts as $post)
     <li>
       <article>
-        <h4 class="news-title">{{ $post->title }} </h4>
+        <a href="{{ route('post', [$post->slug]) }}">
+            <h4 class="news-title"> {{ $post->title }} </h4>
+          </a>
+        <!-- <h4 class="news-title">{{ $post->title }} </h4> -->
         <p class="news-date">{{ $post->created_at->format('d.m.Y') }} </p>
         <div class="news-desc">
-        {!! Str::limit($post->content, 300, ' (...)') !!}
+        {!! Str::limit($post->content, 300, ' (...)') !!} </p>
         </div>
         <a class="news-link" href="{{ route('post', [$post->slug]) }}">
           Całość 

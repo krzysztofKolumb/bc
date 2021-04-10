@@ -471,8 +471,16 @@ section.endoscopy-lab-menu h3 {
 .content-tm p {
   margin-bottom: 20px;
 }
+.content-tm a {
+  display: inline-block;
+  border-bottom: 3px solid #FDD947;
+  font-weight: 500;
+}
+.content-tm a:hover {
+  color: #8f8f8f;
+}
 .content-tm strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 .content-tm h2 {
   font-size: 1.5625em;
@@ -743,7 +751,8 @@ section.schedules .day {
   width: 260px;
   padding: 2px;
   margin: 0 auto;
-  background: linear-gradient(90deg, #fff000 45%, #ffbf00 66%);
+  padding: 1px;
+  background: #252525;
 }
 .link-wrapper-grad a {
   width: 100%;
@@ -758,6 +767,13 @@ section.schedules .day {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   background: #f3f3f3;
+}
+.link-wrapper-grad a:hover {
+  color: #252525;
+}
+
+.link-wrapper-grad:hover {
+  background: #FDD947;
 }
 
 .header-basic {
@@ -878,6 +894,9 @@ section.schedules .day {
 }
 .news-list .news-desc {
   margin-bottom: 20px;
+}
+.news-list .news-desc p {
+  margin-bottom: 10px;
 }
 .news-list .news-link {
   width: 120px;

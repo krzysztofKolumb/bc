@@ -34,7 +34,7 @@
                             <p class="lab-test-name"></p>
                             <p class="lab-test-load-time">Czas oczekiwania <br> (dzień)</p>
                             <p class="lab-test-regular-price">Cena podstawowa <br> (pln)</p>
-                            <p class="lab-test-special-price">Cena dla pacjentów <br> BC (pln)</p>
+                            <p class="lab-test-special-price">Cena z kartą rabatową <br> BC (pln)</p>
                         </li>
                         @foreach($category->labTestPrices as $price)
                         <li>

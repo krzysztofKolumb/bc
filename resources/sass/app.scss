@@ -69,8 +69,18 @@ section.endoscopy-lab-menu {
     margin-bottom: 20px;
   }
 
+  a {
+    display: inline-block;
+    border-bottom: 3px solid $orange;
+    font-weight: 500;
+  }
+
+  a:hover {
+  color: #8f8f8f;
+  }
+
   strong {
-    font-weight: 600;
+    font-weight: 500;
     // color: $dark-gray;
   }
 
@@ -400,12 +410,21 @@ section.schedules {
 
 .link-wrapper-grad {
   @include link-wrapper;
-  @include grad;
+  padding: 1px;
+  background: $black;
 
   a {
     @include link;
     background: $bcg;
   }
+
+  a:hover {
+    color: $black;
+  }
+}
+
+.link-wrapper-grad:hover {
+  background: $orange;
 }
 
 .header-basic {
@@ -557,6 +576,10 @@ section.schedules {
 
   .news-desc {
     margin-bottom: 20px;
+     
+    p {
+      margin-bottom: 10px;
+    }
   }
 
   .news-link {

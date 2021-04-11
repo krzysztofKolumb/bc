@@ -470,6 +470,7 @@ section.endoscopy-lab-menu h3 {
 }
 .content-tm p {
   margin-bottom: 20px;
+  color: #444444;
 }
 .content-tm a {
   display: inline-block;
@@ -897,6 +898,7 @@ section.schedules .day {
 }
 .news-list .news-desc p {
   margin-bottom: 10px;
+  color: #444444;
 }
 .news-list .news-link {
   width: 120px;
@@ -1068,6 +1070,7 @@ section.specialty-team {
 .accordion-body {
   padding: 20px;
   background: #fff;
+  color: #444444 !important;
 }
 
 .accordion-header:focus button {
@@ -1156,6 +1159,7 @@ section.consultations .accordion {
 section.consultations .accordion-body {
   padding-left: 50px;
   font-size: 1.0625em;
+  color: #444444 !important;
 }
 section.consultations article {
   width: 90%;

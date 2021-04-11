@@ -67,6 +67,7 @@ section.endoscopy-lab-menu {
 
   p {
     margin-bottom: 20px;
+    color: rgb(68, 68, 68)
   }
 
   a {
@@ -579,6 +580,7 @@ section.schedules {
      
     p {
       margin-bottom: 10px;
+      color: rgb(68, 68, 68);
     }
   }
 
@@ -788,6 +790,7 @@ section.specialty-team {
 .accordion-body {
   padding: 20px;
   background: #fff;
+  color: rgb(68, 68, 68)!important;
 }
 
 .accordion-header:focus button{
@@ -896,6 +899,8 @@ section.consultations {
   .accordion-body {
     padding-left: 50px;
     font-size: 17/16*1em;
+    color: rgb(68, 68, 68)!important;
+    
   }
 
   article {

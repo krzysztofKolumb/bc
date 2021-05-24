@@ -4,6 +4,8 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -18,4 +20,28 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    Redirect 302 /nasz-zespol https://www.bodyclinic.pl/zespol/
+    Redirect 302 /oferta/pozostale-specjalizacje https://www.bodyclinic.pl/oferta/specjalizacje
+    Redirect 302 /home https://www.bodyclinic.pl
+    Redirect 302 /nasz-zespol/gietka-jan https://www.bodyclinic.pl/zespol/jan-gietka
+    Redirect 302 /nasz-zespol/podgorska-ludmila https://www.bodyclinic.pl/zespol/ludmila-podgorska
+    Redirect 302 /nasz-zespol/sekula-marzena https://www.bodyclinic.pl/zespol/marzena-sekula
+    Redirect 302 /nasz-zespol/ziecina-piotr https://www.bodyclinic.pl/zespol/piotr-ziecina
+    Redirect 302 /nasz-zespol/mozanski-marcin https://www.bodyclinic.pl/zespol/marcin-mozanski
+    Redirect 302 /nasz-zespol/from-slawomir https://www.bodyclinic.pl/zespol/slawomir-from
+    Redirect 302 /nasz-zespol/waszkiewicz-marta https://www.bodyclinic.pl/zespol/marta-waszkiewicz
+    Redirect 302 /nasz-zespol/kwiecien-pawel https://www.bodyclinic.pl/zespol/pawel-kwiecien
+    Redirect 302 /nasz-zespol/wolanin-stanislaw https://www.bodyclinic.pl/zespol/stanislaw-wolanin
+    Redirect 302 /nasz-zespol/dorosz-milena https://www.bodyclinic.pl/zespol/milena-dorosz
+    Redirect 302 /nasz-zespol/dziekiewicz-miroslaw https://www.bodyclinic.pl/zespol/miroslaw-dziekiewicz
+    Redirect 302 /nasz-zespol/gietka-wojciech https://www.bodyclinic.pl/zespol/wojciech-gietka
+    Redirect 302 /nasz-zespol/jedrzejewski-emil https://www.bodyclinic.pl/zespol/emil-jedrzejewski
+    Redirect 302 /nasz-zespol/kopciowska-elzbieta https://www.bodyclinic.pl/zespol/elzbieta-kopciowska
+    Redirect 302 /nasz-zespol/kwiatkowski-andrzej https://www.bodyclinic.pl/zespol/andrzej-kwiatkowski
+    Redirect 302 /nasz-zespol/lasota-aleksandra https://www.bodyclinic.pl/zespol/aleksandra-lasota
+    Redirect 302 /nasz-zespol/pasnik-krzysztof https://www.bodyclinic.pl/zespol/krzysztof-pasnik
+    Redirect 302 /nasz-zespol/klapaczynski-jakub https://www.bodyclinic.pl/zespol/jakub-klapaczynski
+    Redirect 302 /nasz-zespol/zegadlo-arkadiusz https://www.bodyclinic.pl/zespol/arkadiusz-zegadlo
+    Redirect 302 /nasz-zespol/gietka-piotr https://www.bodyclinic.pl/zespol/piotr-gietka
 </IfModule>

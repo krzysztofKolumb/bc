@@ -17,6 +17,17 @@
 
     }
 
+    .home-gallery {
+    
+      ul {
+    
+        li {
+          height: 400px;    
+        }
+    
+      }
+    }
+
     .specialties {
       .hexGrid {
         width: 80%;
@@ -33,5 +44,27 @@
         margin-left: 16.66666666665%;
       }
     }
+
+    .text-two-img {
+   
+      .aside-gallery {
+         li {
+            width: 49%;
+         }
+      }
+   }
+
+   .text-two-img-block {
+ 
+    .aside-gallery {
+      display: flex;
+      justify-content: space-between;
+      
+      li {
+        width: 49%;
+      }
+    }
+
+  }
 
 }

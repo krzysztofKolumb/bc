@@ -14,8 +14,9 @@ class SpecialtyController extends Controller
     {
         $specialties = Specialty::orderBy('name', 'asc')->get();
         $page = Page::find(9);
+        $section=$page->sections->where('slug', 'specialties')->first();
         $pictures = Picture::where('page_id', 9)->get();
-        return view('offer.specialties.index', compact('page', 'specialties', 'pictures')); 
+        return view('offer.specialties.index', compact('page', 'section', 'specialties', 'pictures')); 
 
     }
 

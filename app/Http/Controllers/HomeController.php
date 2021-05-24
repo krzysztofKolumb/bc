@@ -13,25 +13,13 @@ class HomeController extends Controller
     {
         $home = Page::find(1);
         $offers = Offer::all();
-        $about = $home->sections->where('name', 'home-about')->first();
-        $team = $home->sections->where('name', 'home-team')->first();
-        $news = $home->sections->where('name', 'home-news')->first();
+        $about = $home->sections->where('slug', 'home-about')->first();
+        $team = $home->sections->where('slug', 'home-team')->first();
+        $news = $home->sections->where('slug', 'home-news')->first();
+        $treatments = $home->sections->where('slug', 'home-treatments')->first();
         $posts = Post::latest()->take(2)->get();
-        $onLine = $home->sections->where('name', 'home-on-line')->first();
-        return view('home.index', compact('home','offers', 'about','team', 'news', 'posts', 'onLine')); 
+        $onLine = $home->sections->where('slug', 'home-on-line')->first();
+        return view('home.index', compact('home','offers', 'about','team', 'news', 'posts', 'treatments', 'onLine')); 
     }
 
-    public function upload(){
-        dd('boze');
-    }
-
-    public function store(Request $request)
-    {
-        $input = $request->all();
-
-        $request->validate([
-            'content' => 'required'
-
-        ]);
-    }
 }

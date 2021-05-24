@@ -1,14 +1,21 @@
 @if($contact->online_registration)
-<section class="basic-bcg">
-   <article>
-      <h3 class="basic">{{ $section->title}}</h3>
-   </article>
-   <div class="link-wrapper-grad">
-        <a href="{{ $contact->online_registration }}">
-          Zapisy on-line
-          <i class="bi bi-arrow-right"></i> 
-        </a>
-    </div>
+<section class="online-section">
+   <div class="section-body bcg">
+      <article>
+         <header class="basic-a">
+            <h3>{{ $section->header}}</h3>
+            @if($section->content)
+            <p>{{ $section->content }}</p>
+            @endif
+         </header>
+      </article>
+      <div>
+         <a class="link link-online" href="{{ $contact->online_registration }}">
+            <div><p>Zapisy on-line</p></div>
+            <div><img width="40px" src="{{url('storage/img/icon-right-arrowb1.png')}}"></div>
+         </a>
+      </div>
+   </div>
  </section>
  @else
  <span class="line"></span>

@@ -1,14 +1,16 @@
 @media screen and (min-width:1200px) {
 
     .page-navbar {
-        width: 98%;
+        width: 95%;
     
         .nav-contact {
             margin-bottom: 20px;
           }
     
     .menu-container {
-        width: 80%;
+        width: 70%;
+        margin-right: 0;
+
     }
 
     a i {
@@ -20,13 +22,6 @@
     }
 
 }
-
-    .team-list {
-
-        figure {
-            height: 380px;
-        }
-    }
 
     .lab-packages-section {
 
@@ -48,4 +43,65 @@
         }
     
       }
+
+      .home .treatments-list {
+        width: 60%;
+    
+    }
+
+    .home .news-list {
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+      
+          li {
+            width: 45%;
+            padding: 0;
+            margin: 0;
+            border-bottom: 0;
+          }
+      
+      }
+
+      #home-news-section {
+        background-image: url("/storage/img/bcg.png");
+        background-size: cover;
+        background-position: center;
+    }
+
+      .home-offer {
+        padding-bottom: 20px;
+      
+        article {
+          max-width: 1300px;
+          margin: 0 auto;
+           display: flex;
+           justify-content: space-between;
+           flex-wrap: wrap;
+        }
+     
+        .basic-a {
+           width: 85%;
+     
+           h3 {
+              width: 100%;
+           }
+     
+           p {
+              width: 95%;
+           }
+        }
+     
+        .wrapper-a {
+           width: 55%;
+        }
+     
+        .wrapper-b {
+          display: block;
+           width: 39%;
+           margin-bottom: o;
+        }
+     
+     }
+
 }

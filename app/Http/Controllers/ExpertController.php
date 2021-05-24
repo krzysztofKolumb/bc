@@ -120,4 +120,9 @@ class ExpertController extends Controller
             return redirect('admin/experts');
     }
 
+    public function consultations()
+    {
+        return view('admin.consultations.index'); 
+    }
+
 }

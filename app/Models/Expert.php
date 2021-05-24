@@ -10,8 +10,8 @@ class Expert extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstname', 'lastname', 'slug', 'degree_id', 'profession_id', 'specialties_desc', 'education','experience', 
-        'certificates', 'awards', 'help', 'consultations', 'other', 'photo', 'schedule_id', 'page_id'
+        'firstname', 'lastname', 'slug', 'degree_id', 'profession_id', 'general_info', 'specialties_desc', 'education','experience', 
+        'certificates', 'awards', 'help', 'links', 'consultations', 'other', 'photo', 'schedule_id', 'page_id'
     ];
 
     public function getRouteKeyName()
@@ -49,6 +49,10 @@ class Expert extends Model
 
     public function consultations() {
         return $this->hasMany('App\Models\Consultation');
+    }
+
+    public function recommendations() {
+        return $this->hasMany('App\Models\Recommendation');
     }
 
 

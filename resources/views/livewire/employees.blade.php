@@ -1,10 +1,11 @@
 <div>
-<header class="flex">
-<h2>Personel</h2>
-<button type="button" class="btn btn-primary btn-new" wire:click="openModal"><i class="bi bi-person-plus-fill"></i> Nowy</button>
+<header>
+  <div class="wrapper flex">
+    <h2>Personel</h2>
+    <button type="button" class="btn btn-primary btn-new" wire:click="openModal"><i class="bi bi-person-plus-fill"></i> Nowy</button>
+  </div>
 </header>
-<br><br>
-<div>
+<div class="wrapper">
     <select class="form-select" wire:model="profession_id">
         <option value="all" selected>Wszyscy</option>
         @foreach($professions as $profession)
@@ -12,7 +13,6 @@
         @endforeach
     </select>
 </div>
-<br><br>
 
 <table class="table align-middle">
         <thead>
@@ -28,8 +28,14 @@
                 <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
                 <td><h6 class="th-flex">{{ $employee->firstname }} {{ $employee->lastname }}</h6></td>
                 <td class="th-options">
-                  <button type="button" wire:click="selectedItem( {{$employee->id}} , 'update' )" class="btn btn-outline-primary btn-lg" title="Edytuj"><i class="bi bi-person-fill"></i> </button>
-                  <button type="button" wire:click="selectedItem( {{$employee->id}} , 'delete' )" class="btn btn-outline-danger btn-lg" title="Usuń"><i class="bi bi-trash"></i> </button>
+                  <button type="button" wire:click="selectedItem( {{$employee->id}} , 'update' )" title="Edytuj">
+                          <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                    </button>
+                    <button type="button" wire:click="selectedItem( {{$employee->id}} , 'delete' )" title="Usuń">
+                          <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                    </button>
+                  <!-- <button type="button" wire:click="selectedItem( {{$employee->id}} , 'update' )" class="btn btn-outline-primary btn-lg" title="Edytuj"><i class="bi bi-person-fill"></i> </button>
+                  <button type="button" wire:click="selectedItem( {{$employee->id}} , 'delete' )" class="btn btn-outline-danger btn-lg" title="Usuń"><i class="bi bi-trash"></i> </button> -->
                 </td>
             </tr>
         @endforeach
@@ -42,7 +48,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Pracownik</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
             <form>
@@ -102,10 +108,10 @@
             </div>
             <div class="modal-footer">
                 @if($action=='create')
-                <button type="button" wire:click="cancelEmployee" class="btn btn-outline-primary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" wire:click="cancelEmployee" class="btn btn-outline-primary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="addEmployee" class="btn btn-primary">Zapisz</button>
                 @elseIf($action=='update')
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="saveChanges" class="btn btn-primary">Zapisz zmiany</button>
                 @endif
             </div>
@@ -118,13 +124,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Personel</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <h5>Czy na pewno chcesz trwale usunąć tego pracownika?</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Anuluj</button>
         <button type="button" class="btn btn-primary" wire:click="delete">Usuń</button>
       </div>
     </div>

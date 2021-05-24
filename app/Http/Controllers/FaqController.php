@@ -11,8 +11,9 @@ class FaqController extends Controller
     public function index()
     {
         $page = Page::find(19);
+        $section = $page->section;
         $faqs = Faq::all();
-        return view('patient-zone.faq.index', compact('page', 'faqs')); 
+        return view('patient-zone.faq.index', compact('page','section', 'faqs')); 
     }
 
     public function admin()

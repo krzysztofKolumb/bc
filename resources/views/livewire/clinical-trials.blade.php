@@ -1,32 +1,50 @@
 <div>
-  @if($clinicalTrial)
-    <h2>{{ $clinicalTrial->title}}</h2>
-    <div>{!! $clinicalTrial->content !!}</div>
-  @endif
+<header>
+  <div class="wrapper flex">
+    <h2>Badania kliniczne</h2>
+    <button type="button" class="btn btn-primary btn-new" wire:click="openModal">Nowe badanie</button>
+    <!-- <button type="button" class="btn btn-primary btn-new" data-bs-toggle="modal" data-bs-target="#modal-new-clinical-trial">
+    Nowe badanie
+  </button> -->
+  </div>
+</header>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-new-clinical-trial">
-  Nowy
-</button>
+<div class="wrapper flex">
+    <select class="form-select" wire:model="category_id">
+        <option value="all" selected>Wszystkie</option>
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}" required>{{ $category->title }}</option>
+        @endforeach
+    </select>
+    <div>
+        <a href="{{ route('admin-clinical-trials-categories') }}">Kategorie</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Tytuł</th>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Opcje</th>
+            <th class="th-iteration" scope="col">#</th>
+            <th class="th-flex" scope="col">Badanie</th>
+            <th class="th-flex" scope="col">Kategoria</th>
+            <th class="th-options" scope="col">Opcje</th>
         </tr>
     </thead>
     <tbody>
     @foreach($clinicalTrials as $trial)
         <tr>
-            <th scope="row">{{$loop->iteration}}</th>
-            <td>{{ $trial->title }}</td>
-            <td>{{ $trial->clinicalTrialCategory->title }}</td>
-            <td>
-                <a href="{{ route('admin-clinical-trials-show', $trial->id) }}" class="btn btn-primary" tabindex="-1" role="button">Edytuj</a>
-                <button type="button" wire:click="selectedItem( {{$trial->id}} , 'delete' )" class="btn btn-danger">Usuń</button>
+            <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
+            <td class="th-flex">{{ $trial->title }}</td>
+            <td class="th-flex">{{ $trial->clinicalTrialCategory->title }}</td>
+            <td class="th-options">
+                <button type="button" wire:click="selectedItem( {{$trial->id}} , 'update' )" title="Edytuj">
+                      <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                </button>
+                <button type="button" wire:click="selectedItem( {{$trial->id}} , 'delete' )" title="Usuń">
+                      <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                </button>
+                <!-- <button type="button" wire:click="selectedItem( {{$trial->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
+                <button type="button" wire:click="selectedItem( {{$trial->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button> -->
 
             </td>
         </tr>
@@ -35,9 +53,58 @@
 </table>
 
 
+<div class="modal fade" wire:ignore.self id="clinical-trial-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Badanie kliniczne</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id="new-clinical-trial-form" action="" method="POST">
+            @csrf
+            <label for="clinical-trial-title" class="col-form-label">Tytuł:</label>
+            <input type="text" wire:model.defer="clinicalTrial.title" name="title" class="form-control" id="clinical-trial-title" required>
+            @error('clinicalTrial.title')
+            <div>{{ $message }}</div>
+            @enderror
+            <div>
+            <label class="col-form-label">Kategoria:</label>
+            <select class="form-select mb-3" required wire:model.defer="clinicalTrial.clinical_trial_category_id" id="CTcategory" name="category">
+                <option value="">Kategoria</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
+            </select>
+            @error('clinicalTrial.clinical_trial_category_id')
+            <div>{{ $message }}</div>
+            @enderror
+            </div>
+            <div>
+            <label for="textarea-clinical-trial" class="col-form-label">Opis:</label>
+            <label class="error-msg" id="textarea-tm-error" class="col-form-label"></label>
+            <textarea class="form-control" wire:model.defer="clinicalTrial.content" id="textarea-new-clinical-trial" name="content" rows="8" cols="10">
+            </textarea>
+            @error('clinicalTrial.content') 
+            <div>{{ $message }}</div>
+            @enderror
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
+                <button type="submit" class="btn btn-primary">Zapisz</button>
+            </div>
+        </form> 
+    </div>
+    </div>
+  </div>
+</div>
 
 
-<div class="modal fade" wire:ignore.self id="modal-new-clinical-trial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+
+<!-- <div class="modal fade" wire:ignore.self id="clinical-trial-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
     <div class="modal-content">
       <div class="modal-header">
@@ -70,32 +137,27 @@
             <div>{{ $message }}</div>
             @enderror
             <div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                <button type="submit" class="btn btn-primary">Zapisz</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button id="submit-btn" type="submit" class="btn btn-primary">Zapisz</button>
             </div>
         </form> 
     </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div>
   </div>
-</div>
+</div> -->
 
 
-<div class="modal fade" wire:ignore.self id="delete-clinical-trial-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div class="modal fade" wire:ignore.self id="clinical-trial-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Czy na pewno chcesz usunąć to badanie?
+          <h4>Czy na pewno chcesz trwale usunąć to badanie?</h4>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
           <button type="button" wire:click="delete" class="btn btn-primary">Usuń</button>
       </div>
     </div>

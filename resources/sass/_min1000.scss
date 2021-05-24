@@ -6,6 +6,15 @@
         width: 220px;
       }
 
+    .link.desctop {
+        display: block;
+        display: flex;
+     }  
+
+    .link.mobile {
+      display: none;
+    }
+
     .page-navbar {
         width: 100%;
         display: flex;
@@ -13,12 +22,21 @@
         justify-content: space-between;
         flex-wrap: wrap;
 
+        a i {
+          display: none;
+        }
+
         .nav-contact {
           margin-bottom: -30px;
+
+          p:nth-last-child(1) {
 
           a {
             pointer-events: none;
             cursor: default;
+
+          }
+
           }
         }
 
@@ -27,13 +45,14 @@
         }
     
         .menu-container {
-          width: 100%;
+          width: 95%;
           padding: 0;
-          margin-right: 0;
+          // margin-right: 0;
           position: static;
           display: flex;
           align-items: center;
           justify-content: space-between;
+          // justify-content: flex-end;
           flex-wrap: wrap;
           text-transform: uppercase;
     
@@ -61,7 +80,7 @@
           display: none;
           position: absolute;
           background: #fff;
-          width: 260px;
+          width: 360px;
           padding: 20px 10px;
           box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.1);
           text-align: left;
@@ -90,7 +109,11 @@
           display: block;
         }
     
-    }  
+    }
+    
+    .page-navbar li a.active {
+      border-bottom: 2px solid $black;
+    }
 
     .home-header {
         // position: relative;
@@ -116,6 +139,10 @@
       
     }
 
+   .endo-imgs {
+    display: none;
+}
+
     // .offer-content article {
       // display: flex;
       // margin-bottom: 80px!important;
@@ -126,13 +153,68 @@
       width: 60%;
     }
 
-    aside {
-      width: 40%;
+    .article-body {
 
-      .aside-content {
-        width: 100%;
+      .flex-body {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 50px;
+
+        .text-content {
+            width: 68%;
+        }
+
+        aside {
+          padding: 0;
+        }
+      }
+
+      .flex-body:nth-last-child(1) {
+        margin-bottom: 0;
       }
     }
+
+    .article-body .text-one-img {
+        width: 100%;
+
+      .text-content {
+         width: 47%;
+      }
+   
+      aside {
+         width: 45%;
+      }
+   
+   }
+
+   .article-body .text-two-img-block {
+      display: block;
+      width: 68%;
+
+      .text-content {
+        width: 100%;
+      }
+
+      aside {
+          width: 100%;
+          padding-top: 40px;
+      }
+
+  }
+
+   .article-body .text-two-img {
+    width: 100%;
+
+    .content-basic, .text-content {
+      width: 45%;
+    }
+
+    aside {
+      width: 47%;
+    }
+
+}
+
 
     .home {
 
@@ -154,12 +236,11 @@
         }
     }
 
-
     .home-hexgrid {
         position: relative;
 
         .hex h2 {
-            font-size: 18/16*1em;
+            font-size: 16.5/16*1em;
         }
 
     }
@@ -219,37 +300,18 @@
     }
 
     .team-list {
-      width: 90%;
-        margin-bottom: 0;
-        padding-bottom: 0;
+      width: 100%;
       
           li {
             width: 25%;
           }
-
-          figure {
-            height: 300px;
-          }
-    }
-
-    .home .team-list {
-
-        li:nth-child(1),
-        li:nth-child(2) {
-          margin-bottom: 0;
-        }
     }
 
     .news-list {
-        width: 80%;
-
-        li {
-            width: 40%;
-        }
+      width: 65%;
     }
 
     .footer-contact {
-        padding-bottom: 100px;
 
         ul {
             width: 90%;
@@ -307,10 +369,14 @@
 
     }
 
-    .download-files {
-      width: 80%;
-      margin-left: 0;
-  }
+    // .download-files {
+    //   width: 80%;
+    //   margin-left: 0;
+    // }
+
+    .download-files-list {
+      width: 70%;
+    }
 
   section.consultations {
 
@@ -321,12 +387,7 @@
   }
 
   .treatments-price-list {
-    width: 80%;
-    padding-left: 50px;
-  }
-
-  .news-section .news-list li {
-    width: 70%;
+    width: 100%;
   }
 
   #accordionContact {
@@ -349,16 +410,44 @@
     }
   }
 
-  .faqs-list {
-    width: 65%;
-    padding-bottom: 0!important;
+  // .faqs-list {
+  //   width: 65%;
+  //   padding-bottom: 0!important;
 
-    li:nth-last-child(1) article {
-      padding-bottom: 0;
+  //   li:nth-last-child(1) article {
+  //     padding-bottom: 0;
+  //   }
+  //   .content-tm {
+  //     width: 100%;
+  //   }
+  // }
+
+
+
+
+
+
+
+
+  .treatments-list {
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0;
     }
-    .content-tm {
-      width: 100%;
+
+    .icon-endoscopy {
+      margin: 0;
     }
   }
+
+  .treatments-list.endoscopy {
+    width: 60%;
+  }
+
+
+
+
 
 }

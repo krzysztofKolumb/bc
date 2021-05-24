@@ -1,5 +1,28 @@
 @media screen and (min-width:760px) {
 
+    .text-two-img {
+   
+        .aside-gallery {
+           li {
+              width: 49%;
+           }
+        }
+     }
+
+    .text-two-img-block {
+ 
+        .aside-gallery {
+          display: flex;
+          justify-content: space-between;
+          
+          li {
+            width: 49%;
+          }
+        }
+    
+    }
+    
+    
     h3.basic {
         width: 70%;
     }
@@ -11,11 +34,21 @@
         }
     }
 
+    .home-offer {
+  
+      .wrapper-b {
+        display: none;
+
+      }
+   
+   }
+
     .home-hexgrid {
     
         .hexGrid {
             width: 90%;
             max-width: 740px;
+            // max-width: 795px;
             padding-bottom: 5.5%; /* 4 w rzedzie */
         }
     
@@ -27,6 +60,32 @@
             margin-left: 12.5%;
         }
 
+    }
+
+    .home-gallery {
+    
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        li {
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          height: 430px;
+          margin-bottom: 0;
+    
+        }
+    
+        li:nth-child(1){
+          width: 59%;
+        }
+  
+        li:nth-child(2){
+          width: 40%;
+        }
+      }
     }
 
     .specialties {
@@ -55,58 +114,15 @@
         flex-wrap: wrap;
       
         li {
-            max-width: 100%;
             width: 50%;
+            max-width: 50%;
             margin-left: 0;
             margin-right: 0;
-        }
 
-        figure {
-            display: flex;
-            height: 400px;
-            align-items: center;
-            justify-content: center;
-          
-            img,
-            .photo-prev {
-              width: auto;
-              height: 100%;
-              align-self: center;
-            }
-
-            .photo-prev {
-                width: 100%;
-                height: 100%;
-                background-color: $light-gray;
-              }
-        }
-
-        article {
-            width: 95%;
-            margin: 0 auto;
-        }
-
-    }
-
-    .home .team-list {
-
-        li:nth-child(3),
-        li:nth-child(4) {
-            margin-bottom: 0;
-        } 
-    }
-
-    .news-list {
-        display: flex;
-        justify-content: space-between;
-
-        li {
-            width: 45%;
         }
     }
 
     .footer-contact {
-        padding-bottom: 50px;
 
         ul {
             width: 70%;
@@ -149,38 +165,46 @@
         }
      }
 
-    section.schedules {
-
-        article {
-            margin-bottom: 80px;
-        }
+    .schedules {
 
         h3 {
             margin-bottom: 0;
+            margin-left: 20px;
         }
 
         ul li {
             display: flex;
             align-content: center;
+            padding: 0;
         }
 
         ul li:first-child {
-
+            padding: 15px 0;
             font-weight: 500;
+
             .day {
               display: block;
+            }
+
+            .spec {
+                background: #fff;
             }
           }
 
         .spec {
+            width: 34%;
             width: 40%;
+            padding: 15px 0;
+            // background: $bcg;
 
             h5 {
                 display: block;
+                margin-left: 20px;
             }
         }
 
         .day {
+            width: 11%;
             width: 10%;
             margin-bottom: 0;
             align-self: center;
@@ -195,6 +219,22 @@
             display: none;
         }
     }  
+
+    .tabs-section {
+
+        .search-result-content {
+
+          li {
+              display: none;
+          }
+          
+          li:nth-child(1), .active {
+            display: flex;
+          }
+
+        }
+      
+      }
 
     .lab-packages-section {
 
@@ -248,9 +288,77 @@
     
       }
 
-      .home .endoscopy-lab-menu {
-        padding-bottom: 20px;
+    .treatments-list {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+
+        li {
+            width: 45%;
+            margin-bottom: 0;
+        }
+    }
+
+    .accordion-list {
+        width: 85%;
+      
+        .accordion-header {
+          padding: 15px 30px;
+        }
+      
+        .accordion-body {
+          width: 90%;
+      
+          .body-main {
+            padding: 0 30px;
+            border-left: 1px solid $black;
+          }
+
+        //   .body-main.map, .body-main.files {
+        //       width: 100%;
+        //   }
+
+          .body-main.files .download-files-list {
+            width: 100%;
+          }
+      
+        }
+      
+    }
+
+    .accordion-list.consultation {
+        width: 70%;
+      
+        .accordion-header {
+          padding: 5px 30px;
+        }
+    }
+
+    .nav-search {
+      // width: 80%;
+        display: flex;
+        justify-content: center;
+        // padding: 50px 0;
+        // border-bottom: 1px solid #e5e5e5;
+        // background: $orange;
+    
+        // button, h4 {
+        //   margin: 0 10px;
+        //   padding: 15px 20px;
+        //   font-size: 14/16*1em;
+        //   @include font-regular;
+        //   text-transform: uppercase;
+        //   border-radius: 0;
+        //   border: 2px solid $orange;
+        //   font-weight: 500;
+        //   letter-spacing: 0.01em;
+        //   text-align: center;
+        // }
     
     }
+
+
+
 
 }

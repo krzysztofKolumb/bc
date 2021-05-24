@@ -16,7 +16,8 @@ class TreatmentController extends Controller
     {
         $page = Page::find(22);
         $clinics = Clinic::all();
-        return view('patient-zone.prices.treatments.index', compact('page','clinics'));
+        $section = $page->section;
+        return view('patient-zone.prices.treatments.index', compact('page','section', 'clinics'));
     }
 
     public function admin()
@@ -31,8 +32,9 @@ class TreatmentController extends Controller
         $offer = $treatment->offer;
         $professions = Profession::where('type', 1)->get();
         $desc=$page->sections->first();
-        $grouped = $offer->page->experts->groupBy('profession_id');
-        $grouped->all();
-        return view('offer.treatments.show', compact('page', 'offer', 'desc', 'professions', 'grouped'));
+        $teams = $offer->page->experts->groupBy('profession_id');
+        // return view('offer.treatments.show', compact('page', 'offer', 'desc', 'professions', 'grouped'));
+        return view('offer.show', compact('page', 'offer', 'desc', 'professions', 'teams'));
+
     }
 }

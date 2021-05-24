@@ -33,26 +33,165 @@
             letter-spacing: 0.2em;
         }
 
-
     }
 
-    .team-list {
-        margin: 100px auto;
-        border-width: 0;
-    }
+    // .link-wrapper-solid:hover a {
+    //      color: #a78501;
+    // }
 
-    .team-content {
-        border-bottom-width: 0;
-    }
-
-    a:hover {
-        color: $dark-gray;
-    }
+    // a:hover {
+    //     color: $dark-gray;
+    // }
 
 }
 
+.home-gallery {
+    background: $bcg;
+  
+    ul {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+  
+      li {
+          width: 100%;
+        position: relative;
+        overflow: hidden;
+        height: 430px;
+        height: 300px;
+        margin-bottom: 15px;
+
+  
+        div {
+          display: flex;
+          align-self: center;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100px;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          text-align: center;
+  
+          a {
+            padding: 15px 20px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 500;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.7);
+            font-size: 12/16*1em;
+            letter-spacing: 0.1em;
+          }
+  
+          a:hover {
+            background: rgba(0,0,0,1);
+  
+          }
+        }
+  
+      }
+  
+    //   li:nth-child(1){
+    //     width: 59%;
+    //   }
+
+    //   li:nth-child(2){
+    //     width: 40%;
+    //   }
+    }
+  }
+
+  #home-gallery-img-1 {
+    background-image: url("/storage/img/bodyclinic-2a.jpg");
+    background-size: cover;
+    // background-position-y: 1300px;
+    background-position: center;
+  }
+  
+  #home-gallery-img-2 {
+    background-image: url("/storage/img/bodyclinic-8.jpg");
+    background-size: cover;
+    // background-position-y: 1300px;
+    background-position: bottom center;
+  }
+
+// #home-endoscopy {
+//     background-image: url("/storage/img/endoskop.png");
+//     background-image: url("/storage/img/bcg-endo.png");
+
+//     background-repeat: no-repeat;
+//     background-size: 300px 532px;
+//     background-position: 100% 100%;
+//     background-position: 100% 600px;
+// }
+
+.endo-imgs {
+    width: 90%;
+    margin: 0 auto 50px auto;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        width: 49%;
+    }
+}
+
+// #home-travel {
+    // position: relative;
+    // background-image: url("/storage/img/picture-travel.png");
+    // background-size: cover;
+    // background-position: bottom right;
+
+    // .wrapper-b {
+        // height: 300px;
+        // background-image: url("/storage/img/bcg-pmp.png");
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // background-size: 100%;
+    // }
+// }
+
+#home-usg {
+    // position: relative;
+    background-image: url("/storage/img/usg.png");
+    background-size: cover;
+    // background-position-y: 1300px;
+    background-position: bottom right;
+    // background-attachment:unset;
+    // background-attachment: fixed;
+}
+
+// #home-clo {
+    // background-image: url("/storage/img/bcg-clo.png");
+    // background-size: cover;
+    // background-position: bottom right;
+
+    // .wrapper-b {
+    //     height: 300px;
+    //     background-image: url("/storage/img/bcg-clo10.png");
+    //     background-position: center;
+    //     background-repeat: no-repeat;
+    //     background-size: 800px 669px;
+    //     background-size: 100%;
+    // }
+// }
+
+#home-about-section {
+    // background-image: url("/storage/img/stetoskop1.png");
+    // background-size: cover;
+    // background-position: bottom;
+    background: $bcg;
+}
+
+#home-news-section {
+    background: $bcg;
+}
+
 .home-about {
-    padding-top: 50px;
 
     .content-tm {
         width: 80%;
@@ -64,38 +203,45 @@
     }
 }
 
-.home-team {
-    padding-bottom: 100px;
+.home-news-body {
+    padding: 0;
 }
 
-.home-hexgrid {
-    padding-bottom: 40px;
-    background: $bcg;
-
-    .hexGrid {
-        margin-bottom: 80px;
-    }
+#home-news-section {
+    padding: 120px 0;
 }
 
-.home-news {
-    padding-bottom: 100px;
-}
+// .home-hexgrid {
+    // padding: 40px 0;
+    // background: $bcg;
 
-.home-endoscopy-header {
-    border-bottom-width: 0;
-    margin: 0;
-}
+    // .hexGrid {
+    //     margin-bottom: 80px;
+    // }
+// }
 
-.home .endoscopy-lab-menu {
-    border-width: 0!important;
-    padding: 80px 0 50px 0;
 
-    h3.basic {
-        width: 90%;
-        margin: 0 auto;
-        text-align: center;
-        font-size: 25/16*1em;
-        line-height: 1.5em;
-    }
-}
+// .home-endoscopy-header {
+//     border-bottom-width: 0;
+//     margin: 0;
+// }
+
+// .home .endoscopy-lab-menu {
+//     border-width: 0!important;
+//     padding: 80px 0 50px 0;
+
+//     h3.basic {
+//         width: 90%;
+//         margin: 0 auto;
+//         text-align: center;
+//         font-size: 25/16*1em;
+//         line-height: 1.5em;
+//     }
+
+    // a {
+    //     border: 1px solid $black;
+    //     padding: 10px 0;
+    // }
+// }
+
 

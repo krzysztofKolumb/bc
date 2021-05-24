@@ -40,9 +40,9 @@ class Clinics extends Component
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
-    public function cancel(){
-        $this->category->name = null;
-    }
+    // public function cancel(){
+    //     $this->category->name = null;
+    // }
 
     public function selectedItem($id, $action){
         $clinic = Clinic::find($id);

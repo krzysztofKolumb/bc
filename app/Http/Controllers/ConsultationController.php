@@ -12,7 +12,8 @@ class ConsultationController extends Controller
     public function index()
     {
         $page = Page::find(17);
+        $experts = Expert::orderBy('lastname', 'asc')->get();
         $professions = Profession::where('type', 1)->get();
-        return view('patient-zone.prices.consultations.index', compact('page', 'professions')); 
+        return view('patient-zone.prices.consultations.index', compact('page', 'experts', 'professions')); 
     }
 }

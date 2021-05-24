@@ -7,6 +7,7 @@ use App\Models\Expert;
 use App\Models\Page;
 use App\Models\Profession;
 use App\Models\Specialty;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -21,7 +22,7 @@ class ExpertEdit extends Component
     public $professions;
     public $specialties;
     public $specs;
-    public $disabled;
+    // public $disabled;
     public $pages;
     public $ePages;
     public $schedule;
@@ -35,26 +36,35 @@ class ExpertEdit extends Component
     public $photo_extension = "";
 
     public $changed = false;
+    public $expert_id;
+    public $photo_default_name="";
+    public $selectedItem;
+    public $content;
 
     public function mount(Expert $expert)
     {
         $this->expert = $expert;
+        $this->expert_id = $expert->id;
+
         $this->degrees=Degree::all();
-        $this->specialties = Specialty::all();
+        $this->specialties = Specialty::orderBy('name', 'asc')->get();
         $this->professions = Profession::where('type', 1)->get();
         if($expert->photo == null){$this->hasPhoto=false;}else {$this->hasPhoto=true;}
+        $this->photo_default_name = Str::slug($this->expert->firstname . " " . $this->expert->lastname . " " . $this->expert->profession->name);
+
         $this->schedule=$expert->schedule;
         $this->file_name_new = $expert->photo;
+
         $this->specs=[];
         $specs=$expert->specialties()->allRelatedIds();
         foreach($specs as $spec){
             $this->specs[$spec]=$spec;
         }
         $this->pages = Page::take(7)->get();
-        $this->disabled = '';
-        if(Page::find(1)->experts()->count() >= 5){
-            $this->disabled='disabled';
-        }
+        // $this->disabled = '';
+        // if(Page::find(1)->experts()->count() >= 5){
+        //     $this->disabled='disabled';
+        // }
         $this->ePages=[];
         $pages=$expert->pages()->allRelatedIds();
         foreach($pages as $page){
@@ -87,16 +97,35 @@ class ExpertEdit extends Component
 
     ];
 
-    protected $listeners = ['change'];
+    protected $listeners = ['change', 'refresh', 'updateContent'];
 
-    public function change(){
-        $this->photo_tmp_name = $this->file->getClientOriginalName();
-        $this->expert->photo = $this->file->getClientOriginalName();
-        $this->photo_extension = $this->file->extension();
-
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 
-    public function update(){
+    public function setFileNameNew()
+    {
+        if(!$this->file_name_new){
+            $this->file_name_new = $this->expert->photo;
+        }
+    }
+
+    public function updatedFile()
+    {
+        $this->photo_default_name = Str::slug($this->expert->firstname . " " . $this->expert->lastname . " " . $this->expert->profession->name);
+        if($this->file){
+            $this->photo_extension = $this->file->extension();
+            $this->photo_default_name =  $this->photo_default_name .  "." . $this->photo_extension;
+        }
+    }
+
+    public function refresh(){
+        $this->expert = Expert::find($this->expert_id);
+    }
+
+    public function updateBasicInfo(){
         $validatedData=$this->validate([
             'expert.firstname' => 'required|string|min:3',
             'expert.lastname' => 'required|string|max:20',
@@ -104,15 +133,26 @@ class ExpertEdit extends Component
             'expert.profession_id' => 'required'
         ]);
 
+
+        $firstname = $this->expert->firstname;
+        $lastname = $this->expert->lastname;
+        $degree_id = $this->expert->degree_id;
+
+        $page = $this->expert->page;
+        $page->slug=Str::slug($firstname . " " . $lastname);
+        $page->title= Degree::find($degree_id)->name . " " . $firstname . " " . $lastname;
+        $page->meta_title= Degree::find($degree_id)->name . " " . $firstname . " " . $lastname . " | BodyClinic";
+        $page->save();
+
         $this->expert->slug = Str::slug($this->expert->firstname . " " . $this->expert->lastname);
         $this->expert->save();
 
         if($this->changed === true){
             return redirect('admin/experts/' . $this->expert->slug);
         }
-
-        $message = 'Zaktualizowano dane podstawowe!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->emitSelf('refresh');
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
     public function updatedExpertFirstname(){
@@ -131,36 +171,39 @@ class ExpertEdit extends Component
             }
         }
         $this->expert->specialties()->sync($array);
-        $message = 'Zaktualizowano specjalizacje!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->emitSelf('refresh');
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
-    public function updatePhoto(){
+    public function savePhoto(){
         $validatedData=$this->validate([
             'file'=> 'required|image|max:1024',
         ]);
-        if(Storage::disk('public')->exists('/photos/' . $this->expert->photo)){
+        if(Storage::disk('public')->exists('/photos/' . $this->photo_default_name)){
             $this->addError('unique', 'Zdjęcie o podanej nazwie już istnieje!');
         }else {
-            $this->file->storeAs('photos', $this->expert->photo, 'public');
+            $this->file->storeAs('photos', $this->photo_default_name, 'public');
+            $this->expert->photo = $this->photo_default_name;
             $this->expert->save();
-            $message = 'Zaktualizowano zdjęcie!';
-            $this->dispatchBrowserEvent('alert', ['message' => $message]);
+            $this->emitSelf('refresh');
+            $message = 'Zapisano zdjęcie!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
             $this->hasPhoto=true;
-            $this->file_name_new=$this->expert->photo; 
+            $this->file_name_new=$this->expert->photo;
         }   
     }
 
-    public function setPhotoName(){
-        $validatedData=$this->validate([
-            'file'=> 'image|max:1024',
-        ]);
-        $this->file_extension = $this->file->getClientOriginalExtension();
-        $this->file_name=$this->expert->slug . '.' . $this->file_extension;
+    // public function setPhotoName(){
+    //     $validatedData=$this->validate([
+    //         'file'=> 'image|max:1024',
+    //     ]);
+    //     $this->file_extension = $this->file->getClientOriginalExtension();
+    //     $this->file_name=$this->expert->slug . '.' . $this->file_extension;
 
-    }
+    // }
 
-    public function changePhotoName(){
+    public function updatePhotoName(){
         $validatedData=$this->validate([
             'file_name_new' => 'required|string|min:3',
         ]);
@@ -170,12 +213,13 @@ class ExpertEdit extends Component
             Storage::disk('public')->move('/photos/' . $this->expert->photo, '/photos/' . $this->file_name_new);
             $this->expert->photo=$this->file_name_new;
             $this->expert->save();
-            $message = 'Zaktualizowano nazwę zdjęcia!';
-            $this->dispatchBrowserEvent('alert', ['message' => $message]);
+            $this->emitSelf('refresh');
+            $message = 'Zapisano zmiany!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
         }
     }
 
-    public function delete(){
+    public function deletePrevPhoto(){
         $this->file = null;
         $this->expert->photo=null;
     }
@@ -191,8 +235,9 @@ class ExpertEdit extends Component
         $this->file_name=null;
         $this->expert->save();
         $this->hasPhoto = false;
+        $this->emitSelf('refresh');
         $message = 'Usunięto zdjęcie!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
     public function updatePages(){
@@ -204,8 +249,9 @@ class ExpertEdit extends Component
             }
         }
         $this->expert->pages()->sync($array);
-        $message = 'Zaktualizowano profil!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->emitSelf('refresh');
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
     public function updateSchedule(){
@@ -220,8 +266,9 @@ class ExpertEdit extends Component
         ]);
 
         $this->schedule->save();
-        $message = 'Zaktualizowano grafik!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->emitSelf('refresh');
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
     public function updateMetadata(){
@@ -231,12 +278,47 @@ class ExpertEdit extends Component
         ]);
 
         $this->page->update();
-        $message = 'Zaktualizowano profil!';
-        $this->dispatchBrowserEvent('alert', ['message' => $message]);
+        $this->emitSelf('refresh');
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
+
+    public function selectedItem($item, $modalTitle){
+        $this->selectedItem = $item;
+        $this->content = $this->expert->$item;
+
+        $titles = ['1' => 'Konsultacje',
+                  '2' => 'Informacje Ogólne',
+                  '3' => 'Wykształcenie',
+                  '4' => 'Doświadczenie',
+                  '5' => 'Certyfikaty',
+                  '6' => 'Nagrody i Wyróżnienia',
+                  '7' => 'Leczone Choroby',
+                  '8' => 'Linki Zewnętrzne'
+                ];
+        $message = 'editor-modal';
+        $title = Arr::get($titles, $modalTitle);
+        $this->dispatchBrowserEvent('open-modal', ['message' => $message, 'title' => $title]);
+    }
+
+    public function updateContent($content){
+        // $this->validate([
+        //     'content' => 'string',
+        // ]);
+        $field = $this->selectedItem;
+        $this->expert->$field = $content;
+        $this->expert->update();
+        $message = 'Zapisano zmiany!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+    }
+
+
+
 
     public function render()
     {
+        // $expert = Expert::find($this->expert_id);
+
         return view('livewire.expert-edit');
     }
 }

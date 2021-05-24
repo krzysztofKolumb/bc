@@ -1,28 +1,37 @@
 <div>
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-post-modal">
-  Nowy
-</button>
+  <header>
+  <div class="wrapper flex">
+    <h2>Aktualności</h2>
+    <button type="button" class="btn btn-primary" wire:click="openModal">Nowy wpis</button>
+  </div>
+  </header>
 
 <table class="table">
     <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Tytuł</th>
-        <th scope="col">Data utworzenia</th>
-        <th scope="col">Opcje</th>
+            <th class="th-iteration" scope="col">#</th>
+            <th class="th-flex" scope="col">Tytuł</th>
+            <th class="th-flex" scope="col">Data utworzenia</th>
+            <th class="th-options" scope="col">Opcje</th>
         </tr>
     </thead>
     <tbody>
     @foreach($posts as $post)
         <tr>
-            <th scope="row">{{$loop->iteration}}</th>
-            <td>{{ $post->title }}</td>
-            <td>{{ $post->created_at }}</td>
-            <td>
-                <a href="{{ route('admin-news-show', $post->id) }}" class="btn btn-primary" tabindex="-1" role="button">Edytuj</a>
-                <button type="button" wire:click="openDeleteModal( {{$post->id}} )" class="btn btn-danger">Usuń</button>
-            </td>
+            <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
+            <td class="th-flex">{{ $post->title }}</td>
+            <td class="th-flex">{{ $post->created_at }}</td>
+            <td class="th-options">
+                  <button type="button" wire:click="selectedItem( {{$post->id}} , 'update' )" title="Edytuj">
+                    <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                  </button>
+                  <button type="button" wire:click="selectedItem( {{$post->id}} , 'delete' )" title="Usuń">
+                    <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                  </button>
+                <!-- <button type="button" wire:click="selectedItem( {{$post->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
+                <button type="button" wire:click="selectedItem( {{$post->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button>
+             -->
+              </td>
         </tr>
     @endforeach
     </tbody>
@@ -31,31 +40,31 @@
 {{ $posts->render() }}
 
 
-<div class="modal fade" wire:ignore.self id="new-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" wire:ignore.self id="post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form id="new-post-form" action="" method="POST">
+      <form id="post-form">
             @csrf
             <label for="post-title" class="col-form-label">Tytuł:</label>
-            <input type="text" name="title" class="form-control" id="post-title" required>
-            @error('title')
+            <input type="text" wire:model.defer="post.title" name="title" class="form-control" id="post-title" required>
+            @error('post.title')
             <div>{{ $message }}</div>
             @enderror
 
             <label for="textarea-new-post" class="col-form-label">Opis:</label>
-            <textarea id="textarea-new-post" name="content" height="400px">
+            <textarea id="textarea-post" wire:model.defer="post.content" name="content" height="400px">
             </textarea>
-            @error('content')
+            @error('post.content')
             <div>{{ $message }}</div>
             @enderror
             <input type="hidden" name="post_id" class="form-control" required>
             <div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
             </div>
         </form> 
@@ -68,18 +77,17 @@
   </div>
 </div>
 
-<div class="modal fade" wire:ignore.self id="delete-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div class="modal fade" wire:ignore.self id="post-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Czy na pewno chcesz trwale usunąć ten post?
+        <h4>Czy na pewno chcesz trwale usunąć ten post?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
         <button type="button" wire:click="delete" class="btn btn-primary">Usuń</button>
       </div>
     </div>

@@ -8,4 +8,9 @@ $(document).ready(function(){
     $(".dropbtn").on('click', function(){
         $(this).next().toggleClass('active');
     });
+
+
+    $("#aboutGallery").on('shown.bs.modal', function(event){
+        alert('matko');
+    })
 });

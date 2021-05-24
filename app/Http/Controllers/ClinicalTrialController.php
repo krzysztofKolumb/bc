@@ -17,9 +17,10 @@ class ClinicalTrialController extends Controller
         $page = Page::find(6);
         $clinicalTrials = ClinicalTrial::all();
         $categories = ClinicalTrialCategory::all();
+        $section=$page->sections->where('slug', 'badania-kliniczne')->first();
         $desc=$page->sections->first();
 
-        return view('offer.clinical-trials.index', compact('page', 'desc', 'categories', 'clinicalTrials')); 
+        return view('offer.clinical-trials.index', compact('page', 'section', 'desc', 'categories', 'clinicalTrials')); 
 
     }
 

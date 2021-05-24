@@ -54,6 +54,7 @@
 </section>
 <span class="line"></span>
 @endif
+
 <section class="clinical-trials-section ct-recrutations-section">
 <header class="header-basic">
     <div class="header-content">

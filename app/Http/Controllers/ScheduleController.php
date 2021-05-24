@@ -13,7 +13,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $page = Page::find(16);
-        $experts = Expert::all();
+        $experts = Expert::orderBy('lastname', 'asc')->get();
         $professions = Profession::where('type', 1)->get();
         return view('patient-zone.schedule.index', compact('page', 'professions', 'experts')); 
     }

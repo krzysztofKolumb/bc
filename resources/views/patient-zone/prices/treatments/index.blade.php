@@ -4,7 +4,50 @@
 
 @section('main')
 
-<section class="consultations">
+<section class="border-t">
+    <div class="section-body bcg">
+        <article class="main-content">
+            @if($section->header)
+            <header class="basic-a">
+                <h2>{{ $section->header }}</h2>
+                <p>{{ $section->content }}</p>
+            </header>
+            @endif
+            <ul class="accordion-list">
+            @foreach($clinics as $clinic)
+                <li class="active accordion-item">
+                    <article>
+                        <header class="accordion-header">
+                            <div>
+                                <h2>{{ $clinic->name }}</h2>
+                            </div>
+                            <img src="{{url('storage/img/icon-plus.png')}}" >
+                        </header>
+                        <div class="accordion-body">
+                            <div class="body-main">
+                                <ul class="treatments-price-list">
+                                    @foreach($clinic->treatments as $treatment)
+                                    <li>
+                                        <h4>{{ $treatment->name }}</h4>
+                                        @if(Str::contains(strtolower($treatment->price), 'pln'))
+                                        <p>{{ $treatment->price }}</p>
+                                        @else
+                                        <p>{{ $treatment->price }} pln</p>
+                                        @endif
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                @endforeach
+            </ul>
+        <article>
+    </div>
+</section>
+
+<!-- <section class="consultations">
 
 @foreach($clinics as $clinic)
 <article>
@@ -24,6 +67,6 @@
 </article>
 @endforeach
 
-</section>
+</section> -->
 
 @endsection

@@ -6,7 +6,11 @@
 
 <span class="line"></span>
 
-<section class="lab-packages-section">
+<section>
+    <x-lab-tests/>
+</section>
+
+<!-- <section class="lab-packages-section">
 
     <article class="lab-packages-desc">
         <div class="accordion accordion-flush" id="accordion-lab-tests">
@@ -53,18 +57,18 @@
         </div>
         <div class="lab-test-price-file">
             <div class="link-wrapper-grad">
-                <a href="" download>
+            <a href="{{url('storage/files/Cennik badań laboratoryjnych.pdf')}}" download>
                 Pełen Cennik badań laboratoryjnych
                 <i class="bi bi-arrow-right"></i> 
                 </a>
             </div>
         </div>
     <article>
-</section>
-<header class="header-basic header-online">
+</section> -->
+<!-- <header class="header-basic header-online">
         <div class="header-content">
             <h3>Zapisy online</h3>
         </div>
-</header> 
+</header>  -->
 <!-- <span class="line"></span> -->
 @endsection

@@ -18,7 +18,7 @@ class OnlineRegistration extends Component
      */
     public function __construct()
     {
-        $this->section = Section::find(18);
+        $this->section = Section::where('slug', 'home-online')->first();
         $this->contact = Contact::find(1);
     }
 

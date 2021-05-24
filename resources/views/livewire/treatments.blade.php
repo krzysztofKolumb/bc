@@ -1,34 +1,47 @@
 <div>
-<div>
-    <button type="button" class="btn btn-primary" wire:click="openModal">Nowy</button>
-</div>
-<div>
-Pracownia/Poradnia
+<header>
+    <div class="wrapper flex">
+    <h2>Zabiegi | Cennik</h2>
+    <button type="button" class="btn btn-primary btn-new" wire:click="openModal">Nowy zabieg</button>
+    </div>
+</header>
+
+<div class="wrapper flex">
     <select class="form-select" wire:model="clinic_id">
         <!-- <option value="all" selected>Wszystkie</option> -->
         @foreach($clinics as $clinic)
         <option value="{{ $clinic->id }}" required>{{ $clinic->name }}</option>
         @endforeach
     </select>
+    <div>
+        <a href="{{ route('admin-clinics') }}">Poradnie, pracownie, programy</a>
+    </div>
 </div>
+
 <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Zabieg</th>
-            <th scope="col">Cena (pln)</th>
-            <th scope="col">Opcje</th>
+            <th class="th-iteration" scope="col">#</th>
+            <th class="th-flex" scope="col">Nazwa zabiegu</th>
+            <th class="th-flex" scope="col">Cena (pln)</th>
+            <th class="th-options" scope="col">Opcje</th>
             </tr>
         </thead>
         <tbody>
         @foreach($treatments as $treatment)
             <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{ $treatment->name }}</td>
-                <td>{{ $treatment->price }}</td>
-                <td>
-                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'update' )" class="btn btn-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'delete' )" class="btn btn-danger">Usuń</button>
+                <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
+                <td class="th-flex"><h6>{{ $treatment->name }}</h6></td>
+                <td class="th-flex">{{ $treatment->price }}</td>
+                <td class="th-options">
+                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'update' )" title="Edytuj">
+                        <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                    </button>
+                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'delete' )" title="Usuń">
+                        <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                    </button>
+                    <!-- <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
+                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button> -->
                 </td>
             </tr>
         @endforeach
@@ -41,7 +54,7 @@ Pracownia/Poradnia
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Zabieg</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
                 <div class="mb-3">
@@ -68,10 +81,10 @@ Pracownia/Poradnia
  
             <div class="modal-footer">
                 @if($action=='create')
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="create" class="btn btn-primary">Zapisz</button>
                 @elseIf($action=='update')
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="update" class="btn btn-primary">Zapisz zmiany</button>
                 @endif
             </div>
@@ -84,13 +97,13 @@ Pracownia/Poradnia
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h4>Czy na pewno chcesz trwale usunąć ten zabieg?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="delete" class="btn btn-primary">Usuń</button>
             </div>
             </div>

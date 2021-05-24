@@ -11,22 +11,30 @@ class AdminController extends Controller
     public function index()
     {
         $expert = Expert::find(1);
-
         return view('admin.index', compact('expert')); 
-
     }
 
-    public function store(Request $request)
+    public function contact()
     {
-        $input = $request->all();
-        $expert = Expert::find(1);
-
-        $request->validate([
-            'content' => 'required'
-        ]);
-
-        $expert->education=$request->input('content');
-        $expert->save();
-
+        return view('admin.pages.contact');
     }
+
+    public function pictures()
+    {
+        return view('admin.pictures.index');
+    }
+
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
+    //     $expert = Expert::find(1);
+
+    //     $request->validate([
+    //         'content' => 'required'
+    //     ]);
+
+    //     $expert->education=$request->input('content');
+    //     $expert->save();
+
+    // }
 }

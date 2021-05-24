@@ -10,7 +10,7 @@ class File extends Model
     use HasFactory;
 
     protected $fillable = [
-        'slug', 'title', 'name', 'file_category_id'
+        'slug', 'title', 'type', 'file_category_id'
     ];
 
     public function fileCategory() {

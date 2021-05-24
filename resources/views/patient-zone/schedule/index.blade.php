@@ -4,13 +4,21 @@
 
 @section('main')
 
-<section class="schedules">
+<section class="tabs-section">
+<ul class="nav-search">
+  <li profession="0" class="nav-item active"><figure></figure><h4>Wszyscy</h4></li>
+  <li profession="1" class="nav-item"><figure><img height="47px" src="{{url('storage/img/icon-lek.png')}}"></figure><h4>Lekarze</h4></li>
+  <li profession="2" class="nav-item"><figure><img height="50px" src="{{url('storage/img/icon-dieta3.png')}}"></figure><h4>Dietetycy</h4></li>
+  <li profession="4" class="nav-item"><figure><img height="55px" src="{{url('storage/img/icon-fizjo1.png')}}"></figure><h4>Fizjoterapeuci</h4></li>
+  <li profession="3" class="nav-item"><figure><img height="50px" src="{{url('storage/img/icon-psycho2.png')}}"></figure><h4>Psycholodzy</h4></li>
+</ul>
+<div class="wrapper">
 
-@foreach($professions as $profession)
+<div class="schedules bcg">
 <article>
-    <ul>
+    <ul class="search-result-content">
         <li>
-            <div class="spec"><h2>{{ $profession->team}}</h2></div>
+            <div class="spec"></div>
             <div class="day">Pon.</div>
             <div class="day">Wt.</div>
             <div class="day">Śr.</div>
@@ -19,9 +27,9 @@
             <div class="day">Sb.</div>
         </li>
 
-    @foreach($profession->experts as $expert)
+    @foreach($experts as $expert)
     
-        <li>
+        <li class="active" profession="{{$expert->profession->id}}">
             <div class="spec">
                 <h3><a href="{{ route('expert-profile', [$expert->slug]) }}">{{ $expert->degree->name }} {{ $expert->firstname }} {{ $expert->lastname }}</a></h3>
                 @isset($expert->schedule->info)
@@ -72,9 +80,8 @@
         </li>
     @endforeach
     </ul>
-</article>        
-@endforeach
-
+</article> 
+</div>
 </section>
 
 @endsection

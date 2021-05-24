@@ -15,11 +15,13 @@ class LabTestController extends Controller
         $categories = LabTestCategory::orderBy('name', 'asc')->get();
         $packages = LabPackage::all();
         $profession = Profession::find(5);
+        
         $file = File::find(8);
         $page = Page::find(8);
+        $section=$page->sections->where('slug', 'badania-lab')->first();
         $desc=$page->sections->first();
 
-        return view('offer.lab.index', compact('page', 'desc', 'categories', 'packages', 'profession', 'file')); 
+        return view('offer.lab.index', compact('page', 'desc', 'section', 'categories', 'packages', 'profession', 'file')); 
 
     }
 

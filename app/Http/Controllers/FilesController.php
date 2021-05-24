@@ -14,9 +14,10 @@ class FilesController extends Controller
     {
         $page = Page::find(20);
         $categories=FileCategory::orderBy('name', 'asc')->get();
+        $section = $page->section;
         $desc=$page->sections->first();
 
-        return view('patient-zone.files.index', compact('page', 'desc', 'categories')); 
+        return view('patient-zone.files.index', compact('page','section', 'desc', 'categories')); 
     }
 
     public function admin()

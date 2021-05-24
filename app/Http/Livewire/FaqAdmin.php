@@ -7,17 +7,14 @@ use Livewire\Component;
 
 class FaqAdmin extends Component
 {
-
     public $action;
-    public $selected;
     public $faq;
 
     public function mount(){
         $this->action = 'create';
-        $this->faq = new Faq();
     }
 
-    protected $listeners = ['updateList'];
+    protected $listeners = ['store'];
 
     protected $rules = [
         'faq.question' => 'required|string',
@@ -36,24 +33,49 @@ class FaqAdmin extends Component
         $this->resetValidation();
     }
 
-    public function updateList(){}
-
-    public function openDeleteModal($id){
-        $selected = Faq::find($id);
-        $this->selected = $selected;
-        $message = 'faq-delete-modal';
+    public function openModal(){
+        $this->faq = new Faq();
+        $this->action = 'create';
+        $message = 'faq-modal';
         $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+    }
 
+    public function selectedItem($id, $action){
+        $faq = Faq::find($id);
+        $this->faq = $faq;
+
+        if($action == 'update'){
+            $this->action = 'update';
+            $message = 'faq-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+        }
+        if($action == 'delete'){
+            $message = 'faq-delete-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+        }
+    }
+
+    public function store($question, $answear){
+        $this->faq->question = $question;
+        $this->faq->answear = $answear;
+        $this->validate();
+        if($this->action == 'create'){
+            $this->faq->save();
+            $message = 'Dodano faq!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+        }
+        if($this->action == 'update'){
+            $this->faq->update();
+            $message = 'Zapisano zmiany!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+        }
     }
 
     public function delete(){
-        if($this->selected){
-            $toDelete = Faq::find($this->selected->id);
-            $toDelete->delete();
-            // $this->packages = LabPackage::all();
-            $this->selected = null;
-            $message = 'Usunięto FAQ!';
-            $this->dispatchBrowserEvent('close-delete-modal', ['message' => $message]);
+        if($this->faq){
+            $this->faq->delete();
+            $message = 'Usunięto faq!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
         }
     }
 

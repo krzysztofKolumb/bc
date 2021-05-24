@@ -9,23 +9,18 @@ use Livewire\Component;
 class ClinicalTrials extends Component
 {
     public $categories;
-    public $clinicalTrials;
     public $clinicalTrial;
-    public $selectedItem;
-
-    public $mamo;
+    public $action;
+    public $category_id = 'all';
 
     public function mount(){
         $this->categories = ClinicalTrialCategory::all();
-        $this->clinicalTrials = ClinicalTrial::all();
-
-        $this->clinicalTrial = new ClinicalTrial();
     }
 
-    protected $listeners = ['store', 'update'];
+    protected $listeners = ['store'];
 
     protected $rules = [
-        'clinicalTrial.title' => 'required|string|max:200',
+        'clinicalTrial.title' => 'required|string|max:400',
         'clinicalTrial.content' => 'string',
         'clinicalTrial.clinical_trial_category_id' => 'required'
 
@@ -39,44 +34,74 @@ class ClinicalTrials extends Component
         'clinicalTrial.content' => 'To pole może zawierać jedynie tekst.',
     ];
 
-    public function store($title, $category, $content){
-        $this->clinicalTrial->title = $title;
-        $this->clinicalTrial->category = $category;
-        $this->clinicalTrial->content = $content;
+    public function openModal(){
+        $this->clinicalTrial = new ClinicalTrial();
+        $this->action = 'create';
+        $message = 'clinical-trial-modal';
+        $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+    }
 
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 
     public function selectedItem($id, $action){
         $clinicalTrial = ClinicalTrial::find($id);
-        $this->selectedItem = $clinicalTrial;
+        $this->clinicalTrial = $clinicalTrial;
 
         if($action == 'update'){
-            $this->dispatchBrowserEvent('open-edit-specialty-modal');
+            $this->action = 'update';
+            $message = 'clinical-trial-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
         }
         if($action == 'delete'){
-            $message = 'delete-clinical-trial-modal';
-            $this->dispatchBrowserEvent('open-delete-modal', ['message' => $message]);
+            $message = 'clinical-trial-delete-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
         }
-
     }
 
-    public function update(){
-        $this->clinicalTrials= ClinicalTrial::all();
+    public function store($title, $category, $content){
+        $this->clinicalTrial->title = $title;
+        $this->clinicalTrial->clinical_trial_category_id = $category;
+        $this->clinicalTrial->content = $content;
+        $this->validate();
+        if($this->action == 'create'){
+            $this->clinicalTrial->save();
+            $message = 'Dodano badanie!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+        }
+        if($this->action == 'update'){
+            $this->clinicalTrial->update();
+            $message = 'Zapisano zmiany!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+        }
     }
 
     public function delete(){
-        if($this->selectedItem){
-            $toDelete = ClinicalTrial::find($this->selectedItem->id);
-            $toDelete->delete();
-            $this->clinicalTrials= ClinicalTrial::all();
-            $this->selectedItem = null;
+        if($this->clinicalTrial){
+            $this->clinicalTrial->delete();
             $message = 'Usunięto badanie!';
-            $this->dispatchBrowserEvent('close-delete-modal', ['message' => $message]);
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
         }
     }
 
+
     public function render()
     {
-        return view('livewire.clinical-trials');
+        if($this->category_id == 'all'){
+            $clinicalTrials = ClinicalTrial::orderBy('title', 'asc')->get();
+        }else{
+            $clinicalTrials = ClinicalTrial::where('clinical_trial_category_id', $this->category_id)->get();
+        }
+        return view('livewire.clinical-trials', compact('clinicalTrials'));
     }
+
+    // public function render()
+    // {
+    //     $clinicalTrials = ClinicalTrial::all();
+
+    //     return view('livewire.clinical-trials', compact('clinicalTrials'));
+    // }
 }

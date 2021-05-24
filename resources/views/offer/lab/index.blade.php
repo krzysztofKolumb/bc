@@ -4,6 +4,59 @@
 
 @section('main')
 
+<section>
+    <div class="section-body">
+        <article class="main-content">
+            @if($page->section->header)
+            <header class="main">
+                <h2>{{ $page->section->header }}</h2>
+            </header>
+            @endif
+
+            <div class="article-body">
+            @foreach($page->sections as $section)
+                <section class="flex-body {{$section->class}}">
+                    <div class="content-basic">
+                        {!! $section->content !!}
+                    </div>
+                    <aside>
+                        <ul class="aside-gallery">
+                        @foreach($section->pictures as $picture)
+                        <li><img src="{{url('storage/img/' . $picture->name )}}" ></li>
+                        @endforeach
+                        </ul>
+                    </aside>
+                </section>
+                @endforeach
+            </div>  
+        </article>
+    </div>
+</section>
+
+
+
+<section class="section-main">
+
+    @if($page->section->header)
+    <header class="center">
+        <h2>{{ $page->section->header }}</h2>
+    </header>
+    @endif
+    <!-- <div class="square"><span></span></div> -->
+    <div class="wrapper">
+        <article class="main-article">
+            <div class="content-main">
+                {!! $page->section->content !!}
+            </div>
+            <aside>
+                <ul class="aside-gallery">
+                    <li><img src="{{url('storage/img/bodyclinic-10.jpg')}}" ></li>
+                </ul>
+            </aside>
+        </article>
+    </div>
+</section>
+
 <section class="content">
     <article>
         <div class="content-tm">
@@ -49,7 +102,11 @@
 </article>
 @endif
 </section>
+
+
 <span class="line"></span>
+
+
 <section class="lab-packages-section">
     <header class="header-basic">
         <div class="header-content">
@@ -136,7 +193,7 @@
         </div>
         <div class="lab-test-price-file">
             <div class="link-wrapper-grad">
-                <a href="{{url('storage/files/' . $file->title . '.' . $file->name)}}" download>
+                <a href="{{url('storage/files/' . $file->title)}}" download>
                 Pełen Cennik badań laboratoryjnych
                 <i class="bi bi-arrow-right"></i> 
                 </a>
@@ -144,10 +201,10 @@
         </div>
     <article>
 </section>
-<header class="header-basic header-online">
+<!-- <header class="header-basic header-online">
         <div class="header-content">
             <h3>Zapisy online</h3>
         </div>
-</header>
+</header> -->
 <!-- <span class="line"></span> -->
 @endsection

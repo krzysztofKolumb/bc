@@ -11,9 +11,13 @@
 @endsection
 
 @section('title')
-{{ $page->title }}
+{{ $page->section->title }}
 @endsection
 
 @section('subtitle')
-{{ $page->subtitle }}
+{{ $page->section->subtitle }}
+@endsection
+
+@section('name')
+{{ $page->name }}
 @endsection

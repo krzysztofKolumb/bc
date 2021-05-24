@@ -1,34 +1,52 @@
 <div>
-<div>
-    <button type="button" class="btn btn-primary" wire:click="openModal">Nowy</button>
+<header>
+<div class="wrapper flex">
+    <h2>Materiały do pobrania</h2>
+    <button type="button" class="btn btn-primary btn-new" wire:click="openModal">Nowy dokument</button>
 </div>
-<div>
-Kategoria
+</header>
+
+<div class="wrapper flex">
     <select class="form-select" wire:model="category_id">
         <option value="all" selected>Wszystkie</option>
         @foreach($categories as $category)
         <option value="{{ $category->id }}" required>{{ $category->name }}</option>
         @endforeach
     </select>
+    <div>
+        <a href="{{ route('admin-file-categories') }}">Kategorie</a>
+    </div>
 </div>
+
 <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Dokument</th>
-            <th scope="col">Format</th>
-            <th scope="col">Opcje</th>
+            <th class="th-iteration" scope="col">#</th>
+            <th class="th-flex" scope="col">Dokument</th>
+            <th class="th-flex" scope="col">Kategoria</th>
+            <th class="th-flex" scope="col">Format</th>
+            <th class="th-options" scope="col">Opcje</th>
             </tr>
         </thead>
         <tbody>
         @foreach($files as $file)
             <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{ $file->title }}</td>
-                <td>{{ $file->price }}</td>
-                <td>
-                    <button type="button" wire:click="selectedItem( {{$file->id}} , 'update' )" class="btn btn-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$file->id}} , 'delete' )" class="btn btn-danger">Usuń</button>
+                <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
+                <!-- <td class="th-flex"><h6>{{ $file->title }}</h6></td> -->
+                <td class="th-flex"><h6>{{ Str::beforeLast($file->title, '.') }}</h6></td>
+
+                <td class="th-flex">{{ $file->fileCategory->name }}</td>
+                <td class="th-flex">{{ $file->type }}</td>
+                <td class="th-options">
+                    <button type="button" wire:click="selectedItem( {{$file->id}} , 'update' )" title="Edytuj">
+                        <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                  </button>
+                  <button type="button" wire:click="selectedItem( {{$file->id}} , 'delete' )" title="Usuń">
+                        <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                  </button>
+                    <!-- <button type="button" wire:click="selectedItem( {{$file->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
+                    <button type="button" wire:click="selectedItem( {{$file->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button>
+                 -->
                 </td>
             </tr>
         @endforeach
@@ -37,21 +55,29 @@ Kategoria
 
     <!-- file Modal -->
     <div class="modal fade" wire:ignore.self id="file-modal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Dokument</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
+            @if($action=='create')
             <div class="mb-3">
-                <input type="file" wire:model="document" wire:change="setDocumentName" name="document" class="form-control" accept=".pdf,.doc,.docx" id="inputGroupFileDocument">
-                @error('document') <span class="text-danger">{{ $message }}</span> @enderror
+                <div class="file-input">
+                    <input type="file" wire:model="newFile" id="file" accept=".pdf,.doc,.docx" name="newFile" class="file">
+                    <label for="file">Wybierz plik</label>
+                </div>
+                @if($name)<p>{{ $name }}</p>@endif
+                @error('newFile') <span class="text-danger">{{ $message }}</span> @enderror
+                @error('unique') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
+            @endif
                 <div class="mb-3">
                     <label for="documentTitle" class="col-form-label">Nazwa*</label>
                     <input type="text" wire:model="file.title" class="form-control" id="documentTitle" required>
                     @error('file.title') <span class="text-danger" id="name-error">{{ $message }}</span> @enderror
+                    @error('uniqueName') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label class="col-form-label">Kategoria*</label>
@@ -67,10 +93,10 @@ Kategoria
  
             <div class="modal-footer">
                 @if($action=='create')
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="create" class="btn btn-primary">Zapisz</button>
                 @elseIf($action=='update')
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="update" class="btn btn-primary">Zapisz zmiany</button>
                 @endif
             </div>
@@ -83,13 +109,13 @@ Kategoria
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <h4>Czy na pewno chcesz trwale usunąć ten dokument?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" wire:click="delete" class="btn btn-primary">Usuń</button>
             </div>
             </div>

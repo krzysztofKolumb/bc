@@ -3,196 +3,94 @@
 @include('inc.page-meta')
 
 @section('main')
-<section class="content">
-    <article>
-        <div class="content-tm">
-        {!! $about->content !!}
-        </div>
-    </article>
+<section>
+    <div class="section-body">
+        <article class="main-content">
+            @if($page->section->header)
+            <header class="main">
+                <h2>{{ $page->section->header }}</h2>
+            </header>
+            @endif
+
+            <div class="article-body">
+                @foreach($page->sections as $section)
+                    @foreach($section->articles as $article)
+                    <section class="flex-body {{$article->layout->class}}">
+                        <div class="text-content">
+                            {!! $article->content !!}
+                        </div>
+                        <aside>
+                            <ul class="aside-gallery">
+                                @if($article->img_1)
+                                <li><img src="{{url('storage/img/' . $article->img_1 )}}"></li>
+                                @endif
+                                @if($article->img_2)
+                                <li><img src="{{url('storage/img/' . $article->img_2 )}}"></li>
+                                @endif
+                                @if($article->img_3)
+                                <li><img src="{{url('storage/img/' . $article->img_3 )}}"></li>
+                                @endif
+                                @if($article->img_4)
+                                <li><img src="{{url('storage/img/' . $article->img_4 )}}"></li>
+                                @endif
+                            </ul>
+                        </aside>
+                    </section>
+                    @endforeach
+                @endforeach
+            </div>  
+        </article>
+    </div>
+
 </section>
 
 <section>
-<header class="header-basic header-about">
+    <header class="basic-s border-t">
         <div class="header-content">
-            <h3>Wnętrze przychodni</h3>
-            <!-- <p</p> -->
+            <h3>{{ $gallery->title }}</h3>
+            @if($gallery->subtitle)
+            <p>{{ $gallery->subtitle }}</p>
+            @endif
         </div>
-</header>
+    </header>
+    <div class="section-body bcg">
+        <article>
+            <header class="basic-a">
+                <h3>{{ $gallery->header }}</h3>
+                @if($gallery->content)
+                <p>{{ $gallery->content }}</p>
+                @endif              
+            </header>
 
-<section class="home-hexgrid about-gallery">
-    
-    <ul class="hexGrid">
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic9.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-          
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic10.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic15.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic11.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic14.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic4.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <!-- <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic6.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li> -->
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic1.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic3.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic13.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic8.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic5.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic7.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic2.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li>
-
-    <!-- <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink">
-                <picture>
-                <img src="{{url('storage/img/bodyclinic12.jpg')}}" >
-                </picture>
-            </a>
-        </div>
-    </li> -->
-
-
-
-
-    </ul>
-</section> 
+            <div class="home-hexgrid about-gallery">
+                <ul class="hexGrid aboutHexGrid">
+                    @foreach($page->pictures as $picture)
+                    <li class="hex">
+                        <div class="hexIn">
+                            <a class="hexLink">
+                                <picture>
+                                    <img id="bodyclinic-{{$loop->iteration}}" img-id="{{$loop->iteration}}" src="{{url('storage/img/' . $picture->name)}}" >
+                                </picture>
+                            </a>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </article>
+    </div>
 </section>
-<header class="header-basic header-online">
-        <div class="header-content">
-            <h3>Zapisy online</h3>
+
+<div class="modal fade" id="aboutGallery" tabindex="-1" aria-labelledby="aboutGalleryLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="modal-img-body"></div>
+                <div class="arrow-wrapper arrow-left"><img src="{{url('storage/img/icon-arrow-left.png')}}"></div>
+                <div class="arrow-wrapper arrow-right"><img src="{{url('storage/img/icon-arrow-right.png')}}"></div>
+            </div>
         </div>
-</header>
-<!-- <span class="line"></span> -->
+    </div>
+</div>
+
 @endsection

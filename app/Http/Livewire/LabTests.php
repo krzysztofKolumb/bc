@@ -17,12 +17,11 @@ class LabTests extends Component
     public function mount(){
         $this->categories = LabTestCategory::orderBy('name', 'asc')->get();
         $this->action = 'create';
-
     }
 
     protected $rules = [
-        'test.name' => 'required|string|max:50',
-        'test.load_time' => 'required|string|max:50',
+        'test.name' => 'required|string',
+        'test.load_time' => 'string|max:50',
         'test.regular_price' => 'required|string|max:50',
         'test.special_price' => 'required|string|max:50',
         'test.lab_test_category_id' => 'required'
@@ -31,8 +30,6 @@ class LabTests extends Component
     protected $messages = [
         'test.name.required' => 'To pole jest wymagane.',
         'test.name.string' => 'To pole może zawierać jedynie tekst.',
-        'test.name.max' => 'To pole może zawierać maksymalnie 50 znaków.',
-        'test.load_time.required' => 'To pole jest wymagane.',
         'test.load_time.string' => 'To pole może zawierać jedynie tekst.',
         'test.load_time.max' => 'To pole może zawierać maksymalnie 50 znaków.',
         'test.regular_price.required' => 'To pole jest wymagane.',
@@ -57,19 +54,23 @@ class LabTests extends Component
         $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
     }
 
+    public function cancel(){
+        // $this->test->name = null;
+        $this->test = null;
+    }
+
     public function create(){
-        $this->validate([
-            'test.name' => 'required|string',
-            'test.load_time' => 'required|string',
-            'test.regular_price' => 'required|string',
-            'test.special_price' => 'required|string',
-            'test.lab_test_category_id' => 'required'
-        ]);
+        $this->validate();
+        // $this->validate([
+        //     'test.name' => 'required|string',
+        //     'test.load_time' => 'required|string',
+        //     'test.regular_price' => 'required|string',
+        //     'test.special_price' => 'required|string',
+        //     'test.lab_test_category_id' => 'required'
+        // ]);
         $this->test->save();
-        // $this->tests=LabTestPrice::orderBy('name', 'asc')->get();
         $message = 'Dodano nowe badanie!';
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
-        $this->test = new LabTestPrice();
     }
 
     public function selectedItem($id, $action){
@@ -91,23 +92,15 @@ class LabTests extends Component
     public function update(){
         $this->validate();
         $this->test->update();
-        // $this->tests = LabTestPrice::orderBy('name', 'asc')->get();
         $message = 'Zapisano zmiany!';
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
-    }
-
-
-    public function cancel(){
-        $this->test->name = null;
     }
 
     public function delete(){
         $test = $this->test;
         $test->delete();
-        // $this->tests = LabTestPrice::orderBy('name', 'asc')->get();
         $message = 'Usunięto badanie!';
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
-
     }
 
 

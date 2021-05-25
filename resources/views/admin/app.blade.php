@@ -705,6 +705,61 @@ $('#article-modal').on('show.bs.modal', function(event){
   tinymce.init({
       language: 'pl',
       selector:'#textarea_article',
+      height: '400px',
+      menubar: false,
+      plugins: 'autolink link lists paste',
+      // toolbar: 'styleselect | fontsizeselect',
+      toolbar: ' undo redo | h2 h3 h4 h5 h6 | bold italic underline | link | numlist bullist | forecolor alignleft aligncenter alignright |',
+      fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+      paste_as_text: true,
+      contextmenu: false,
+      link_class_list: [
+        {title: 'None', value: ''},
+        {title: 'External Link', value: 'ext_link'},
+        {title: 'Internal Support Link', value: 'int_sup_link'},
+        {title: 'Internal Marketing Link', value: 'int_mark_link'},
+        {title: 'Other Internal Link', value: 'int_other_link'}
+      ],
+      // link_list: [
+      //   {title: 'Pracownia Endoskopii', value: '../oferta/pracownia-endoskopii'},
+      //   {title: 'Tiny Blog', value: 'https://www.tiny.cloud/blog'},
+      //   {title: 'TinyMCE Documentation', value: 'https://www.tiny.cloud/docs/'},
+      //   {title: 'TinyMCE on Stack Overflow', value: 'https://stackoverflow.com/questions/tagged/tinymce'},
+      //   {title: 'TinyMCE GitHub', value: 'https://github.com/tinymce/'}
+      // ]
+      link_list: [
+          {title: 'Zapisy on-line', value: 'https://bodyclinic.erejestracja.eu/'},
+          {title: 'Oferta', value: 'https://www.tiny.cloud/blog', 
+            menu: [
+              {title: 'Centrum Leczenia Otyłości', value: '../oferta/centrum-leczenia-otylosci'},
+              {title: 'Poradnia Chorób Wątroby Hepatolodzy', value: '../oferta/poradnia-chorob-watroby'},
+              {title: 'Poradnia Medycyny Podróży Medellan', value: '../oferta/poradnia-medycyny-podrozy'},
+              {title: 'Pracownia Endoskopii', value: '../oferta/pracownia-endoskopii'},
+              {title: 'Diagnostyka Obrazowa', value: '../oferta/diagnostyka-obrazowa'},
+              {title: 'Badania Kliniczne', value: '../oferta/badania-kliniczne'},
+            ]
+          },
+          {title: 'Specjaliści',
+            menu: [
+              {title: 'prof. dr hab. med. Krzysztof Paśnik', value: '../zespol/krzysztof-pasnik'},
+              {title: 'dr med. Jan Gietka', value: '../zespol/jan-gietka'},
+              {title: 'lek. Piotr Gietka', value: '../zespol/piotr-gietka'},
+              {title: 'lek. Wojciech Gietka', value: '../zespol/wojciech-gietka'},
+              {title: 'dr med. Jakub Klapaczyński', value: '../zespol/jakub-klapaczynski'},
+            ]
+          }
+      ],
+      rel_list: [
+        {title: 'Follow', value: 'follow'},
+        {title: 'No Follow', value: 'nofollow'}
+      ]
+      });
+})
+
+$('#contact-content-modal').on('show.bs.modal', function(event){
+  tinymce.init({
+      language: 'pl',
+      selector:'#textarea_contact',
       height: '500px',
       menubar: false,
       plugins: 'autolink link lists paste',
@@ -770,6 +825,13 @@ $('#article-form').on('submit', function(event){
   var content = tinyMCE.activeEditor.getContent();
   $(this).find('#textarea_article').val(content);
   Livewire.emit('storeArticle', content);
+  event.preventDefault();
+})
+
+$('#contact-form').on('submit', function(event){
+  var content = tinyMCE.activeEditor.getContent();
+  $(this).find('#textarea_contact').val(content);
+  Livewire.emit('save', content);
   event.preventDefault();
 })
 

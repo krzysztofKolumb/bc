@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Page;
-use App\Models\Picture;
 
 class AboutController extends Controller
 {

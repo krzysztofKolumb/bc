@@ -709,3 +709,33 @@ thead, tr {
   margin: 0 !important;
 }
 
+.contact-basic-info li {
+  display: flex;
+}
+.contact-basic-info li:nth-last-child(1) p {
+  border: none;
+}
+.contact-basic-info p {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px;
+}
+.contact-basic-info p:nth-child(1) {
+  width: 30%;
+}
+.contact-basic-info div,
+.contact-basic-info p:nth-child(2) {
+  width: 70%;
+}
+
+.contact-desc li {
+  display: flex;
+}
+.contact-desc .field-1 {
+  padding: 10px;
+  width: 30%;
+}
+.contact-desc div {
+  padding: 10px;
+  width: 70%;
+}
+

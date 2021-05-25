@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\News;
 use App\Models\Page;
 use App\Models\Offer;
 use App\Models\Post;

@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClinicalTrial;
 use App\Models\ClinicalTrialCategory;
 use App\Models\File;
-use App\Models\LabPackage;
-use App\Models\LabTestCategory;
-use Illuminate\Http\Request;
 use App\Models\Offer;
-use App\Models\Picture;
 use App\Models\Profession;
 use App\Models\Section;
 

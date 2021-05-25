@@ -25,7 +25,6 @@ class EmployeeController extends Controller
     {
        $employees = Employee::all();
        $professions = Profession::where('type', 2)->get();
-
         return view('admin.employees.index', compact('employees', 'professions')); 
     }
 
@@ -45,33 +44,6 @@ class EmployeeController extends Controller
         // }
     }
 
-    public function addEmployee(Request $request){
-        $request->validate([
-            'firstname' => 'required|string|min:3',
-            'lastname' => 'required|string|min:3',
-            'description' => 'required|string|min:5',
-            'profession' => 'required',
-            'file'=> 'image|max:1024'
-        ]);
-
-        $employee = new Employee();
-        $employee->firstname = $request->input('firstname');
-        $employee->lastname = $request->input('lastname');
-        $employee->description = $request->input('description');
-        $slug = Str::slug($request->input('firstname') . '-' . $request->input('lastname'));
-        $employee->slug = $slug;
-        $employee->profession_id = $request->input('profession');
-        $extension=null;
-        if($request->input('file')){
-            $extension = $request->input('file')->extension();
-            $employee->photo = $slug . '.' . $extension;
-            $request->input('file')->storeAs('files', $slug . '.' . $extension, 'public');
-        }    
-        $employee->save();    
-
-        return redirect('admin/employees');
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -79,19 +51,19 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if(Auth::user()->is_admin == 1){
-            $employee = new Employee;
-            $employee->firstname = $request->input('firstname');
-            $employee->lastname = $request->input('lastname');
-            $employee->save();
+    // public function store(Request $request)
+    // {
+    //     if(Auth::user()->is_admin == 1){
+    //         $employee = new Employee;
+    //         $employee->firstname = $request->input('firstname');
+    //         $employee->lastname = $request->input('lastname');
+    //         $employee->save();
 
-            if($employee){
-                return redirect('zespol');
-            }
-        }
-    }
+    //         if($employee){
+    //             return redirect('zespol');
+    //         }
+    //     }
+    // }
 
     /**
      * Display the specified resource.

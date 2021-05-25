@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\News;
 use App\Models\Page;
 use App\Models\Post;
 use Illuminate\Pagination\LengthAwarePaginator;

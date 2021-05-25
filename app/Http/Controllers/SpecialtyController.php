@@ -20,13 +20,6 @@ class SpecialtyController extends Controller
 
     }
 
-    public function adminIndex()
-    {
-        $specialties = Specialty::orderBy('name', 'asc')->get();
-        return view('admin.specialties.index', compact('specialties')); 
-
-    }
-
     public function show(Specialty $specialty)
     {
         return view('offer.specialties.show', ['specialty' => $specialty]);

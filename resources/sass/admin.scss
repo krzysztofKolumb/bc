@@ -812,4 +812,45 @@ thead, tr {
     }
 }
 
+.contact-basic-info {
+    li {
+        display: flex;
+    }
+
+    li:nth-last-child(1) p{
+        border: none;
+    }
+
+    p {
+        border-bottom: $border;
+        padding: 10px;
+    }
+
+    p:nth-child(1){
+        width: 30%;
+    }
+
+    div,
+    p:nth-child(2){
+        width: 70%;
+    }
+}
+
+.contact-desc {
+
+    li {
+        display: flex;
+    }
+
+    .field-1{
+        padding: 10px;
+        width: 30%;
+    }
+
+    div{
+        padding: 10px;
+        width: 70%;
+    }
+}
+
 

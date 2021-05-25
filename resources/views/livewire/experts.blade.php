@@ -3,7 +3,6 @@
     <div class="wrapper flex">
         <h2>Specjaliści</h2>
         <button type="button" class="btn btn-primary" wire:click="openModal">Nowy Specjalista</button>
-        <!-- <a href="{{ route('admin-experts-create') }}" class="btn btn-primary btn-new" tabindex="-1" role="button"><i class="bi bi-person-plus-fill"></i> Nowy specjalista</a> -->
     </div>
 </header>
 <div class="wrapper flex">

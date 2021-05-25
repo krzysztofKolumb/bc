@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Page;
-use App\Models\File;
 use App\Models\FileCategory;
-
 
 class FilesController extends Controller
 {
@@ -16,12 +13,7 @@ class FilesController extends Controller
         $categories=FileCategory::orderBy('name', 'asc')->get();
         $section = $page->section;
         $desc=$page->sections->first();
-
         return view('patient-zone.files.index', compact('page','section', 'desc', 'categories')); 
     }
 
-    public function admin()
-    {
-        return view('admin.files.index'); 
-    }
 }

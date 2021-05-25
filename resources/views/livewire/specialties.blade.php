@@ -40,11 +40,7 @@
                   </button>
                   <button type="button" wire:click="selectedItem( {{$specialty->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
-                  </button>
-                  <!-- <button type="button" wire:click="selectedItem( {{$specialty->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button> -->
-                  <!-- <button type="button" wire:click="selectedItem( {{$specialty->id}} , 'delete' )" class="btn btn-outline-danger" title="Usuń">Usuń</button> -->
-                  
-
+                  </button>                  
                 </td>
             </tr>
         @endforeach

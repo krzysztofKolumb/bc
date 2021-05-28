@@ -482,8 +482,14 @@ section.expert-profile {
 
 
 .news-page {
+
   .news-list {
     padding-bottom: 0;
+
+    .news-title {
+      display: block;
+      margin-bottom: 40px;
+    }
 
     .news-desc {
       margin-bottom: 0;
@@ -1421,6 +1427,10 @@ box-shadow: none;
     // }
 
   }
+}
+
+.employees-list{
+  padding-top: 100px;
 }
 
 .section-main {

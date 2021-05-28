@@ -7,13 +7,15 @@
     </div>
 </header>
 
-<div class="wrapper flex">
-    <select class="form-select" wire:model="category_id">
+<div class="wrapper flex flex-submenu">
+    <div class="select-wrapper">
+    <select class="form-select form-select-lab" wire:model="category_id">
         <option value="all" selected>Wszystkie</option>
         @foreach($categories as $category)
         <option value="{{ $category->id }}" required>{{ $category->name }}</option>
         @endforeach
     </select>
+    </div>
     <div>
         <a href="{{ route('admin-lab-test-categories') }}">Kategorie</a>
     </div>
@@ -45,8 +47,6 @@
                   <button type="button" wire:click="selectedItem( {{$test->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                   </button>
-                    <!-- <button type="button" wire:click="selectedItem( {{$test->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$test->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button> -->
                 </td>
             </tr>
         @endforeach
@@ -61,7 +61,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Badanie laboratoryjne</h5>
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bcg">
                 <div class="mb-3">
                     <label for="labTestName" class="col-form-label">Nazwa*</label>
                     <input type="text" wire:model="test.name" class="form-control" id="labTestName" required>

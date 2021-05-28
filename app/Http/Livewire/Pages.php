@@ -17,15 +17,13 @@ class Pages extends Component
     use WithFileUploads;
 
     public $page_id;
+    public $meta_title;
+    public $meta_description;
     public $section;
     public $modal_title;
     public $editor;
-
     public $article;
     public $gallery;
-    // public $pictures;
-    // public $picsSize;
-    // public $picsMax = 2;
 
     public $pic;
 
@@ -40,30 +38,27 @@ class Pages extends Component
     public $layouts;
     public $action;
     public $img;
+    public $itemsNo;
 
     public function mount(Page $page){
         $this->page_id = $page->id;
+        $this->meta_title = $page->meta_title;
+        $this->meta_description = $page->meta_description;
         $this->article = new Article();
         $this->gallery = new Article();
         $this->pictures = collect();
-        // $this->pictures = [];
-
         $this->layouts = Layout::all();
     }
 
     protected $rules = [
+        'meta_title' => 'string',
+        'meta_description' => 'string',
         'section.title' => 'string',
         'section.subtitle' => 'string',
         'section.header' => 'string',
         'section.content' => 'string',
         'article.content' => 'string',
         'article.layout_id' => 'required',
-        // 'article_id' => 'required',
-        // 'article_img' => 'required',
-        // 'file'=> 'image',
-        // 'file_name' => 'string',
-        // 'file_extension' => 'string',
-        // 'name' => 'string'
     ];
 
     protected $messages = [
@@ -87,6 +82,7 @@ class Pages extends Component
         if($item == 'section') {
             $section = Section::find($id);
             $this->section = $section;
+            $this->itemsNo = $section->articles->count();
             $this->modal_title = "# Sekcja";
             $message = 'section-modal';
             $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
@@ -139,21 +135,6 @@ class Pages extends Component
         $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
     }
 
-    // public function selectedItem($id, $action){
-    //     $section = Section::find($id);
-    //     $this->section = $section;
-    //     $this->modal_title = $section->name;
-    //     $this->editor = $section->editor;
-
-    //     if($this->editor==1){
-    //         $message = 'section-modal-editor';
-    //         $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
-    //     }else{
-    //         $message = 'section-modal';
-    //         $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
-    //     }
-    // }
-
     public function update($item){
         $this->validate([
             'section.title' => 'string',
@@ -164,9 +145,6 @@ class Pages extends Component
         if($item == 'section') {
             $this->section->update();
         }
-        // if($item == 'article') {
-        //     $this->article->update();
-        // }
         $message = 'Zapisano zmiany!';
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
@@ -219,19 +197,15 @@ class Pages extends Component
 
     public function savePicture(){
         $this->validate([
-            // 'article_id' => 'required',
-            // 'article_img' => 'required',
             'file'=> 'image',
             'file_name' => 'string',
             'file_extension' => 'string',
             'name' => 'string'
         ]);
-        // dd('mamo');
         $extension = $this->file_extension;
         $slice = Str::beforeLast($this->file_name, '.');
         $slug = Str::slug($slice);
         $file= $slug . "." . $extension;
-        // dd($file);
         $article = Article::find($this->article_id);
         $img = $this->article_img;
         $article->$img = $file;
@@ -268,24 +242,19 @@ class Pages extends Component
         }
     }
 
+    public function updateMetadata(){
+        $this->validate([
+            'meta_title' => 'required|string',
+            'meta_description' => 'string'
+        ]);
 
-
-    // public function deletePicture($article_id, $img){
-    //     $article = Article::find($article_id);
-    //     $file = $article->$img;
-    //     $size = Picture::where('name', $file)->count();
-
-    //     if($size == 0){
-    //         if(Storage::disk('public')->exists('/img/' . $file)){
-    //             Storage::disk('public')->delete('/img/' . $file);
-    //         }
-    //     }
-
-    //     $article->$img = null;
-    //     $article->update();
-    //     $message = 'Usunięto zdjęcie!';
-    //     $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
-    // }
+        $page = Page::find($this->page_id);
+        $page->meta_title = $this->meta_title;
+        $page->meta_description = $this->meta_description;
+        $page->update();
+        $message = 'Zaktualizowano dane!';
+        $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+    }
 
     public function render()
     {

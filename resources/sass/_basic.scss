@@ -47,7 +47,7 @@ body {
 .page-main-wrapper {
    width: 100%;
    margin: 0 auto;
-   max-width: 1700px;
+   max-width: 1400px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -334,83 +334,88 @@ span.line {
       margin-bottom: 0;
    }
 
-   .text-content {
-      width: 100%;
+}
 
-      h2, h3 {
-         margin-bottom: 30px;
-         font-size: 25/16*1em;
-         color: $black;
-         line-height: 1.3em;
+.text-content {
+   width: 100%;
+
+   h2, h3 {
+      margin-bottom: 30px;
+      font-size: 25/16*1em;
+      color: $black;
+      line-height: 1.3em;
+   }
+
+   h3 {
+      padding-left: 20px;
+      margin-left: 20px;
+      margin: 50px 0 50px 20px;
+      border-left: 8px solid $orange;
+      font-size: 23/16*1em;
+      line-height: 1.3em;
+   }
+
+   p {
+      margin-bottom: 20px;
+   }
+
+   a {
+      display: inline-block;
+      font-weight: 500;
+      background-image: linear-gradient(90deg, $orange, $orange);
+      background-position: bottom;
+      background-size: 100% 12%;
+      background-repeat: no-repeat;
+    }
+
+    a:hover {
+       color: $black;
+       background-size: 100% 85%;
+
+    }
+
+    strong {
+       font-weight: 500;
+       color: $black;
+    }
+
+   ul li, ol li {
+      list-style-position: outside;
+      margin-left: 50px;
+      margin-bottom: 30px;
+
+      p {
+         margin-bottom: 0;
+         padding-left: 10px;
       }
 
-      h3 {
-         padding-left: 20px;
-         margin-left: 20px;
-         margin: 50px 0 50px 20px;
-         border-left: 8px solid $orange;
-         font-size: 23/16*1em;
-         line-height: 1.3em;
-      }
+   }
 
-      a {
-         display: inline-block;
-         font-weight: 500;
-         background-image: linear-gradient(90deg, $orange, $orange);
-         background-position: bottom;
-         background-size: 100% 12%;
-         background-repeat: no-repeat;
-       }
+   ul li { list-style: disc; }
 
-       a:hover {
-          color: $black;
-          background-size: 100% 85%;
+   ol li { list-style: decimal; }
 
-       }
-
-       strong {
-          font-weight: 500;
-          color: $black;
-       }
-
-      ul li, ol li {
-         list-style-position: outside;
-         margin-left: 50px;
-         margin-bottom: 30px;
-
-         p {
-            margin-bottom: 0;
-            padding-left: 10px;
-         }
-
-      }
-
-      ul li { list-style: disc; }
-
-      ol li { list-style: decimal; }
-
-      ol li {
-         list-style: decimal;
-
-         ul li {
-            list-style: disc;
-         }
-
-         ul li:nth-child(1){
-            margin-top: 20px;
-         }
-      }
+   ol li {
+      list-style: decimal;
 
       ul li {
          list-style: disc;
+      }
 
-         ol li {
-            list-style: decimal;
-         }
+      ul li:nth-child(1){
+         margin-top: 20px;
+      }
+   }
 
-         ol li:nth-child(1){
-            margin-top: 20px;
-         }
+   ul li {
+      list-style: disc;
+
+      ol li {
+         list-style: decimal;
+      }
+
+      ol li:nth-child(1){
+         margin-top: 20px;
       }
    }
 }

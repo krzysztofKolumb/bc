@@ -21,7 +21,7 @@ Aktualności
                                 <a class="news-title">
                                     <h4> {{ $post->title }} </h4>
                                 </a>
-                                <div class="news-desc">
+                                <div class="text-content">
                                 {!! $post->content !!}
                                 </div>
                             </div>

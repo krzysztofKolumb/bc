@@ -37,9 +37,6 @@ class Pictures extends Component
     ];
 
     protected $messages = [
-        // 'picture.name.required' => 'To pole jest wymagane.',
-        // 'picture.name.string' => 'To pole może zawierać jedynie tekst.',
-        // 'picture.name.max' => 'To pole może zawierać maksymalnie 50 znaków.',
         'picture.page_id.required' => 'Zaznacz galerię',
         'file.image' => 'Wybierz zdjęcie',
         'file.required' => 'Wybierz zdjęcie',

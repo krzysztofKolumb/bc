@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\ClinicalTrial;
 use App\Models\ClinicalTrialCategory;
 use App\Models\Degree;
@@ -10,14 +11,97 @@ use App\Models\Expert;
 use App\Models\Page;
 use App\Models\Profession;
 use App\Models\Specialty;
+use App\Models\Admin;
+use App\Models\Post;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    function login(){
+        return view('auth.login');
+    }
+    function register(){
+        return view('auth.register');
+    }
+    function save(Request $request){
+        
+        //Validate requests
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:admins',
+            'password'=>'required|min:5|max:12'
+        ]);
+
+         //Insert data into database
+         $admin = new Admin;
+         $admin->name = $request->name;
+         $admin->email = $request->email;
+         $admin->password = Hash::make($request->password);
+         $save = $admin->save();
+
+         if($save){
+            return back()->with('success','Zapisano nowego użytkownika');
+         }else{
+             return back()->with('fail','Coś poszło nie tak, spróbuj jeszcze raz');
+         }
+    }
+
+    function check(Request $request){
+        //Validate requests
+        $request->validate([
+             'email'=>'required|email',
+             'password'=>'required|min:5|max:12'
+        ]);
+
+        $userInfo = Admin::where('email','=', $request->email)->first();
+
+        if(!$userInfo){
+            return back()->with('fail','Nieprawidłowe dane');
+        }else{
+            //check password
+            if(Hash::check($request->password, $userInfo->password)){
+                $request->session()->put('LoggedUser', $userInfo->id);
+                return redirect('admin');
+                // return redirect('admin/dashboard');
+            }else{
+                return back()->with('fail','Nieprawidłowe dane');
+            }
+        }
+    }
+
+    function logout(){
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            return redirect('/auth/login');
+        }
+    }
+
+    function dashboard(){
+        $data = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))->first()];
+        return view('admin.dashboard', $data);
+    }
+
+    function settings(){
+        $data = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))->first()];
+        return view('admin.settings', $data);
+    }
+
+    function profile(){
+        $data = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))->first()];
+        return view('admin.profile', $data);
+    }
+    function staff(){
+        $data = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))->first()];
+        return view('admin.staff', $data);
+    }
     
     public function index()
     {
-        $expert = Expert::find(1);
-        return view('admin.index', compact('expert')); 
+        $experts = Expert::all();
+        $specialties = Specialty::all();
+        $posts = Post::all();
+        $trials = ClinicalTrial::all();
+        return view('admin.index', compact('experts', 'specialties', 'posts', 'trials'));
     }
 
     public function experts()
@@ -129,7 +213,6 @@ class AdminController extends Controller
 
     public function pages()
     {
-
         return view('admin.pages.index');
     }
 

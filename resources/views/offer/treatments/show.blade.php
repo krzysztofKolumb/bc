@@ -4,60 +4,88 @@
 
 @section('main')
 
-<section class="content">
-    <article>
-        <div class="content-tm">
-        {!! $desc->content !!}
-        <div>
-    </article>
+<section>
+    <div class="section-body">
+        <article class="main-content">
+            @if($page->section->header)
+            <header class="main">
+                <h2>{{ $page->section->header }}</h2>
+            </header>
+            @endif
+
+            <div class="article-body">
+                @foreach($page->sections as $section)
+                    @foreach($section->articles as $article)
+                    <section class="flex-body {{$article->layout->class}}">
+                        <div class="text-content">
+                            {!! $article->content !!}
+                        </div>
+                        <aside>
+                            <ul class="aside-gallery">
+                                @if($article->img_1)
+                                <li><img src="{{url('storage/img/' . $article->img_1 )}}"></li>
+                                @endif
+                                @if($article->img_2)
+                                <li><img src="{{url('storage/img/' . $article->img_2 )}}"></li>
+                                @endif
+                                @if($article->img_3)
+                                <li><img src="{{url('storage/img/' . $article->img_3 )}}"></li>
+                                @endif
+                                @if($article->img_4)
+                                <li><img src="{{url('storage/img/' . $article->img_4 )}}"></li>
+                                @endif
+                            </ul>
+                        </aside>
+                    </section>
+                    @endforeach
+                @endforeach
+            </div>  
+        </article>
+    </div>
 </section>
 
-@foreach($professions as $profession)
-@if( count($offer->page->experts->where('profession_id', $profession->id)) > 0 )
-<header class="header-basic">
-    <div class="header-content">
-        <h3>{{ $profession->team }}</h3>
-        <p>Zespół</p>
-    </div>
-</header>
-<article class="team-content">
-<ul class="team-list">
-    @foreach($offer->page->experts as $expert)
-    @if( $profession->id === $expert->profession->id )
-    <li>
-        <article>
-            <a href="{{ route('expert-profile', [$expert->slug]) }}">
-            <figure>
-                @if($expert->photo)
-                    <img src="{{url('storage/photos/' . $expert->photo)}}" >
-                @else
-                <div class="photo-prev"></div>
-                @endif  
-                </figure>
-                <h2>{{ $expert->degree->name }} {{ $expert->firstname }} {{ $expert->lastname }}</h2>
-                <h3>
-                    @foreach($expert->specialties as $specialty)
-                        @if ($loop->last)
-                        {{ $specialty->name }}
-                        @else
-                        {{ $specialty->name }},
-                        @endif
-                    @endforeach
-                </h3>
-            </a>
-        </article>  
-    </li>
-    @endif
+<section>
+        @foreach($teams as $team => $experts)
+        <article class="team">
+            <header class="basic-s border-b @if($page->id !== 6) border-t @endif">
+                <div class="header-content">
+                    <h3>{{ $professions->find($team)->team }}</h3>
+                    <p>Zespół</p>
+                </div>
+            </header>
+            <ul class="team-list">
+                @foreach($experts as $expert)
+                <li>
+                    <a href="{{ route('expert-profile', [$expert->slug]) }}">
+                        <div class="wrap wrap-1">
+                            <figure>
+                                @if($expert->photo)
+                                <img src="{{url('storage/photos/' . $expert->photo)}}" >
+                                @else
+                                <img src="{{url('storage/img/bcg.jpg')}}" >
+                                @endif  
+                            </figure>
+                        </div>
+                        <div class="wrap wrap-2">
+                            <header>
+                                <h2>{{ $expert->degree->name }} {{ $expert->firstname }} {{ $expert->lastname }}</h2>
+                                <h3>
+                                    @foreach($expert->specialties as $specialty)
+                                    @if ($loop->last)
+                                    {{ $specialty->name }}
+                                    @else
+                                    {{ $specialty->name }},
+                                    @endif
+                                    @endforeach
+                                </h3>
+                            </header>
+                        </div>
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </article>
     @endforeach
-</ul>
-</article>
-<span class="line"></span>
+</section>
 
-@endif
-@endforeach
-<header class="header-basic header-online">
-        <div class="header-content">
-            <h3>Zapisy online</h3>
-        </div>
-</header>
 @endsection

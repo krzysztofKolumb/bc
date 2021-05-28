@@ -27,7 +27,6 @@
                 <button type="button" wire:click="selectedItem( {{$expert->id}} , 'update' )" title="Edytuj">
                         <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
                   </button>
-                    <!-- <button type="button" wire:click="selectedItem( {{$expert->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button> -->
                 </td>
             </tr>
         @endforeach
@@ -35,31 +34,26 @@
     </table>
 
     <div class="modal fade" wire:ignore.self id="consultation-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Konsultacje | {{ $title }}</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
       <form id="consultation-form">
+      <div class="modal-body">
             @csrf
-            <!-- <label for="textarea-new-post" class="col-form-label">Opis:</label> -->
             <textarea id="textarea-consultation" wire:model.defer="consultation" name="content" height="400px">
             </textarea>
             @error('consultation')
             <div>{{ $message }}</div>
             @enderror
-            <div>
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
-                <button type="submit" class="btn btn-primary">Zapisz</button>
-            </div>
-        </form> 
     </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
+          <button type="submit" class="btn btn-primary">Zapisz</button>
+      </div>
+      </form> 
     </div>
   </div>
 </div>

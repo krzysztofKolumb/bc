@@ -248,7 +248,7 @@ body {
 .page-main-wrapper {
   width: 100%;
   margin: 0 auto;
-  max-width: 1700px;
+  max-width: 1400px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -493,16 +493,17 @@ header.main h2 {
 .article-body p:nth-last-child(1) {
   margin-bottom: 0;
 }
-.article-body .text-content {
+
+.text-content {
   width: 100%;
 }
-.article-body .text-content h2, .article-body .text-content h3 {
+.text-content h2, .text-content h3 {
   margin-bottom: 30px;
   font-size: 1.5625em;
   color: #252525;
   line-height: 1.3em;
 }
-.article-body .text-content h3 {
+.text-content h3 {
   padding-left: 20px;
   margin-left: 20px;
   margin: 50px 0 50px 20px;
@@ -510,7 +511,10 @@ header.main h2 {
   font-size: 1.4375em;
   line-height: 1.3em;
 }
-.article-body .text-content a {
+.text-content p {
+  margin-bottom: 20px;
+}
+.text-content a {
   display: inline-block;
   font-weight: 500;
   background-image: linear-gradient(90deg, #FDD947, #FDD947);
@@ -518,45 +522,45 @@ header.main h2 {
   background-size: 100% 12%;
   background-repeat: no-repeat;
 }
-.article-body .text-content a:hover {
+.text-content a:hover {
   color: #252525;
   background-size: 100% 85%;
 }
-.article-body .text-content strong {
+.text-content strong {
   font-weight: 500;
   color: #252525;
 }
-.article-body .text-content ul li, .article-body .text-content ol li {
+.text-content ul li, .text-content ol li {
   list-style-position: outside;
   margin-left: 50px;
   margin-bottom: 30px;
 }
-.article-body .text-content ul li p, .article-body .text-content ol li p {
+.text-content ul li p, .text-content ol li p {
   margin-bottom: 0;
   padding-left: 10px;
 }
-.article-body .text-content ul li {
+.text-content ul li {
   list-style: disc;
 }
-.article-body .text-content ol li {
+.text-content ol li {
   list-style: decimal;
 }
-.article-body .text-content ol li {
+.text-content ol li {
   list-style: decimal;
 }
-.article-body .text-content ol li ul li {
+.text-content ol li ul li {
   list-style: disc;
 }
-.article-body .text-content ol li ul li:nth-child(1) {
+.text-content ol li ul li:nth-child(1) {
   margin-top: 20px;
 }
-.article-body .text-content ul li {
+.text-content ul li {
   list-style: disc;
 }
-.article-body .text-content ul li ol li {
+.text-content ul li ol li {
   list-style: decimal;
 }
-.article-body .text-content ul li ol li:nth-child(1) {
+.text-content ul li ol li:nth-child(1) {
   margin-top: 20px;
 }
 
@@ -1134,6 +1138,10 @@ section.expert-profile .expert-photo figcaption {
 
 .news-page .news-list {
   padding-bottom: 0;
+}
+.news-page .news-list .news-title {
+  display: block;
+  margin-bottom: 40px;
 }
 .news-page .news-list .news-desc {
   margin-bottom: 0;
@@ -1767,6 +1775,10 @@ section.consultations h2 {
   transform: scale(1.04);
 }
 
+.employees-list {
+  padding-top: 100px;
+}
+
 .section-main header.center {
   padding: 80px 0 0 0;
   text-align: center;
@@ -2196,7 +2208,6 @@ section.consultations h2 {
 }
 
 #home-usg {
-  background-image: url("/storage/img/usg.png");
   background-size: cover;
   background-position: bottom right;
 }
@@ -2351,10 +2362,10 @@ section.consultations h2 {
     margin-bottom: 0;
   }
   .home-gallery ul li:nth-child(1) {
-    width: 59%;
+    width: 49.5%;
   }
   .home-gallery ul li:nth-child(2) {
-    width: 40%;
+    width: 49.5%;
   }
 
   .specialties .hexGrid {
@@ -2923,5 +2934,9 @@ section.consultations h2 {
     display: block;
     width: 39%;
     margin-bottom: o;
+  }
+
+  .team-list {
+    width: 90%;
   }
 }

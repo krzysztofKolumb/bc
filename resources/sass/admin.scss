@@ -22,10 +22,6 @@ $font-gray: #808080;
 $font-gray: #737373;
 // $font-gray: #666666;
 
-
-// $font-gray: red;
-
-
 @mixin font-regular {
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-weight: 400;
@@ -47,7 +43,7 @@ body {
    //  background-color: rgba(243,243,243,0.1);
     font-size: 18px;
     color: $font-gray;
-    // border: 10px solid #fff;
+    line-height: 1.3em;;
     background: $bcg;
 }
 
@@ -59,6 +55,11 @@ body {
 
 html {
     height: 100%
+}
+
+.main-content-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .main-container {
@@ -76,13 +77,41 @@ header {
         @include font-condensed;
         color: $black;
         font-size: 25/16*1em;
-        // text-transform: uppercase;
     }
 }
 
 .wrapper {
     width: 85%;
     margin: 0 auto;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-s {
+    width: 100%;
+    display: flex;
+    padding: 10px 0;
+    // margin-left: 5%;
+    border-bottom: $border;
+
+    h3 {
+        width: 10%;
+    }
+
+    p {
+        width: 90%;
+    }
+}
+
+.flex-s:nth-last-child(1) {
+    border:none;
+}
+
+.part-wrapper {
+    width: 90%;
 }
 
 a:hover {
@@ -118,6 +147,18 @@ tr {
 i.bi {
     font-size: 20px!important;
 }
+
+.alert{
+    position: fixed;
+    bottom: 10px;
+    right: 40px;
+    z-index: 100;
+  }
+
+  .tox-notifications-container {
+    display: none;
+  }
+
 
 // .btn-new {
 //     margin-left: 200px;
@@ -157,7 +198,13 @@ textarea:focus {
 }
 
 .form-select {
-    width: 300px;
+    width: 420px;
+    margin: 0;
+}
+
+.form-select-lab {
+    width: 450px;
+    margin: 0;
 }
 
 .table {
@@ -229,7 +276,7 @@ textarea {
 
 .modal-body {
     // margin-bottom: 100px;
-    padding: 20px;
+    padding: 40px;
 }
 
 .modal-body-container {
@@ -277,8 +324,6 @@ hr {
 .container-flex-degree {
     flex-wrap: nowrap;
 }
-
-
 
 #heading {
     text-transform: uppercase;
@@ -547,14 +592,14 @@ p {
 
     .header {
         padding-left: 10px;
-        // border-bottom: 1px solid #e5e5e5;
-        // margin-bottom: 20px;
         background: $bcg;
     }
 
     h2 {
-        font-size: 18/16*1em;
+        font-size: 15/16*1em;
+        text-transform: uppercase;
         color: $black;
+        // font-weight: 500;
     }
 
     p {
@@ -716,7 +761,7 @@ thead, tr {
 }
 
 .sections-list {
-    margin: 100px auto;
+    margin: 50px auto 100px auto;
 
     li {
         margin-bottom: 50px;
@@ -771,6 +816,64 @@ thead, tr {
         }
     }
 
+    .text {
+
+        p, li, h2,h3,h4,h5,h6 {
+            margin-bottom: 15px;
+            line-height: 1.3em;
+        }
+
+        h2,h3,h4,h5,h6 {
+            width: 100%;
+            font-size: 18/16*1em;
+            color: $black;
+        }
+
+        a {
+            text-decoration-line: underline;
+        }
+
+        strong, b {
+            font-weight: 500;
+        }
+
+        ul li {
+            margin-left: 50px;
+            list-style-type: disc;
+        }
+
+        ul li { list-style: disc; }
+
+        ol li { list-style: decimal; }
+  
+        ol li {
+           list-style: decimal;
+           margin-left: 20px;
+  
+           ul li {
+              list-style: disc;
+              margin-left: 50px;
+           }
+  
+           ul li:nth-child(1){
+              margin-top: 20px;
+           }
+        }
+  
+        ul li {
+           list-style: disc;
+  
+           ol li {
+              list-style: decimal;
+           }
+  
+           ol li:nth-child(1){
+              margin-top: 20px;
+           }
+        }
+
+    }
+
     .part-img {
         width: 100%;
         display: flex;
@@ -790,6 +893,9 @@ thead, tr {
     margin-top: 20px;
 
     li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 33%;
     }
 
@@ -800,6 +906,7 @@ thead, tr {
     }
 
     button {
+        align-self: flex-end;
         display: block;
         margin: 0 auto;
     }
@@ -851,6 +958,134 @@ thead, tr {
         padding: 10px;
         width: 70%;
     }
+}
+
+.login-container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.form-login-container {
+    width: 50%;
+    padding: 50px;
+    background: #fff;
+
+    h4 {
+        margin-bottom: 40px;
+        text-align: center;
+        color: $black;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 18/16*1em;
+        // letter-spacing: 0.1em;
+    }
+
+    label,
+    label + div {
+        padding: 0;
+    }
+
+    .btn {
+        margin-top: 20px;
+        float: right;
+    }
+
+}
+
+.text-danger {
+    display: block;
+    padding-top: 5px;
+}
+
+.home-panel-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 100px auto;
+
+    li:nth-child(1) {
+        width: 35%;
+    }
+
+    li:nth-child(2) {
+        width: 65%;
+        padding: 50px;
+        background: #fff;
+        color: $black;
+    }
+
+    .flex {
+        padding: 15px 0;
+        border-bottom: $border;
+    }
+
+    .btn {
+        width: 50%;
+        margin: 20px auto;
+        margin-right: 100px;
+    }
+}
+
+footer {
+    bottom: 0;
+    padding: 5px 0;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.flex-submenu {
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-wrapper {
+    padding: 0 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.file-input {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.file-loading {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.new-img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.block {
+    display: block;
+    margin: 0 auto;
+}
+
+.bcg {
+    background: $bcg;
+}
+
+.form-label-static {
+    width: 200px;
+}
+
+.border-b {
+    border-bottom: $border;
+}
+
+.icon-img {
+    width: 40px!important;
 }
 
 

@@ -5,17 +5,18 @@
   <button type="button" class="btn btn-primary btn-new" wire:click="openModal">Nowa rekomendacja</button>
 </div>
 </header>
-<div class="wrapper">
-    <label class="form-label">Rekomendujący: </label>
+<div class="wrapper flex flex-submenu">
+<label class="form-label">Rekomendujący: </label>
+    <div class="select-wrapper">
     <select class="form-select" wire:model="author_id">
         <option value="" selected>Wybierz</option>
         @foreach($experts as $expert)
         <option value="{{ $expert->id }}" required>{{ $expert->lastname }} {{ $expert->firstname }}</option>
         @endforeach
     </select>
-</div>
-<div class="wrapper">
+    </div>
     <label class="form-label">Rekomendowany: </label>
+    <div class="select-wrapper">
     <select class="form-select" wire:model="recivier_id">
         <option value="" selected>Wybierz</option>
         @foreach($experts as $expert)
@@ -23,7 +24,8 @@
         @endforeach
     </select>
 </div>
-<br><br>
+
+</div>
 
 <table class="table">
         <thead>
@@ -71,9 +73,9 @@
         <h5 class="modal-title" id="exampleModalLabel">Rekomendacja</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body bcg">
             <div>
-                <label class="form-label">Rekomendujący: </label>
+                <label class="form-label form-label-static">Rekomendujący: </label>
                 <select class="form-select" wire:model.defer="recommendation.expert_id">
                     <option value="" selected>Wybierz</option>
                     @foreach($experts as $expert)
@@ -84,7 +86,7 @@
             </div>
             <br>
             <div>
-                <label class="form-label">Rekomendowany: </label>
+                <label class="form-label form-label-static">Rekomendowany: </label>
                 <select class="form-select" wire:model.defer="recommendation.recommended_expert_id">
                     <option value="" selected>Wybierz</option>
                     @foreach($experts as $expert)

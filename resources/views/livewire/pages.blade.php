@@ -1,10 +1,10 @@
 <div>
-<header class="flex">
+<header class="flex bcg border-b">
     <div class="wrapper flex">
         @if($page->id == 1)
-        <h2>Teksty | Strona główna</h2>
+        <h2>Strona główna</h2>
         @else
-        <h2>Teksty | {{ $page->title }}</h2>
+        <h2>{{ $page->title }}</h2>
         @endif
     </div>
 </header>
@@ -15,47 +15,70 @@
         <li>
             <article>
                 <header class="main-header flex">
-                    <h3># Sekcja {{$loop->iteration}}</h3>
+                    <h3># {{$section->name}}</h3>
                     @if( count($section->articles) > 0)
                     <button type="button" wire:click="createArticle( {{$section->id}} )" class="btn btn-primary">Dodaj część</button>
                     @endif
                 </header>
                 <div class=" part part-1 flex">
-                    <div>
-                        <p><span>Tytuł: </span> {{$section->title}}</p>
-                        <p><span>Podtytuł: </span> {{$section->subtitle}}</p>
-                        <p><span>Nagłówek: </span> {{$section->header}}</p>
+                    <div class="part-wrapper">
+                        <div class="flex-s">
+                            <h3>Tytuł: </h3>
+                            <p>{{$section->title}}</p>
+                        </div>
+                        <div class="flex-s">
+                            <h3>Podtytuł: </h3>
+                            <p>{{$section->subtitle}}</p>
+                        </div>
+                        <div class="flex-s">
+                            <h3>Nagłówek: </h3>
+                            <p>{{$section->header}}</p>
+                        </div>
+                        @if(count($section->articles)  < 1 )
+                        <div class="flex-s">
+                            <h3>Opis: </h3>
+                            <p>{{$section->content}}</p>
+                        </div>
+                        @endif
                     </div>
                     <div>
-                        <button type="button" wire:click="selectedItem( {{$section->id}} , 'section' )" class="btn btn-outline-primary">Edycja</button>
+                        <button type="button" wire:click="selectedItem( {{$section->id}} , 'section' )" title="Edytuj">
+                            <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                        </button>
                     </div>
                 </div>
                 @foreach($section->articles as $article)
                 <div class="part">
                     <div>
                         <header class="flex part-header">
-                        <div><h4>Część {{$loop->iteration}}</h4></div>
-                        @if($loop->iteration > 1)
-                        <button type="button" wire:click="openDeleteModal( {{$article->id}}, 'delete-article', '' )" class="btn btn-outline-primary">Usuń</button>
-                        @endif
+                            <div><h4>Opis | Część {{$loop->iteration}}</h4></div>
+                            @if($loop->iteration > 1)
+                            <button type="button" wire:click="openDeleteModal( {{$article->id}}, 'delete-article', '' )" title="Usuń">
+                                <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                            </button>  
+                            @endif
                         </header>
                         <div class="part-flex">
                             <div class="part-content">
                                 <h3>Układ: </h3>
                                 <div>{{$article->layout->name}}</div>
                             </div>
-                            <div>
-                                <button type="button" wire:click="selectedItem( {{$article->id}} , 'layout' )" class="btn btn-outline-primary">Edycja</button>
+                            <div> 
+                                <button type="button" wire:click="selectedItem( {{$article->id}} , 'layout' )" title="Edytuj">
+                                    <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                                </button>
                             </div>
                         </div>
 
                         <div class="part-flex">
                             <div class="part-content">
                                 <h3>Tekst: </h3>
-                                <div>{!! $article->content !!}</div>
+                                <div class="text">{!! $article->content !!}</div>
                             </div>
                             <div>
-                                <button type="button" wire:click="selectedItem( {{$article->id}} , 'text' )" class="btn btn-outline-primary">Edycja</button>
+                                <button type="button" wire:click="selectedItem( {{$article->id}} , 'text' )" title="Edytuj">
+                                    <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                                </button>
                             </div>
                         </div>
 
@@ -64,19 +87,15 @@
                                 <h3>Obrazy: </h3>
                                 <div class="part-img">
                                 <ul class="part-gallery">
-                                    <!-- @for ($i = 0; $i < $article->layout->size; $i++)
-                                    <li>
-                                        <img src="{{url('storage/img/' . $article->img_1 )}}">
-                                        <button type="button" class="btn btn-primary" wire:click="deletePicture({{$article->id}}, 'img_{{$i+1}}')">Usuń</button>
-                                    </li>
-                                    @endfor -->
-
                                     @if($article->layout->size == 1)
 
                                         @if($article->img_1)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_1 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button>
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button> 
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button> -->
                                         </li>
                                         @else
                                         <li>
@@ -91,7 +110,10 @@
                                         @if($article->img_1)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_1 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button>
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>  
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button> -->
                                         </li>
                                         @else
                                         <li>
@@ -101,7 +123,10 @@
                                         @if($article->img_2)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_2 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')">Usuń</button>
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>  
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')">Usuń</button> -->
                                         </li>
                                         @else
                                         <li>
@@ -116,7 +141,10 @@
                                         @if($article->img_1)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_1 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button>
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')">Usuń</button> -->
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_1')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>  
                                         </li>
                                         @else
                                         <li>
@@ -126,7 +154,10 @@
                                         @if($article->img_2)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_2 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')">Usuń</button>
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')">Usuń</button> -->
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_2')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>  
                                         </li>
                                         @else
                                         <li>
@@ -137,7 +168,10 @@
                                         @if($article->img_3)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_3 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_3')">Usuń</button>
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_3')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>  
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_3')">Usuń</button> -->
                                         </li>
                                         @else
                                         <li>
@@ -147,7 +181,10 @@
                                         @if($article->img_4)
                                         <li>
                                             <img src="{{url('storage/img/' . $article->img_4 )}}">
-                                            <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_4')">Usuń</button>
+                                            <button type="button" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_4')" title="Usuń">
+                                                <img class="icon-img" width="30px" src="{{url('storage/img/icon-trash.png')}}" >
+                                            </button>
+                                            <!-- <button type="button" class="btn btn-primary" wire:click="openDeleteModal({{$article->id}}, 'delete-img', 'img_4')">Usuń</button> -->
                                         </li>
                                         @else
                                         <li>
@@ -170,10 +207,32 @@
             </article>
         </li>
         @endforeach
+        <li>
+            <article>
+                <header class="main-header flex">
+                    <h3># Metadane</h3>
+                </header>
+                <div class=" part part-1 flex">
+                    <div class="part-wrapper">
+                        <div class="flex-s">
+                            <h3>Tytuł strony:</h3>
+                            <p>{{ $page->meta_title }}</p>
+                        </div>
+                        <div class="flex-s">
+                            <h3>Opis strony: </h3>
+                            <p>{{ $page->meta_description }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <button data-toggle="modal" data-target="#metadata-modal" type="button" title="Edytuj">
+                            <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </li>
     </ul>
-
 </section>
-
 
   <div class="modal fade" wire:ignore.self id="section-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -206,6 +265,17 @@
                     @error('section.header') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
+            @if( $itemsNo < 1 )
+            <div class="row mb-3">
+                <label for="tue" class="col-sm-2 col-form-label">Opis:</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" wire:model="section.content" id="section_content" rows="6">
+                        {{ $section->content }}
+                    </textarea>
+                    @error('section.content') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            @endif
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
@@ -325,9 +395,43 @@
                 <button type="submit" wire:click="deleteImg" class="btn btn-primary">Usuń</button>
                 @endif
             </div>
-            </div>
         </div>
     </div>
+</div>
+
+<!-- Modal Metadane -->
+<div class="modal fade" wire:ignore.self id="metadata-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Metadane</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <div class="row mb-3">
+                <label for="meta_title" class="col-sm-2 col-form-label">Tytuł strony</label>
+                <div class="col-sm-9">
+                    <input class="form-control" wire:model="meta_title" id="meta_title" rows="3">
+                    @error('meta_title') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="tue" class="col-sm-2 col-form-label">Opis strony</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" wire:model.defer="meta_description" id="p_meta_description" rows="3">
+                        {{ $meta_description }}
+                    </textarea>
+                    @error('meta_description') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary" wire:click="updateMetadata">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- <div class="modal fade" wire:ignore.self id="section-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">

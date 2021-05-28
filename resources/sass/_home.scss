@@ -35,14 +35,6 @@
 
     }
 
-    // .link-wrapper-solid:hover a {
-    //      color: #a78501;
-    // }
-
-    // a:hover {
-    //     color: $dark-gray;
-    // }
-
 }
 
 .home-gallery {
@@ -95,39 +87,20 @@
   
       }
   
-    //   li:nth-child(1){
-    //     width: 59%;
-    //   }
-
-    //   li:nth-child(2){
-    //     width: 40%;
-    //   }
     }
   }
 
   #home-gallery-img-1 {
     background-image: url("/storage/img/bodyclinic-2a.jpg");
     background-size: cover;
-    // background-position-y: 1300px;
     background-position: center;
   }
   
   #home-gallery-img-2 {
     background-image: url("/storage/img/bodyclinic-8.jpg");
     background-size: cover;
-    // background-position-y: 1300px;
     background-position: bottom center;
   }
-
-// #home-endoscopy {
-//     background-image: url("/storage/img/endoskop.png");
-//     background-image: url("/storage/img/bcg-endo.png");
-
-//     background-repeat: no-repeat;
-//     background-size: 300px 532px;
-//     background-position: 100% 100%;
-//     background-position: 100% 600px;
-// }
 
 .endo-imgs {
     width: 90%;
@@ -140,50 +113,14 @@
     }
 }
 
-// #home-travel {
-    // position: relative;
-    // background-image: url("/storage/img/picture-travel.png");
-    // background-size: cover;
-    // background-position: bottom right;
-
-    // .wrapper-b {
-        // height: 300px;
-        // background-image: url("/storage/img/bcg-pmp.png");
-        // background-position: center;
-        // background-repeat: no-repeat;
-        // background-size: 100%;
-    // }
-// }
 
 #home-usg {
-    // position: relative;
-    background-image: url("/storage/img/usg.png");
     background-size: cover;
-    // background-position-y: 1300px;
     background-position: bottom right;
-    // background-attachment:unset;
-    // background-attachment: fixed;
 }
 
-// #home-clo {
-    // background-image: url("/storage/img/bcg-clo.png");
-    // background-size: cover;
-    // background-position: bottom right;
-
-    // .wrapper-b {
-    //     height: 300px;
-    //     background-image: url("/storage/img/bcg-clo10.png");
-    //     background-position: center;
-    //     background-repeat: no-repeat;
-    //     background-size: 800px 669px;
-    //     background-size: 100%;
-    // }
-// }
 
 #home-about-section {
-    // background-image: url("/storage/img/stetoskop1.png");
-    // background-size: cover;
-    // background-position: bottom;
     background: $bcg;
 }
 
@@ -211,37 +148,5 @@
     padding: 120px 0;
 }
 
-// .home-hexgrid {
-    // padding: 40px 0;
-    // background: $bcg;
-
-    // .hexGrid {
-    //     margin-bottom: 80px;
-    // }
-// }
-
-
-// .home-endoscopy-header {
-//     border-bottom-width: 0;
-//     margin: 0;
-// }
-
-// .home .endoscopy-lab-menu {
-//     border-width: 0!important;
-//     padding: 80px 0 50px 0;
-
-//     h3.basic {
-//         width: 90%;
-//         margin: 0 auto;
-//         text-align: center;
-//         font-size: 25/16*1em;
-//         line-height: 1.5em;
-//     }
-
-    // a {
-    //     border: 1px solid $black;
-    //     padding: 10px 0;
-    // }
-// }
 
 

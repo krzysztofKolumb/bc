@@ -7,10 +7,14 @@
 <section class="border-t">
     <div class="section-body bcg">
         <article class="main-content">
-            @if($section->header)
+            @if($section->header || $section->content)
             <header class="basic-a">
+                @if($section->header)
                 <h2>{{ $section->header }}</h2>
+                @endif
+                @if($section->content)
                 <p>{{ $section->content }}</p>
+                @endif
             </header>
             @endif
             <ul class="accordion-list">

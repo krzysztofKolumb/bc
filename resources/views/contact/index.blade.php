@@ -7,7 +7,7 @@
 <section>
     <div class="section-body bcg border-t">
     <article class="main-content">
-            @if($page->section->header)
+            @if($page->section->header || $page->section->content )
             <header class="basic-a">
                 <h2>{{ $page->section->header }}</h2>
                 @if($page->section->content)

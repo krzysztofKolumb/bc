@@ -103,66 +103,6 @@
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- <section>
-    <div class="section-body">
-        <article class="main-content">
-            @if($page->section->header)
-            <header class="main">
-                <h2>{{ $page->section->header }}</h2>
-            </header>
-            @endif
-
-            <div class="article-body">
-            @foreach($page->sections as $section)
-                @if($section->content)
-                <section class="flex-body {{$section->class}}">
-                    <div class="text-content">
-                        {!! $section->content !!}
-                    </div>
-                    <aside>
-                        <ul class="aside-gallery">
-                            @foreach($section->pictures as $picture)
-                                @if(Str::contains($picture->name, 'logo-hepatolodzy'))
-                                <li class="logo-offer">
-                                    <div>
-                                        <a target="_blank" title="Poradnia Chorób Wątroby Hepatolodzy" href="http://www.hepatolodzy.pl">
-                                            <img src="{{url('storage/img/logo-hepatolodzy.jpg')}}" >
-                                        </a>
-                                    </div>
-                                </li>
-                                @elseif(Str::contains($picture->name, 'logo-medellan'))
-                                <li class="logo-offer">
-                                    <div>
-                                        <a target="_blank" title="Poradnia Medycyny Podróży Medellan" href="http://www.medellan.pl">
-                                            <img src="{{url('storage/img/logo-medellan.jpg')}}" >
-                                        </a>
-                                    </div>
-                                </li>
-                                @else
-                                <li><img src="{{url('storage/img/' . $picture->name )}}"></li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </aside>
-                </section>
-                @endif
-                @endforeach
-            </div>  
-        </article>
-    </div>
-</section> -->
-
 @if($page->id == 6)
 <section class="border-t">
     <header class="basic-s">
@@ -255,6 +195,41 @@
 </section>
 
 @if($page->id == 8)
+@if(count($labTeam->employees) > 0)
+<section>
+    <header class="basic-s border-t border-b">
+        <div class="header-content">
+            <h3>{{ $labTeam->team }}</h3>
+            <p>Zespół</p>
+        </div>
+    </header>
+    <article class="team-content">
+        <ul class="team-list employees-list">
+            @foreach($labTeam->employees as $employee)
+            <li>
+                <a>
+                    <div class="wrap wrap-1">
+                        <figure>
+                        @if($employee->photo)
+                            <img src="{{url('storage/photos/' . $employee->photo)}}" >
+                        @else
+                        <img src="{{url('storage/img/bcg.jpg')}}" >
+                        @endif  
+                        </figure>
+                    </div>
+                    <div class="wrap wrap-2">
+                        <header>
+                            <h2>{{ $employee->firstname }} {{ $employee->lastname }}</h2>
+                            <h3>{{ $employee->description }}</h3>
+                        </header>
+                    </div>
+                </a>
+            </li>
+            @endforeach
+        </ul>
+    </article>
+</section>
+@endif
 <section>
     <header class="basic-s border-t">
         <div class="header-content">

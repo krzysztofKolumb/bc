@@ -41,39 +41,36 @@
 
 
 <div class="modal fade" wire:ignore.self id="post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
+  <div class="modal-dialog modal-xl">>
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Post</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
       <form id="post-form">
+      <div class="modal-body">
             @csrf
             <label for="post-title" class="col-form-label">Tytuł:</label>
             <input type="text" wire:model.defer="post.title" name="title" class="form-control" id="post-title" required>
             @error('post.title')
             <div>{{ $message }}</div>
             @enderror
-
-            <label for="textarea-new-post" class="col-form-label">Opis:</label>
+              <br>
+            <label for="textarea-new-post" class="col-form-label">Treść:</label>
             <textarea id="textarea-post" wire:model.defer="post.content" name="content" height="400px">
             </textarea>
             @error('post.content')
             <div>{{ $message }}</div>
             @enderror
             <input type="hidden" name="post_id" class="form-control" required>
-            <div>
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
-            </div>
-        </form> 
+      </div>
     </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-    </div>
+    </form> 
+
   </div>
 </div>
 

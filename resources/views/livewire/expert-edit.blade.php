@@ -26,8 +26,8 @@
                         </div>
                         <div class="content">
                             <p>Imię i Nazwisko: <span>{{ $expert->firstname }} {{ $expert->lastname }}</span></p>
-                            <p>Tytuł/Stopień : <span>{{ $expert->degree->name }} </span></p>
-                            <p>Zawód : <span>{{ $expert->profession->name }} </span></p>
+                            <p>Tytuł/Stopień: <span>{{ $expert->degree->name }} </span></p>
+                            <p>Zawód: <span>{{ $expert->profession->name }} </span></p>
                         </div>
                     </li>
                     <li>
@@ -287,14 +287,10 @@
                 </div>
             </div>
             </fieldset>
-            <!-- <div class="btn-container">
-            <button type="button" class="btn btn-primary" wire:click.self="update()">Zapisz zmiany</button>
-            </div> -->
         </form>
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         <button type="button" class="btn btn-primary" wire:click.self="updateBasicInfo">Zapisz zmiany</button>
       </div>
     </div>
@@ -311,7 +307,6 @@
       </div>
       <div class="modal-body">
       <div class="row mb-3">
-                <!-- <legend class="col-form-label col-sm-3 pt-0">Specjalizacje*</legend> -->
                 <div class="col-sm-9">
                     <div class="container-flex">
                         @foreach($specialties as $index => $specialty)
@@ -329,7 +324,6 @@
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         <button type="button" class="btn btn-primary" wire:click.self="updateSpecialties">Zapisz zmiany</button>
       </div>
     </div>
@@ -341,7 +335,6 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLabel">{{ $expert->firstname }} {{ $expert->lastname }} | Zdjęcie</h5> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
@@ -357,7 +350,7 @@
 
 <!-- Modal ZDJĘCIE - DODAJ -->
 <div class="modal fade" wire:ignore.self id="expert-photo-add-modal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Zdjęcie</h5>
@@ -365,25 +358,29 @@
       </div>
       <div class="modal-body">
       <div class="row mb-3">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
             @if($hasPhoto == false )
-            <div wire:loading wire:target="file">Trwa ładowanie zdjęcia...</div>
+                <br>
+                  <div class="file-loading" wire:loading wire:target="file">Trwa ładowanie zdjęcia...</div>
                 <br>
                 @if ($file)
-                <div class="row mb-3">
-                    <div>
-                        <img width="300px" src="{{ $file->temporaryUrl() }}">
-                    </div>    
+                <div class="mb-12">
+                    <div><img class="new-img" width="300px" src="{{ $file->temporaryUrl() }}"></div>    
                 </div>
                 @endif
-                <div class="input-group mb-3">
-                    <input type="file" wire:model="file" class="form-control" accept="image/*" id="inputGroupFile01">
-                    @error('file') <span class="text-danger">{{ $message }}</span> @enderror
+                <br>
+                <div class="mb-3">
+                  <div class="file-input">
+                      <input type="file" wire:model="file" id="file" accept="image/*" name="file" class="file">
+                      <label for="file">Wybierz plik</label>
+                  </div>
+                  @error('file') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
+
                 @if ($file)
-                <div class="row mb-3">
-                    <label for="inputFileName" class="col-sm-2 col-form-label">Zapisz jako:</label>
-                    <div class="col-sm-10">
+                <div class="mb-12">
+                    <label for="inputFileName" class="col-sm-12 col-form-label">Zapisz jako:</label>
+                    <div class="col-sm-12">
                         <input wire:model.defer="photo_default_name" type="text" class="form-control" id="inputFileName" >
                         @error('photo_default_name') <span class="text-danger">{{ $message }}</span> @enderror
                         @error('unique') <span class="text-danger">{{ $message }}</span> @enderror
@@ -594,12 +591,6 @@
                 </div>
             </form>
         </div>
-
-
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div>
   </div>
 </div>

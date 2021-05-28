@@ -61,10 +61,6 @@ class ExpertEdit extends Component
             $this->specs[$spec]=$spec;
         }
         $this->pages = Page::take(7)->get();
-        // $this->disabled = '';
-        // if(Page::find(1)->experts()->count() >= 5){
-        //     $this->disabled='disabled';
-        // }
         $this->ePages=[];
         $pages=$expert->pages()->allRelatedIds();
         foreach($pages as $page){
@@ -121,6 +117,14 @@ class ExpertEdit extends Component
         }
     }
 
+    public function change($name, $extension) {
+        $this->name= $name;
+        $slice = Str::beforeLast($name, '.');
+        $slug = Str::slug($slice);
+        // $this->file_name = $slug . "." . $extension;
+        $this->file_extension = $extension;
+    }
+
     public function refresh(){
         $this->expert = Expert::find($this->expert_id);
     }
@@ -132,7 +136,6 @@ class ExpertEdit extends Component
             'expert.degree_id' => 'required',
             'expert.profession_id' => 'required'
         ]);
-
 
         $firstname = $this->expert->firstname;
         $lastname = $this->expert->lastname;
@@ -194,15 +197,6 @@ class ExpertEdit extends Component
         }   
     }
 
-    // public function setPhotoName(){
-    //     $validatedData=$this->validate([
-    //         'file'=> 'image|max:1024',
-    //     ]);
-    //     $this->file_extension = $this->file->getClientOriginalExtension();
-    //     $this->file_name=$this->expert->slug . '.' . $this->file_extension;
-
-    // }
-
     public function updatePhotoName(){
         $validatedData=$this->validate([
             'file_name_new' => 'required|string|min:3',
@@ -241,7 +235,6 @@ class ExpertEdit extends Component
     }
 
     public function updatePages(){
-
         $array = [];
         foreach($this->ePages as $index => $value){
             if($value > 0) {
@@ -312,13 +305,8 @@ class ExpertEdit extends Component
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
-
-
-
     public function render()
     {
-        // $expert = Expert::find($this->expert_id);
-
         return view('livewire.expert-edit');
     }
 }

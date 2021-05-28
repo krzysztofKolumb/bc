@@ -1,17 +1,19 @@
 <div>
 <header>
-    <div class="wrapper flex">
+    <div class="wrapper flex flex-center">
         <h2>Specjaliści</h2>
         <button type="button" class="btn btn-primary" wire:click="openModal">Nowy Specjalista</button>
     </div>
 </header>
-<div class="wrapper flex">
-    <select class="form-select" wire:model="profession_id">
-        <option value="all" selected>Wszyscy</option>
-        @foreach($professions as $profession)
-        <option value="{{ $profession->id }}" required>{{ $profession->team }} ({{count($profession->experts)}})</option>
-        @endforeach
-    </select>
+<div class="wrapper flex flex-submenu">
+    <div class="select-wrapper">
+        <select class="form-select" wire:model="profession_id">
+            <option value="all" selected>Wszyscy</option>
+            @foreach($professions as $profession)
+            <option value="{{ $profession->id }}" required>{{ $profession->team }} ({{count($profession->experts)}})</option>
+            @endforeach
+        </select>
+    </div>
     <div>
         <a href="{{ route('admin-degrees') }}">Stopnie, tytuły</a> | 
         <a href="{{ route('admin-professions') }}">Zawody</a>
@@ -23,6 +25,7 @@
             <tr>
             <th class="th-iteration" scope="col">#</th>
             <th class="th-flex" scope="col">Specjalista</th>
+            <th class="th-flex" scope="col">Specjalizacje</th>
             <th class="th-options" scope="col">Opcje</th>
             </tr>
         </thead>
@@ -31,20 +34,22 @@
             <tr>
                 <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
                 <td><a href="{{ route('admin-expert-profile', $expert) }}">{{ $expert->degree->name }} {{ $expert->firstname }} {{ $expert->lastname }}</a></td>
+                <td>
+                @foreach($expert->specialties as $specialty)
+                        @if ($loop->last)
+                        {{ $specialty->name }}
+                        @else
+                        {{ $specialty->name }},
+                        @endif
+                    @endforeach
+                </td>
                 <td class="th-options">
-                <!-- <button type="button" wire:click="selectedItem( {{$expert->id}} , 'update' )" title="Edytuj">
-                        <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
-                  </button> -->
                   <a href="{{ route('admin-expert-profile', $expert) }}" title="Profil" role="button">
                     <img width="30px" src="{{url('storage/img/icon-edit.png')}}" >
                   </a>
                   <button type="button" wire:click="selectedItem( {{$expert->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                   </button>
-
-                    <!-- <a href="{{ route('admin-expert-profile', $expert) }}" class="btn btn-outline-primary btn-lg" tabindex="-1" title="Profil" role="button"><i class="bi bi-person-fill"></i></a>
-                    <button type="button" wire:click="selectedItem( {{$expert->id}} , 'delete' )" class="btn btn-outline-danger btn-lg" title="Usuń"><i class="bi bi-trash"></i></button>
-                 -->
                 </td>
             </tr>
         @endforeach
@@ -150,11 +155,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 
     <div class="modal fade" wire:ignore.self id="expert-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

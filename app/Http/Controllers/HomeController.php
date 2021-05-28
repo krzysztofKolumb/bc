@@ -12,13 +12,17 @@ class HomeController extends Controller
     {
         $home = Page::find(1);
         $offers = Offer::all();
+        $offer = $home->sections->where('slug', 'home-offer')->first();
+        $treatments = $home->sections->where('slug', 'home-treatments')->first();
+        $usg = $home->sections->where('slug', 'home-usg')->first();
+        $clo = $home->sections->where('slug', 'home-clo')->first();
+        $medellan = $home->sections->where('slug', 'home-medellan')->first();
         $about = $home->sections->where('slug', 'home-about')->first();
         $team = $home->sections->where('slug', 'home-team')->first();
         $news = $home->sections->where('slug', 'home-news')->first();
-        $treatments = $home->sections->where('slug', 'home-treatments')->first();
         $posts = Post::latest()->take(2)->get();
         $onLine = $home->sections->where('slug', 'home-on-line')->first();
-        return view('home.index', compact('home','offers', 'about','team', 'news', 'posts', 'treatments', 'onLine')); 
+        return view('home.index', compact('home','offers','offer', 'about', 'usg','medellan', 'clo', 'team', 'news', 'posts', 'treatments', 'onLine')); 
     }
 
 }

@@ -29,16 +29,20 @@
 <section class="home-hexgrid">
 <header class="basic-s">
         <div class="header-content">
-            <h3>Oferta</h3>
-            <p>Lorem Ipsum</p>
+            <h3>{{ $offer->title }}</h3>
+            <p>{{ $offer->subtitle }}</p>
         </div>
     </header>
     <div class="section-body bcg">
 
     <header class="basic-a">
-                <h3>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz</h3>
-                <p>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany w przemyśle elektronicznym, pozostając praktycznie niezmienionym.</p>
-            </header>
+        @if($offer->header)
+        <h3>{{ $offer->header }}</h3>
+        @endif
+        @if($offer->content)
+        <p>{{ $offer->content }}</p>
+        @endif
+    </header>
 
     <ul class="hexGrid">
 
@@ -194,10 +198,6 @@
                                     <h3>{{ $treatments->header }}</h3>
                                     <p>{{ $treatments->content }}</p>
                                 </header>
-                                <!-- <div class="endo-imgs">
-                                  <img width="100%" src="{{url('storage/img/bodyclinic4.jpg')}}">
-                                  <img width="100%" src="{{url('storage/img/bodyclinic3.jpg')}}">
-                                </div> -->
                                   <ul class="treatments-list">
                                       <li>
                                           <img class="icon-endoscopy" height="85px" src="{{url('storage/img/icon-gastroscopy1.png')}}" >
@@ -222,20 +222,25 @@
                         </div>
                     </section>
                 </li>
+                @if($usg->content)
                 <li>
                 <section>
                     <header class="basic-s">
                         <div class="header-content">
-                            <h3>Pracownia USG</h3>
-                              <p>Oferta</p>
+                            <h3>{{ $usg->title }}</h3>
+                              <p>{{ $usg->subtitle }}</p>
                         </div>
                     </header>
                     <div class="section-body home-offer">
                         <article>
                             <div class="wrapper-a">
                               <header class="basic-a">
-                                  <h3>Diagnostyka Obrazowa</h3>
-                                  <p>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym.</p>
+                              @if($usg->header)
+                              <h3>{{ $usg->header }}</h3>
+                              @endif
+                              @if($usg->content)
+                              <p>{{ $usg->content }}</p>
+                              @endif
                               </header>
                               <a class="link desctop" href="{{ route('offer', 'diagnostyka-obrazowa') }}">
                                 <div><p>Szczegóły</p></div>
@@ -256,20 +261,26 @@
                     </div>
                 </section>
                 </li>
+                @endif
+                @if($clo->content)
                 <li>
                 <section class="home-offer-slide">
                     <header class="basic-s">
                         <div class="header-content">
-                            <h3>Centrum Leczenia Otyłości</h3>
-                              <p>Oferta</p>
+                            <h3>{{ $clo->title }}</h3>
+                              <p>{{ $clo->subtitle }}</p>
                         </div>
                     </header>
                     <div id="home-clo" class="section-body home-offer">
                         <article>
                             <div class="wrapper-a">
                               <header class="basic-a">
-                                  <h3>Centrum Leczenia Otyłości</h3>
-                                  <p>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym.</p>
+                                @if($clo->header)
+                                <h3>{{ $clo->header }}</h3>
+                                @endif
+                                @if($clo->content)
+                                <p>{{ $clo->content }}</p>
+                                @endif
                               </header>
                               <a class="link desctop" href="{{ route('offer', 'centrum-leczenia-otylosci') }}">
                                 <div><p>Szczegóły</p></div>
@@ -289,6 +300,7 @@
                     </div>
                 </section>
                 </li>
+                @endif
                 <!-- <li>
                 <section class="home-offer-slide">
                     <header class="basic-s">
@@ -322,20 +334,25 @@
                     </div>
                 </section>
               </li> -->
+              @if($medellan->content)
               <li>
                 <section class="home-offer-slide">
                     <header class="basic-s">
                         <div class="header-content">
-                            <h3>Poradnia medycyny podróży Medellan</h3>
-                              <p>Oferta</p>
+                            <h3>{{$medellan->title}}</h3>
+                              <p>{{$medellan->subtitle}}</p>
                         </div>
                     </header>
                     <div id="home-travel" class="section-body home-offer">
                         <article>
                             <div class="wrapper-a">
                               <header class="basic-a">
-                                  <h3>Poradnią Medycyny Podróży Medellan</h3>
-                                  <p>Od 2017 r. Medellan jest certyfikowaną Poradnią Medycyny Podróży i należy do Krajowej Sieci Certyfikowanych Centrów Medycyny Podróży pod patronatem Polskiego Towarzystwa Medycyny Morskiej, Tropikalnej i Podróży.</p>
+                              @if($medellan->header)
+                                <h3>{{ $medellan->header }}</h3>
+                                @endif
+                                @if($medellan->content)
+                                <p>{{ $medellan->content }}</p>
+                                @endif
                               </header>
                               <a class="link desctop" href="{{ route('offer', 'poradnia-medycyny-podrozy') }}">
                                 <div><p>Szczegóły</p></div>
@@ -355,99 +372,27 @@
                     </div>
                 </section>
               </li>
+              @endif
             </ul>
             <a class="prev" href="#">
                 <img width="15px" src="{{url('storage/img/icon-arrow-left.png')}}" >
-                <!-- <i class="fas fa-angle-left fa-2x">Left</i> -->
             </a>
             <a class="next" href="#">
                 <img width="15px" src="{{url('storage/img/icon-arrow-right.png')}}" >
-
-                <!-- <i class="fas fa-angle-right fa-2x">Right</i> -->
             </a>
         </div>
-        <!-- <div class="controller">
-            <a class="auto" href="#">
-                <i class="fas fa-play fa-xs"></i>
-                <i class="fas fa-pause fa-xs"></i>
-            </a>
-            <div class="indicate-area"></div>
-        </div> -->
     </section> 
-
-<!-- <section>
-    <header class="basic-s">
-        <div class="header-content">
-            <h3>{{ $treatments->title }}</h3>
-            @if($team->subtitle)
-              <p>{{ $treatments->subtitle }}</p>
-            @endif
-        </div>
-    </header>
-    <div id="home-endoscopy" class="section-body">
-        <article>
-            <header class="basic-a">
-                <h3>{{ $treatments->header }}</h3>
-                <p>{{ $treatments->content }}</p>
-            </header>
-              <ul class="treatments-list">
-                  <li>
-                      <img class="icon-endoscopy" height="85px" src="{{url('storage/img/icon-gastroscopy1.png')}}" >
-                      <div>
-                        <a class="link link-arrow" href="{{ route('endoscopy-treatment', ['gastroskopia'])}}">
-                          <div><p>Gastroskopia</p></div>
-                          <div><img width="40px" src="{{url('storage/img/icon-right-arrowb1.png')}}"></div>
-                        </a>
-                      </div>
-                  </li>
-                  <li>   
-                    <img class="icon-endoscopy" height="85px" src="{{url('storage/img/icon-colonoscopy1.png')}}" >
-                    <div>
-                          <a class="link link-arrow" href="{{ route('endoscopy-treatment', ['kolonoskopia'])}}">
-                            <div><p>Kolonoskopia</p></div>
-                            <div><img width="40px" src="{{url('storage/img/icon-right-arrowb1.png')}}"></div>
-                          </a>
-                      </div>
-                  </li>
-              </ul>
-        </article>
-    </div>
-</section> -->
-
-<!-- <section>
-    <header class="basic-s">
-        <div class="header-content">
-            <h3>Poradnia medycyny podróży Medellan</h3>
-              <p>Oferta</p>
-        </div>
-    </header>
-    <div id="home-travel" class="section-body home-offer">
-    <br><br>
-        <article>
-            <div class="wrapper-a">
-              <header class="basic-a">
-                  <h3>Medellan jest certyfikowaną Poradnią Medycyny Podróży</h3>
-                  <p>Od 2017 roku jesteśmy certyfikowaną Poradnią Medycyny Podróży i należymy do Krajowej Sieci Certyfikowanych Centrów Medycyny Podróży pod patronatem Polskiego Towarzystwa Medycyny Morskiej, Tropikalnej i Podróży. Wszystko po to, żebyś miał możliwość konsultacji z najlepszymi ekspertami w dziedzinie medycyny podróży. Wiemy, że od tego zależy Twoje bezpieczeństwo.</p>
-              </header>
-            </div>
-            <div class="wrapper-b">
-
-            </div>
-        </article>
-    </div>
-</section> -->
 
 <section class="home-team">
     <header class="basic-s border-b">
         <div class="header-content">
             <h3>{{ $team->title }}</h3>
-            @if($team->subtitle)
             <p>{{ $team->subtitle }}</p>
-            @endif
         </div>
     </header>
     <div class="section-body">
       <article>
+      @if($team->header || $team->content)
         <header class="basic-a">
           @if($team->header)
           <h3>{{ $team->header }}</h3>
@@ -455,7 +400,8 @@
           @if($team->content)
             <p>{{ $team->content }}</p>
           @endif
-        </header>  
+        </header> 
+        @endif 
         @livewire('home-team', ['home' => $home])
       </article>
     </div>
@@ -492,25 +438,8 @@
       </div>
   </header>
   <div class="section-body home-news-body">
-  <!-- <header class="basic-a">
-      @if($news->header)
-          <h3>{{ $news->header }}</h3>
-      @endif
-      @if($news->content)
-        <p>{{ $news->content }}</p>
-      @endif
-        </header> -->
   <div id="home-news-section">      
     <article>
-        <!-- <header class="basic-a">
-      @if($news->header)
-          <h3>{{ $news->header }}</h3>
-      @endif
-      @if($news->content)
-        <p>{{ $news->content }}</p>
-      @endif
-        </header> -->
-        <!-- <div id="home-news-section"> -->
         <div class="list-wrapper">
             <ul class="news-list">
               @foreach($posts as $post)

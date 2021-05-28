@@ -1,42 +1,5 @@
 <div>
-<h1>{{ $expert->degree->name }} {{ $expert->firstname}} {{ $expert->lastname}}</h1>
-
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Edytuj
-</button> -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Edytuj
-</button>
-<div class="flex-1">
-    <p>Imię: </p>
-    <p>{{ $expert->firstname }}</p>
-</div>
-<div class="flex-1">
-    <p>Nazwisko: </p>
-    <p>{{$expert->lastname}}</p>
-</div>
-<div class="flex-1">
-    <p>Tytuł/Stopień: </p>
-    <p> {{$expert->degree->name}}</p>
-</div>
-<div class="flex-1">
-    <p>Zawód: </p>
-    <p>{{$expert->profession->name}}</p>
-</div>
-<div class="flex-1">
-    <p>Specjalizacje: </p>
-    @foreach($expert->specialties as $specialty)
-    <p>
-        @if ($loop->last)
-        <span> {{ $specialty->name }} </span>
-        @else
-        <span>{{ $specialty->name }}, </span>
-        @endif
-        @endforeach
-    </p>    
-</div> -->
+<!-- <h1>Matko {{ $expert->degree->name }} {{ $expert->firstname}} {{ $expert->lastname}}</h1>
 
 <div class="accordion accordion-flush" wire:ignore id="accordion">
   <div class="accordion-item">
@@ -273,7 +236,7 @@
 
       
     </div>
-</div>
+</div> -->
 
 <!-- <x-text-editor/> -->
 

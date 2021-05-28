@@ -5,12 +5,14 @@
         <button type="button" class="btn btn-primary" wire:click="openModal">Nowe zdjęcie</button>
     </div>
 </header>
-  <div class="wrapper">
+<div class="wrapper flex flex-submenu">
+    <div class="select-wrapper">
     <select class="form-select" wire:model="page_id">
         <!-- <option value="all" selected>Wszystkie</option> -->
         <option value="10" required>Wnętrze Przychodni</option>
         <option value="9" required>Specjalizacje</option>
     </select>
+</div>
 </div>
 
   <table class="table table-borderless">
@@ -39,9 +41,6 @@
                     <button type="button" wire:click="selectedItem( {{$picture->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                     </button>
-                    <!-- <button type="button" wire:click="selectedItem( {{$picture->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$picture->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button>
-                 -->
                 </td>
             </tr>
         @endforeach
@@ -55,7 +54,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Zdjęcie</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body bcg">
             <div class="mb-3">
                 <div class="file-input">
                     <input type="file" wire:model="file" id="file" accept="image/*" name="file" class="file">
@@ -73,7 +72,7 @@
             </div>
             <div class="mb-3">
                 <select class="form-select" wire:model="picture.page_id">
-                    <option selected>Wybierz</option>
+                    <option selected>Wybierz galerię</option>
                     <option value="10" required>Wnętrze Przychodni</option>
                     <option value="9" required>Specjalizacje</option>
                 </select>

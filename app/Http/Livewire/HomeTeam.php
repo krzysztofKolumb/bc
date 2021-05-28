@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Expert;
 use App\Models\Page;
 use Livewire\Component;
 
@@ -48,14 +47,6 @@ class HomeTeam extends Component
 
     public function render()
     {
-        // $experts1 = Expert::whereNotNull('photo')->inRandomOrder()->limit(4)->get();
-
-        // $experts1 = Expert::whereNotNull('photo')->inRandomOrder()->get();
-        // $chunks = $experts1->chunk(4);
-        // $experts = $chunks[0];
-
-        // return view('livewire.home-team', compact('experts'));
         return view('livewire.home-team');
-
     }
 }

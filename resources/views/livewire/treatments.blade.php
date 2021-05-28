@@ -6,13 +6,15 @@
     </div>
 </header>
 
-<div class="wrapper flex">
+<div class="wrapper flex flex-submenu">
+    <div class="select-wrapper">
     <select class="form-select" wire:model="clinic_id">
         <!-- <option value="all" selected>Wszystkie</option> -->
         @foreach($clinics as $clinic)
         <option value="{{ $clinic->id }}" required>{{ $clinic->name }}</option>
         @endforeach
     </select>
+    </div>
     <div>
         <a href="{{ route('admin-clinics') }}">Poradnie, pracownie, programy</a>
     </div>
@@ -40,8 +42,6 @@
                     <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                     </button>
-                    <!-- <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$treatment->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button> -->
                 </td>
             </tr>
         @endforeach
@@ -56,7 +56,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Zabieg</h5>
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bcg">
                 <div class="mb-3">
                     <label for="treatmentName" class="col-form-label">Nazwa*</label>
                     <input type="text" wire:model="treatment.name" class="form-control" id="treatmentName" required>

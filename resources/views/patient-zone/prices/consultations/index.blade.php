@@ -13,16 +13,6 @@
     <li profession="3" class="nav-item"><figure><img height="50px" src="{{url('storage/img/icon-psycho2.png')}}"></figure><h4>Psycholodzy</h4></li>
     </ul>
     <div class="wrapper">
-        <!-- <div class="search-panel"> -->
-            <!-- <h3>Specjaliści</h3> -->
-            <!-- <ul class="nav-search">
-                <li profession="0" class="nav-item active"><h4>Wszyscy</h4></li>
-                <li profession="1" class="nav-item"><h4>Lekarze</h4></li>
-                <li profession="2" class="nav-item"><h4>Dietetycy</h4></li>
-                <li profession="4" class="nav-item"><h4>Fizjoterapeuci</h4></li>
-                <li profession="3" class="nav-item"><h4>Psycholodzy</h4></li>
-            </ul> -->
-        <!-- </div> -->
         <ul class="accordion-list consultation">
             @foreach($experts as $expert)
             <li profession="{{$expert->profession->id}}" class="active accordion-item">

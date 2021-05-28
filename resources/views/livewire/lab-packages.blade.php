@@ -28,8 +28,6 @@
                 <button type="button" wire:click="selectedItem( {{$package->id}} , 'delete' )" title="Usuń">
                     <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                 </button>
-                <!-- <button type="button" wire:click="selectedItem( {{$package->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                <button type="button" wire:click="selectedItem( {{$package->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button> -->
             </td>
         </tr>
     @endforeach
@@ -37,14 +35,14 @@
 </table>
 
 <div class="modal fade" wire:ignore.self id="lab-package-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
+  <div class="modal-dialog modal-xl">>
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Pakiet laboratoryjny</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
       <form id="lab-package-form" action="" method="POST">
+      <div class="modal-body">
             @csrf
             <label for="lab-package-title" class="col-form-label">Tytuł:</label>
             <input type="text" wire:model.defer="package.title" name="title" class="form-control" id="lab-package-title" required>
@@ -64,12 +62,12 @@
             @error('package.content')
             <div>{{ $message }}</div>
             @enderror
-            <div>
+      </div>
+      <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
             </div>
-        </form> 
-    </div>
+      </form> 
     </div>
   </div>
 </div>

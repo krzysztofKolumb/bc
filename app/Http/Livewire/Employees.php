@@ -26,6 +26,16 @@ class Employees extends Component
     public $profession_id='all';
     public $selected_photo;
 
+    public $name;
+    public $name_new;
+    public $file_name;
+    public $file_extension;
+
+    public $fname;
+    public $lname;
+
+    public $photo_default_name="";
+
     use WithFileUploads;
 
     public function mount()
@@ -41,6 +51,7 @@ class Employees extends Component
         'employee.photo' => 'string|max:100',
         'employee.profession_id' => 'required',
         'file'=> 'image|max:1024',
+        'file_name' => 'string'
     ];
 
     protected $messages = [
@@ -57,25 +68,25 @@ class Employees extends Component
         'file.required' => 'To pole jest wymagane.',
         'file.image' => 'Musisz wybrać zdjęcie.',
         'file.max' => 'To zdjęcie jest za duże.',
-        'current.firstname.required' => 'To pole jest wymagane.',
-        'current.firstname.string' => 'To pole może zawierać jedynie tekst.',
-        'current.firstname.max' => 'To pole może zawierać maksymalnie 30 znaków.',
-        'current.lastname.required' => 'To pole jest wymagane.',
-        'current.lastname.string' => 'To pole może zawierać jedynie tekst.',
-        'current.lastname.max' => 'To pole może zawierać maksymalnie 30 znaków.',
-        'current.description.required' => 'To pole jest wymagane.',
-        'current.description.string' => 'To pole może zawierać jedynie tekst.',
-        'current.description.max' => 'To pole może zawierać maksymalnie 100 znaków.',
-        'current.profession_id.required' => 'To pole jest wymagane.',
-        'current_file.required' => 'To pole jest wymagane.',
-        'current_file.image' => 'Musisz wybrać zdjęcie.',
-        'current_file.max' => 'To zdjęcie jest za duże.',
+        'file_name.required' => 'To pole nie może być puste'
     ];
 
     public function hydrate()
     {
         $this->resetErrorBag();
         $this->resetValidation();
+    }
+
+    protected $listeners = ['change'];
+
+    public function change($name, $extension) {
+        $this->name= $name;
+        $this->file_extension = $extension;
+        $slice = Str::beforeLast($name, '.');
+        $slug = Str::slug($slice);
+        $this->file_name = $slug . "." . $extension;
+        $this->file_extension = $extension;
+        $this->file_name = Str::slug($this->employee->firstname . " " .$this->employee->lastname) . "." . $extension;
     }
 
     public function openModal(){
@@ -111,6 +122,31 @@ class Employees extends Component
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
     }
 
+    public function addPicture(){
+
+        if($this->file){
+            $this->validate([
+                'file'=> 'image|max:1024',
+                'file_name' => 'required|string'
+            ]);
+            // $slug = Str::slug($this->employee->firstname . '-' . $this->employee->lastname);
+            // $photo = $slug . '.' . $this->file->extension();
+
+            $slice = Str::beforeLast($this->file_name, '.');
+            $photo = Str::slug($slice) . '.' . $this->file->extension();
+
+            if( Storage::disk('public')->exists('/photos/' . $photo) ){
+                $this->addError('unique', 'Zdjęcie o podanej nazwie już istnieje!');
+            }else {
+                $this->file->storeAs('photos', $photo, 'public');
+                $this->employee->photo = $photo;
+                $this->employee->save();
+                $message = 'Dodano zdjęcie!';
+                $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
+            }
+        }
+    }
+
     public function selectedItem($id, $action){
         $employee = Employee::find($id);
         $this->employee = $employee;
@@ -118,14 +154,34 @@ class Employees extends Component
 
         if($action == 'update'){
             $this->action = 'update';
+            $this->fname = $employee->firstname;
+            $this->lname = $employee->lasttname;
+            $this->file = null;
+            $this->file_name = Str::slug($employee->firstname . ' ' . $employee->lastname);
             $message = 'employee-modal';
             $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
         }
+
+        if($action == 'addPicture'){
+            $this->action = 'addPicture';
+            $this->file = null;
+            $this->name = null;
+            $this->file_name = null;
+            $this->file_extension = null;
+            $message = 'picture-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+        }
+
+        if($action == 'deletePicture'){
+            $this->action = 'deletePicture';
+            $message = 'picture-delete-modal';
+            $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
+        }
+
         if($action == 'delete'){
             $message = 'delete-employee-modal';
             $this->dispatchBrowserEvent('open-modal', ['message' => $message]);
         }
-
     }
 
     public function delete(){
@@ -135,28 +191,6 @@ class Employees extends Component
         $this->employee->delete();
         $message = 'Usunięto pracownika!';
         $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
-    }
-
-    public function cancelChanges(){
-        $this->current->firstname=null;
-        $this->current->lastname=null;
-        $this->current->description=null;
-        $this->current->profession_id=null;
-        $this->current_file=null;
-        $this->currentHasPhoto=false;
-    }
-
-    public function cancelEmployee(){
-        $this->employee=null;
-        $this->file=null;
-    }
-
-    public function cancelAddModal(){
-        $this->employee->firstname=null;
-        $this->employee->lastname=null;
-        $this->employee->description=null;
-        $this->employee->profession_id=null;
-        $this->file=null;
     }
 
     public function saveChanges(){
@@ -170,9 +204,14 @@ class Employees extends Component
         if($this->file){
             $this->validate([
                 'file'=> 'image|max:1024',
+                'file_name' => 'string'
             ]);
-            $this->file->storeAs('photos', $slug . '.' . $this->file->extension(), 'public');
-            $this->employee->photo = $slug . '.' . $this->file->extension();
+            $name = $slug . '.' . $this->file->extension();
+            if($this->file_name) {
+                $name = $this->file_name;
+            }
+            $this->file->storeAs('photos', $name, 'public');
+            $this->employee->photo = $name;
         }
         $this->employee->slug = $slug;
         $this->employee->update();
@@ -184,11 +223,12 @@ class Employees extends Component
     public function deletePhoto(){
         if(Storage::disk('public')->exists('/photos/' . $this->employee->photo)){
             Storage::disk('public')->delete('/photos/' . $this->employee->photo);
+            $this->employee->photo=null;
+            $this->employee->save();
+            $this->selected_photo=null;
+            $message = 'Usunięto zdjęcie!';
+            $this->dispatchBrowserEvent('close-modal', ['message' => $message]);
         }
-        $this->employee->photo=null;
-        $this->employee->save();
-
-        $this->selected_photo=null;
     }
 
     public function render()

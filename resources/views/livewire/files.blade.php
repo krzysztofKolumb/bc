@@ -6,13 +6,15 @@
 </div>
 </header>
 
-<div class="wrapper flex">
+<div class="wrapper flex flex-submenu">
+    <div class="select-wrapper">
     <select class="form-select" wire:model="category_id">
         <option value="all" selected>Wszystkie</option>
         @foreach($categories as $category)
         <option value="{{ $category->id }}" required>{{ $category->name }}</option>
         @endforeach
     </select>
+    </div>
     <div>
         <a href="{{ route('admin-file-categories') }}">Kategorie</a>
     </div>
@@ -32,7 +34,6 @@
         @foreach($files as $file)
             <tr>
                 <th class="th-iteration" scope="row">{{$loop->iteration}}</th>
-                <!-- <td class="th-flex"><h6>{{ $file->title }}</h6></td> -->
                 <td class="th-flex"><h6>{{ Str::beforeLast($file->title, '.') }}</h6></td>
 
                 <td class="th-flex">{{ $file->fileCategory->name }}</td>
@@ -44,9 +45,6 @@
                   <button type="button" wire:click="selectedItem( {{$file->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                   </button>
-                    <!-- <button type="button" wire:click="selectedItem( {{$file->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                    <button type="button" wire:click="selectedItem( {{$file->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button>
-                 -->
                 </td>
             </tr>
         @endforeach
@@ -61,7 +59,7 @@
             <h5 class="modal-title">Dokument</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bcg">
             @if($action=='create')
             <div class="mb-3">
                 <div class="file-input">

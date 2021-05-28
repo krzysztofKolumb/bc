@@ -26,9 +26,6 @@
                   <button type="button" wire:click="selectedItem( {{$faq->id}} , 'delete' )" title="Usuń">
                         <img width="30px" src="{{url('storage/img/icon-trash.png')}}" >
                   </button>
-                  <!-- <button type="button" wire:click="selectedItem( {{$faq->id}} , 'update' )" class="btn btn-outline-primary">Edycja</button>
-                  <button type="button" wire:click="selectedItem( {{$faq->id}} , 'delete' )" class="btn btn-outline-danger">Usuń</button>
-             -->
                 </td>
             </tr>
         @endforeach
@@ -36,14 +33,14 @@
     </table>
 
 <div class="modal fade" wire:ignore.self id="faq-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">>
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">FAQ</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
       <form id="faq-form">
+      <div class="modal-body">
             @csrf
             <label for="faq-question" class="col-form-label">Pytanie:</label>
             <input type="text" wire:model.defer="faq.question" name="question" class="form-control" id="faq-question" required>
@@ -56,16 +53,12 @@
             @error('faq.answear')
             <div>{{ $message }}</div>
             @enderror
-            <div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Anuluj</button>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
             </div>
-        </form> 
     </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+    </form> 
     </div>
   </div>
 </div>

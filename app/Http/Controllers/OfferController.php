@@ -32,9 +32,10 @@ class OfferController extends Controller
             return view('offer.show', compact('offer','page', 'teams', 'sections','clinicalTrials', 'categories', 'professions', 'section'));
         }
         elseif($page->id == 8){
+            $labTeam = Profession::find(5);
             $section_lab = $page->Section::find(28);
             $section_lab_package = Section::find(29);
-            return view('offer.show', compact('offer','page', 'teams', 'sections', 'professions', 'section_lab', 'section_lab_package'));
+            return view('offer.show', compact('offer','page', 'teams', 'labTeam', 'sections', 'professions', 'section_lab', 'section_lab_package'));
         }
         else {
             return view('offer.show', compact('offer','page', 'teams', 'sections', 'professions'));

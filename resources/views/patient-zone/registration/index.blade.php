@@ -22,10 +22,6 @@
                         </div>
                         <aside>
                             <ul class="aside-gallery">
-                                <!-- @foreach($article->pictures as $picture)
-                                    <li><img src="{{url('storage/img/' . $picture->name )}}"></li>
-                                @endforeach -->
-
                                 @if($article->img_1)
                                 <li><img src="{{url('storage/img/' . $article->img_1 )}}"></li>
                                 @endif
@@ -49,41 +45,41 @@
 
 </section>
 
-<section>   
-@if( count($profession->employees) > 0 )
-<header class="basic-s border-t border-b">
-    <div class="header-content">
-        <h3>{{ $profession->team }}</h3>
-        <p>Zespół</p>
-    </div>
-</header>
-<article class="team-content">
-<ul class="team-list">
-    @foreach($profession->employees as $employee)
-    <li>
-        <a>
-            <div class="wrap wrap-1">
-                <figure>
-                  @if($employee->photo)
-                      <img src="{{url('storage/photos/' . $employee->photo)}}" >
-                  @else
-                  <img src="{{url('storage/img/bcg.jpg')}}" >
-                  @endif  
-                </figure>
-            </div>
-            <div class="wrap wrap-2">
-                <header>
-                    <h2>{{ $employee->firstname }} {{ $employee->lastname }}</h2>
-                    <h3>{{ $employee->description }}</h3>
-                </header>
-            </div>
-          </a>
-      </li>
-    @endforeach
-</ul>
-</article>
-@endif
+@if(count($profession->employees) > 0)
+<section>
+    <header class="basic-s border-t border-b">
+        <div class="header-content">
+            <h3>{{ $profession->team }}</h3>
+            <p>Zespół</p>
+        </div>
+    </header>
+    <article class="team-content">
+        <ul class="team-list employees-list">
+            @foreach($profession->employees as $employee)
+            <li>
+                <a>
+                    <div class="wrap wrap-1">
+                        <figure>
+                        @if($employee->photo)
+                            <img src="{{url('storage/photos/' . $employee->photo)}}" >
+                        @else
+                        <img src="{{url('storage/img/bcg.jpg')}}" >
+                        @endif  
+                        </figure>
+                    </div>
+                    <div class="wrap wrap-2">
+                        <header>
+                            <h2>{{ $employee->firstname }} {{ $employee->lastname }}</h2>
+                            <h3>{{ $employee->description }}</h3>
+                        </header>
+                    </div>
+                </a>
+            </li>
+            @endforeach
+        </ul>
+    </article>
 </section>
+@endif
 
 <section class="border-t">
     <header class="basic-s">
@@ -94,12 +90,6 @@
     </header>
     <div class="section-body bcg">
         <article class="main-content">
-            <!-- @if($page->section->header)
-            <header class="basic-a">
-                <h2>{{ $page->section->header }}</h2>
-            </header>
-            @endif -->
-
             <div class="article-body">
                 <ul class="download-files-list endoscopy">
                     @foreach($files as $file)
@@ -109,19 +99,6 @@
                     </li>
                     @endforeach
                 </ul>
-                <!-- <ul class="download-files">
-                    @foreach($files as $file)
-                    <li>
-                        <a href="{{url('storage/files/' . $file->title . '.' . $file->name)}}" download>
-                            <div>
-                                <span class="dot">&#9679; </span>
-                                <h4>{{ $file->title }}</h4>
-                            </div>
-                            <i class="icon-down-dir-1"></i>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul> -->
             </div>
         </article>
     </div>

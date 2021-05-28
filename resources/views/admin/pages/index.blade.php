@@ -1,8 +1,13 @@
 @extends('admin.app')
 
 @section('content')
+<header class="flex border-b">
+    <div class="wrapper flex-center">
+        <h2>Teksty</h2>
+    </div>
+</header>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul id="main-navbar" class="navbar-nav">
